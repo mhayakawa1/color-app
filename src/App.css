@@ -1,0 +1,84 @@
+/*SAVED COLORS STARTS HERE*/
+/*
+animated gradient
+body {
+	background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
+	height: 100vh;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+*/
+
+.saved-colors-container{
+  border: 1px solid black;
+  display: flex;
+}
+
+.saved-color-item{
+  width: auto;
+  height: auto;
+}
+
+.saved-color-circle{
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+}
+
+.component-container{
+  min-width: 20rem;
+  width: auto;
+  min-height: 15rem;
+  height: auto;
+  background-color: gray;
+}
+/*SAVED COLORS ENDS HERE*/
+
+/*COLOR PICKER STARTS HERE*/
+.input-container{
+  display: flex;
+}
+
+.input-item{
+  display: flex;
+  flex-direction: column;
+}
+
+input{
+  width: 5rem;
+}
+
+.color-picker-circle{
+  height: 5rem;
+  width: 5rem;
+  border-radius: 50%;
+}
+
+.remove-color{
+  width: .8rem;
+  height: .8rem;
+  border-style: none;
+  padding: none;
+  font-size: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: .25rem .1rem 0 .1rem;  
+}
+
+.remove-color:active{
+  background-color: gray;
+}

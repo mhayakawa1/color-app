@@ -67,18 +67,102 @@ input{
   border-radius: 50%;
 }
 
-.remove-color{
-  width: .8rem;
-  height: .8rem;
-  border-style: none;
-  padding: none;
-  font-size: auto;
+/*COLOR WHEEL STARTS HERE*/
+.wheel-container{
+  width: 15rem;
+  height: 15rem;
+  border: 1px solid black;
+  border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: .25rem .1rem 0 .1rem;  
 }
 
-.remove-color:active{
-  background-color: gray;
+.color-wheel-circle{
+  position: absolute;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  border-style: none;
 }
+
+.dropshadow{
+  animation: pulse 20s infinite;
+}
+  
+@keyframes pulse{
+  0% {
+    filter: drop-shadow(0px 0px 5px white);
+  }
+      
+  60% {
+    filter: drop-shadow(0px 0px 15px white);
+  }
+      
+  100% {
+    filter: drop-shadow(0px 0px 5px white);
+  }
+}
+
+
+.red{
+  background-color: #e60406;
+  transform: rotate(270deg) translate(6rem);
+}
+  
+.red-orange{
+  background-color: #f25206;
+  transform: rotate(300deg) translate(6rem);
+}
+  
+.orange{
+  background-color: #f77d00;
+  transform: rotate(330deg) translate(6rem);
+}
+  
+.orange-yellow{
+  background-color: #ffb200;
+  transform: rotate(0deg) translate(6rem);
+}
+  
+.yellow{
+  background-color: #ffe208;
+  transform: rotate(30deg) translate(6rem);
+}
+  
+.yellow-green{
+  background-color: #86bb09;
+  transform: rotate(60deg) translate(6rem);
+}
+  
+.green{
+  background-color: #1d9c1b;
+  transform: rotate(90deg) translate(6rem);
+}
+  
+.green-blue{
+  background-color: #007473;
+  transform: rotate(120deg) translate(6rem);
+}
+  
+.blue{
+  background-color: #1a51ac;
+  transform: rotate(150deg) translate(6rem);
+}
+  
+.blue-purple{
+  background-color: #51369f;
+  transform: rotate(180deg) translate(6rem);
+}
+  
+.purple{
+  background-color: #681080;
+  transform: rotate(210deg) translate(6rem);
+}
+  
+.purple-red{
+  background-color: #9a0058;
+  transform: rotate(240deg) translate(6rem);
+}
+
+/*COLOR WHEEL ENDS HERE*/

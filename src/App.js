@@ -28,9 +28,9 @@ function App() {
     <div className='App'>
       <div className='menu'>
         <button onClick={() => switchComponent(<SavedColors />)}>Saved Colors</button>
-        <button onClick={() => switchComponent(<ColorWheel />)}>Color Wheel</button>
         <button onClick={() => switchComponent(<ColorPicker />)}>Color Picker</button>
         <button onClick={() => switchComponent(<RandomScheme />)}>Random Color Scheme</button>
+        <button onClick={() => switchComponent(<ColorWheel />)}>Color Wheel</button>
       </div>
 
       <div className='component-container'>

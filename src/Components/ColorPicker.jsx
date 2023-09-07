@@ -77,7 +77,12 @@ export default function ColorPicker(){
   }  
 
   const reset = () => {
-    setSavedColors('')
+    setRed(0)
+    setGreen(0)
+    setBlue(0)
+    localStorage.setItem('red', 0)
+    localStorage.setItem('green', 0)
+    localStorage.setItem('blue', 0)
   }
   //console.log('CP', savedColors)
   return(    

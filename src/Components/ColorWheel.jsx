@@ -9,9 +9,6 @@ import { NavLink } from 'react-router-dom';
 export default function ColorWheel(){
   const [schemeType, setSchemeType] = useState('monochromatic')
   const [one, setOne] = useState(false);
-  let classesArr = ['red', 'redOrange', 'orange', 'orangeYellow', 
-  'yellow', 'yellowGreen', 'green', 'greenBlue',
-  'blue', 'bluePurple', 'purple', 'purpleRed']
   const [classesArr2, setClassesArr2] = useState({
     0: false,
     1: false,
@@ -26,10 +23,15 @@ export default function ColorWheel(){
     10: false,
     11: false
   })
-
+  let classesArr = ['red', 'redOrange', 'orange', 'orangeYellow', 
+  'yellow', 'yellowGreen', 'green', 'greenBlue',
+  'blue', 'bluePurple', 'purple', 'purpleRed']
   let colorsArr = ['red', 'redOrange', 'orange', 'orangeYellow', 
   'yellow', 'yellowGreen', 'green', 'greenBlue',
   'blue', 'bluePurple', 'purple', 'purpleRed']
+  let colorNamesArr = ['Red', 'Red Orange', 'Orange', 'Orange Yellow', 
+  'Yellow', 'Yellow Green', 'Green', 'Green Blue',
+  'Blue', 'Blue Purple', 'Purple', 'Purple Red']
   let selectedColors = [];
 
   const handleDropdown = (event) => {
@@ -69,29 +71,24 @@ export default function ColorWheel(){
       }
     }
   }
-
+  
   const colorNamesLoop = () => {
     let arr = colorsArr
+    let renderColorNames = []
 
-    for(let i = 0; i < arr.length; i++){
-      if(arr[i].match(/[A-Z]/) !== null){
-        let str = ''
-        let split = arr[i].split('')
-        for(let j = 0; j < split.length; j++){
-          if(arr[i][j].match(/[A-Z]/) !== null){
-            str = str + ' ' + arr[i][j]
-          }else{
-            str = str + arr[i][j]
-          }
-        }
-        arr[i] = str
+    for(let i = 0; i < colorNamesArr.length; i++){
+      if(classesArr2[i] === true){
+        renderColorNames.push(
+          <p key={i}>{colorNamesArr[i]}</p>
+        )
       }
-      arr[i] = arr[i].charAt(0).toUpperCase()+arr[i].slice(1)
-    }
-    console.log(arr)
-  }
-  colorNamesLoop()
+    }    
 
+   return(
+    renderColorNames
+   )
+  }
+  
   return(
   <div>
     <h3>Color Wheel</h3>
@@ -130,7 +127,9 @@ export default function ColorWheel(){
       <option value='triadic'>Triadic</option>
       <option value='tetradic'>Tetradic</option>      
     </select>
-    {}
+    <div>
+      {colorNamesLoop()}
+    </div>
   </div>
   )
 }

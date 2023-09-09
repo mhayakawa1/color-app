@@ -44,6 +44,10 @@ export default function SavedColors(){
     }
   }
 
+  const deleteColor = (i) => {
+    console.log(i)
+  }
+
   const savedColorsLoop = () => {
     let splitArr = savedColors.split('*').splice(1);//array from savedColors, split into multiple arrays
     let itemsArr = []
@@ -54,12 +58,17 @@ export default function SavedColors(){
     }
     for(let i = 0; i < splitArr.length; i++){
       const item = <div key={i} className='saved-color-item'>
-        <div className='saved-color-circle' style={{background: `rgb(${splitArr[i][0]}, ${splitArr[i][1]}, ${splitArr[i][2]})`}}></div>
-        {/*<button>X</button>*/}
+        <div className='saved-color-circle' style={{background: `rgb(${splitArr[i][0]}, ${splitArr[i][1]}, ${splitArr[i][2]})`}}>
+          <div className='saved-color-info'>
+            <button className='delete-saved-color' onClick={() => deleteColor(i)}>X</button>
+            <p className='saved-color-value'>{`R ${splitArr[i][0]}`}</p>
+            <p className='saved-color-value'>{`G ${splitArr[i][1]}`}</p>
+            <p className='saved-color-value'>{`B ${splitArr[i][2]}`}</p>
+          </div>
+        </div>
       </div>
       itemsArr.push(item)
     }
-    //console.log(splitArr)
     return(
       itemsArr
     )

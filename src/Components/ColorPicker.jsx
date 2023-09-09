@@ -63,7 +63,6 @@ export default function ColorPicker(){
     let dupeColor = false
     let currentColor = `${red},${green},${blue}`;
     let split = savedColors.split('*');
-    //console.log(currentColor)
     for(let i = 0; i < split.length; i++){
       if(split[i] === currentColor){
         dupeColor = true
@@ -73,7 +72,6 @@ export default function ColorPicker(){
       setSavedColors(savedColors + '*' + currentColor)
       localStorage.setItem('savedColors', savedColors + '*' + currentColor)
     }
-    //console.log(savedColors)
   }  
 
   const reset = () => {
@@ -84,7 +82,7 @@ export default function ColorPicker(){
     localStorage.setItem('green', 0)
     localStorage.setItem('blue', 0)
   }
-  //console.log('CP', savedColors)
+  
   return(    
   <div id='color-picker'>
     <h3>Color Picker</h3>
@@ -94,17 +92,23 @@ export default function ColorPicker(){
     <div className='input-container'>
       <div className='input-item'>
         <label>Red</label>
-        <input type='number' value={`${red}`}
+        <input className='input-number' type='number' value={`${red}`}
+          onChange={event => handleChange(event, 'red')}/>
+        <input type='range' min='0' max='255' value={`${red}`} className='slider'
           onChange={event => handleChange(event, 'red')}/>
       </div>
       <div className='input-item'>
         <label>Green</label>
-        <input type='number' value={`${green}`}
+        <input className='input-number' type='number' value={`${green}`}
+          onChange={event => handleChange(event, 'green')}/>
+        <input type='range' min='0' max='255' value={`${green}`} className='slider'
           onChange={event => handleChange(event, 'green')}/>
       </div>
       <div className='input-item'>
         <label>Blue</label>
-        <input type='number' value={`${blue}`}
+        <input className='input-number' type='number' value={`${blue}`}
+          onChange={event => handleChange(event, 'blue')}/>
+        <input type='range' min='0' max='255' value={`${blue}`} className='slider'
           onChange={event => handleChange(event, 'blue')}/>
       </div>
     </div>

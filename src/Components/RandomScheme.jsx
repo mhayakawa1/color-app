@@ -10,7 +10,14 @@ https://www.colr.org/api.html
 */}
 
 export default function RandomScheme(){
-  const[schemeArr, setSchemeArr] = useState([])
+  const[schemeArr, setSchemeArr] = useState('');
+
+  const onStorageUpdate = (e) => {
+    const { key, newValue } = e;
+    if(key === 'schemeArr'){
+      setSchemeArr(newValue)
+    }
+  }
 
   function getAPI(){
     //generate random number from 100 - 17969, insert it into url
@@ -18,7 +25,9 @@ export default function RandomScheme(){
     fetch(`https://www.colr.org/json/scheme/${randomNum}`)
     .then(res => res.json())
     .then(result => {
-        setSchemeArr(result.schemes[0].colors)
+        //console.log(result.schemes[0].colors.join(','))
+        setSchemeArr(result.schemes[0].colors.join(','))
+        localStorage.setItem('schemeArr', result.schemes[0].colors.join(','));
     })
     .catch(err=>console.log(err))
   }
@@ -26,9 +35,10 @@ export default function RandomScheme(){
   const colorSchemeLoop = () => {
     //find way to convert hex to rgb
     let renderScheme = []
-    for(let i = 0; i < schemeArr.length; i++){
+    let split = schemeArr.split(',')
+    for(let i = 0; i < split.length; i++){
       renderScheme.push(
-        <div style={{backgroundColor: `#${schemeArr[i]}`}}
+        <div style={{backgroundColor: `#${split[i]}`}}
           className='random-scheme-color-circle' key={i}></div>
       )
     }
@@ -39,11 +49,16 @@ export default function RandomScheme(){
   }
 
   useEffect(() => {
-    if(schemeArr.length === 0){
-      getAPI()
+    setSchemeArr(localStorage.getItem('schemeArr') || '');
+    window.addEventListener('storage', onStorageUpdate);
+    if(schemeArr === ''){
+      console.log(0)
     }
+      return () => {
+        window.removeEventListener('storage', onStorageUpdate);
+      };
   },[]);
-  
+    
   return(
   <div>
     <h3>Random Color Scheme</h3>

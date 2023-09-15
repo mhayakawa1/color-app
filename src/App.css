@@ -117,6 +117,17 @@ body {
   width: 5rem;
   height: 5rem;
   border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.random-scheme-color-circle button{
+  opacity: 0%;
+}
+
+.random-scheme-color-circle button:hover{
+  opacity: 100%;
 }
 /*RANDOM COLOR SCHEME STARTS HERE*/
 

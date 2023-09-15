@@ -69,7 +69,7 @@ export default function SavedColors(){
             <p className='saved-color-value'>{`B ${splitArr[i][2]}`}</p>
           </div>
         </div>
-      </div>
+      </div>   
       if(splitArr[i][0] !== ''){
         itemsArr.push(item)
       }      
@@ -78,6 +78,8 @@ export default function SavedColors(){
       itemsArr
     )
   }
+
+  console.log(savedColors)
 
   return(    
   <div>

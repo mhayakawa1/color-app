@@ -12,7 +12,7 @@ https://www.colr.org/api.html
 export default function RandomScheme(){
   const [savedColors, setSavedColors] = useState('');
   const [schemeArr, setSchemeArr] = useState('');
-  const [rgbArr, setRgbArr] = useState([]);
+  const [rgbArr, setRgbArr] = useState('');
   const hexArr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'a', 'b', 'c', 'd', 'e', 'f'];
 
   const onStorageUpdate = (e) => {
@@ -35,9 +35,8 @@ export default function RandomScheme(){
       }
       arr[i] = arr2
     }
-    setRgbArr(arr)
+    setRgbArr(arr);
   }
-  console.log(rgbArr)
 
   function getAPI(){
     //generate random number from 100 - 17969, insert it into url
@@ -50,32 +49,16 @@ export default function RandomScheme(){
         hex2rgb(result.schemes[0].colors)
     })
     .catch(err=>console.log(err))
-    {/*const hex2rgb = (arr) =>{
-      for(let i = 0; i < arr.length; i++){
-        arr[i] = arr[i].split('')
-        for(let j = 0; j < arr[i].length; j++){
-          if (/[0-9]/.test(arr[i][j]) === false) {
-            arr[i].splice(j, 1, hexArr.indexOf(arr[i][j]))
-          }
-        }
-        let arr2 = []
-        for(let k = 0; k < 6; k = k + 2){
-          arr2.push(arr[i][k]*16 + Number(arr[i][k+1]))
-        }
-        arr[i] = arr2
-      }
-    }
-    if(schemeArr !== ''){
-      let arr = schemeArr.split(',')
-      //hex2rgb(arr)
-    }*/}
+  }
 
+  const saveSchemeColor = (i) =>{
+    if(savedColors.includes(rgbArr[i]) === false){
+      setSavedColors(savedColors + '*' + rgbArr[i].join())
+      localStorage.setItem('savedColors', savedColors + '*' + rgbArr[i].join());
+    }
   }
 
   const colorSchemeLoop = () => {
-    //find way to convert hex to rgb
-    //console.log(schemeArr)
-
     let renderScheme = []
     let split = schemeArr.split(',')
     for(let i = 0; i < split.length; i++){
@@ -83,7 +66,8 @@ export default function RandomScheme(){
         renderScheme.push(
           <div style={{backgroundColor: `#${split[i]}`}}
             className='random-scheme-color-circle' key={i}>
-            <button>Save</button>
+            <button onClick={() => saveSchemeColor(i)}
+            >Save</button>
           </div>
         )
       }

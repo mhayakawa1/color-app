@@ -7,7 +7,7 @@ import { NavLink } from 'react-router-dom';
 - delete all colors button - are you sure popup window
 */}
 
-export default function SavedColors(){  
+export default function SavedColors(){
   const [savedColors, setSavedColors] = useState('');
   const [showConfirm, setShowConfirm] = useState(false); //
   const [lastDeleted, setLastDeleted] = useState('');

@@ -79,8 +79,6 @@ export default function SavedColors(){
     )
   }
 
-  console.log(savedColors)
-
   return(    
   <div>
     <h3>Your Saved Colors</h3>

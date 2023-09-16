@@ -17,8 +17,7 @@ import SavedColors from './Components/SavedColors';
 
 */}
 function App() {
-  const [display, setDisplay] = useState(<SavedColors />);  
-  const [savedColors, setSavedColors] = useState([]);
+  const [display, setDisplay] = useState(<SavedColors />);
 
   function switchComponent(comp){
     setDisplay(comp)

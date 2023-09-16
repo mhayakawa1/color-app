@@ -21,6 +21,7 @@ export default function RandomScheme(){
       setSchemeArr(newValue)
     }
   }
+
   const hex2rgb = (arr) =>{
     for(let i = 0; i < arr.length; i++){
       arr[i] = arr[i].split('')
@@ -35,7 +36,8 @@ export default function RandomScheme(){
       }
       arr[i] = arr2
     }
-    setRgbArr(arr);
+    setRgbArr(arr.join('*'));
+    localStorage.setItem('rgbArr', arr.join('*'));
   }
 
   function getAPI(){
@@ -52,12 +54,24 @@ export default function RandomScheme(){
   }
 
   const saveSchemeColor = (i) =>{
-    if(savedColors.includes(rgbArr[i]) === false){
-      setSavedColors(savedColors + '*' + rgbArr[i].join())
-      localStorage.setItem('savedColors', savedColors + '*' + rgbArr[i].join());
+    if(savedColors.includes(rgbArr.split('*')[i]) === false){
+      setSavedColors(savedColors + '*' + rgbArr.split('*')[i])
+      localStorage.setItem('savedColors', savedColors + '*' + rgbArr.split('*')[i]);
     }
   }
 
+  const saveAllColors = () =>{   
+    let split1 = rgbArr.split('*');
+    let arr = [];
+    for(let i = 0; i < split1.length; i++){
+      if(savedColors.split('*').includes(split1[i]) === false){
+        arr.push(split1[i])
+      }
+    }
+    setSavedColors(savedColors + '*' + arr.join('*'))
+    localStorage.setItem('savedColors', savedColors + '*' + arr.join('*'));
+  }
+ 
   const colorSchemeLoop = () => {
     let renderScheme = []
     let split = schemeArr.split(',')
@@ -81,6 +95,7 @@ export default function RandomScheme(){
   useEffect(() => {
     setSavedColors(localStorage.getItem('savedColors') || '');
     setSchemeArr(localStorage.getItem('schemeArr') || '');
+    setRgbArr(localStorage.getItem('rgbArr') || '');
     window.addEventListener('storage', onStorageUpdate);
       return () => {
         window.removeEventListener('storage', onStorageUpdate);
@@ -96,6 +111,7 @@ export default function RandomScheme(){
   <div>
     <h3>Random Color Scheme</h3>
     <button onClick={() => clear()}>Clear</button>
+    <button onClick={() => saveAllColors()}>Save All</button>
     <button onClick={() => getAPI()}>Generate Color Scheme</button>
     <div className='color-scheme-container'>
       {colorSchemeLoop()}

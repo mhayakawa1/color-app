@@ -72,16 +72,17 @@ export default function SavedColors(){
       </div>   
       if(splitArr[i][0] !== ''){
         itemsArr.push(item)
-      }      
+      }
     }
     return(
       itemsArr
     )
   }
+  //console.log(savedColors.split('*').splice(1))
 
   return(    
   <div>
-    <h3>Your Saved Colors</h3>
+    <h3>Saved Colors</h3>
     <div className='saved-colors-container'>{savedColorsLoop()}</div>
 
     <button onClick={savedColors === '' ? null : () => clearAll('clear all')}>Clear All</button>

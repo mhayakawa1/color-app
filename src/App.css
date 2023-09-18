@@ -110,25 +110,43 @@ body {
 
 /*RANDOM COLOR SCHEME STARTS HERE*/
 .color-scheme-container{
+  max-width: 75%;
   display: flex;
+  flex-wrap: wrap;
 }
 
 .random-scheme-color-circle{
-  width: 5rem;
-  height: 5rem;
+  width: 7rem;
+  height: 7rem;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.random-scheme-color-circle button{
+.scheme-color-info{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.scheme-color-info button{
+  width: 4rem;
+}
+
+.scheme-color-info p{
+  font-size: .75rem;
+  text-align: center;
+  margin: 0;
+}
+
+/*.random-scheme-color-circle button{
   opacity: 0%;
 }
 
 .random-scheme-color-circle button:hover{
   opacity: 100%;
-}
+}*/
 /*RANDOM COLOR SCHEME STARTS HERE*/
 
 /*COLOR WHEEL STARTS HERE*/

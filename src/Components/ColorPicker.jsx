@@ -54,25 +54,51 @@ export default function ColorPicker(){
     }
   }
 
-  const handleChangeHEX = (event) =>{
-    //console.log(event.target.value)
+  const handleChangeHEX = (event) => {
+    setHexCode(event.target.value.slice(1))
+  }
+
+  const handleKeyDown = (event) => {
+    if(event.keyCode === 13 && event.target.value.length === 7
+        && /^[A-Fa-f0-9]*$/.test(event.target.value.slice(1)) === true){
+      let hexInput = event.target.value.toLowerCase().slice(1).split('')
+      for(let i = 0; i < hexInput.length; i++){
+        if(/[0-9]/.test(hexInput[i]) === false){
+          hexInput.splice(i, 1, hex.indexOf(hexInput[i]))
+        }else{
+          hexInput.splice(i, 1, Number(hexInput[i]))
+        }
+      }
+
+      let rgbOutput = []
+      for(let i = 0; i < hexInput.length; i = i + 2){
+        rgbOutput.push(hexInput[i]*16 + hexInput[i+1])
+      }
+      
+      setRed(rgbOutput[0]);
+      setGreen(rgbOutput[1]);
+      setBlue(rgbOutput[2]);
+      localStorage.setItem('red', rgbOutput[0]);
+      localStorage.setItem('green', rgbOutput[1]);
+      localStorage.setItem('blue', rgbOutput[2]);
+    }
   }
 
   const rgb2hex = () =>{
-    let str = rgbCode.split(',')
-    let arr = []
-    for(let i = 0; i < str.length; i++){
-      str[i] = str[i]/16
-      str[i] = str[i].toString().split('.')
-      str[i][1] = '.' + str[i][1]
-      if(str[i][1] === '.undefined'){
-        arr.push(hex[str[i][0]], '0')
+    setRgbCode(`${red},${green},${blue}`)
+    let rgbInput = rgbCode.split(',')
+    let hexOutput = []
+    for(let i = 0; i < rgbInput.length; i++){
+      rgbInput[i] = rgbInput[i]/16
+      rgbInput[i] = rgbInput[i].toString().split('.')
+      rgbInput[i][1] = '.' + rgbInput[i][1]
+      if(rgbInput[i][1] === '.undefined'){
+        hexOutput.push(hex[rgbInput[i][0]], '0')
       }else{
-        arr.push(hex[str[i][0]], hex[str[i][1]*16])
+        hexOutput.push(hex[rgbInput[i][0]], hex[rgbInput[i][1]*16])
       }
     }
-    setHexCode(arr.join(''))
-    console.log(hexCode)
+    setHexCode(hexOutput.join(''))
   }
 
   useEffect(() => {
@@ -144,7 +170,8 @@ export default function ColorPicker(){
     <button onClick={rgb2hex}>Get HEX code</button>
     <button onClick={saveColor}>Save Color</button>
     <button onClick={reset}>Reset</button>
-    <input onKeyDown={(event) => handleChangeHEX(event)}
+    <input onChange={(event) => handleChangeHEX(event)}
+      onKeyDown={(event) => handleKeyDown(event)}
       value={`#${hexCode.toUpperCase()}`}/>
   </div>
   )

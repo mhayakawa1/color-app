@@ -76,12 +76,18 @@ export default function RandomScheme(){
     let renderScheme = []
     let split = schemeArr.split(',')
     for(let i = 0; i < split.length; i++){
-      if(split.length > 1){        
+        console.log(rgbArr.split('*'))   
+      if(split.length > 1){     
         renderScheme.push(
-          <div style={{backgroundColor: `#${split[i]}`}}
-            className='random-scheme-color-circle' key={i}>
-            <button onClick={() => saveSchemeColor(i)}
-            >Save</button>
+          <div key={i}>
+            <div style={{backgroundColor: `#${split[i]}`}}
+              className='random-scheme-color-circle'>
+            </div>
+            <div className='scheme-color-info'>
+              <button onClick={() => saveSchemeColor(i)}>Save</button>
+              <p>HEX: #{split[i].toUpperCase()}</p>
+              <p>RGB: {rgbArr.split('*')[i]}</p>
+            </div>
           </div>
         )
       }

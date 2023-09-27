@@ -76,7 +76,6 @@ export default function RandomScheme(){
     let renderScheme = []
     let split = schemeArr.split(',')
     for(let i = 0; i < split.length; i++){
-        console.log(rgbArr.split('*'))   
       if(split.length > 1){     
         renderScheme.push(
           <div key={i}>
@@ -115,7 +114,6 @@ export default function RandomScheme(){
 
   return(
   <div>
-    <h3>Random Color Scheme</h3>
     {/*<button onClick={() => clear()}>Clear</button>*/}
     <button onClick={() => saveAllColors()}>Save All</button>
     <button onClick={() => getAPI()}>Generate Color Scheme</button>

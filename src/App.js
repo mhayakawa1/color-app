@@ -22,14 +22,20 @@ function App() {
   function switchComponent(comp){
     setDisplay(comp)
   }
+  console.log(display.type.name)
 
   return (
-    <div className='App'>
+    <div className='app'>
       <div className='menu'>
-        <button onClick={() => switchComponent(<SavedColors />)}>Saved Colors</button>
-        <button onClick={() => switchComponent(<ColorPicker />)}>Color Picker</button>
-        <button onClick={() => switchComponent(<RandomScheme />)}>Random Color Scheme</button>
-        <button onClick={() => switchComponent(<ColorWheel />)}>Color Wheel</button>
+
+        <button onClick={() => switchComponent(<SavedColors />)} 
+          className={`menu-item-1 ${display.type.name === 'SavedColors' ? 'active' : ''}`}>Saved Colors</button>
+        <button onClick={() => switchComponent(<ColorPicker />)}
+          className={`${display.type.name === 'ColorPicker' ? 'active' : ''}`}>Color Picker</button>
+        <button onClick={() => switchComponent(<RandomScheme />)}
+          className={`${display.type.name === 'RandomScheme' ? 'active' : ''}`}>Random Color Scheme</button>
+        <button onClick={() => switchComponent(<ColorWheel />)}
+          className={`${display.type.name === 'ColorWheel' ? 'active' : ''}`}>Color Wheel</button>
       </div>
 
       <div className='component-container'>

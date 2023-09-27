@@ -1,16 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 
- {/*Goals
-- 
-*/}
 export default function ColorPicker(){
   const [savedColors, setSavedColors] = useState('');
   const [red, setRed] = useState(0);//rgb number values
   const [green, setGreen] = useState(0);
   const [blue, setBlue] = useState(0);
   const [rgbCode, setRgbCode] = useState('');
-  const [hexCode, setHexCode] = useState('');
+  const [hexCode, setHexCode] = useState('000000');
   const hex = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'a', 'b', 'c', 'd', 'e', 'f']
 
   const onStorageUpdate = (e) => {
@@ -130,6 +127,7 @@ export default function ColorPicker(){
 
   const reset = () => {
     setRgbCode('0,0,0')
+    setHexCode('000000')
     setRed(0)
     setGreen(0)
     setBlue(0)

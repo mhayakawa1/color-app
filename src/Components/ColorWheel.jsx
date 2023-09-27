@@ -91,7 +91,6 @@ export default function ColorWheel(){
   
   return(
   <div>
-    <h3>Color Wheel</h3>
     <div className='wheel-container'>
       <button onClick={() => findColorScheme('red')} 
         className={`color-wheel-circle red ${classesArr2[0] ? 'dropshadow' : ''}`}></button>

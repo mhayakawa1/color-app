@@ -137,40 +137,44 @@ export default function ColorPicker(){
   }
 
   return(    
-  <div id='color-picker'>
-    <h3>Color Picker</h3>
-    <div className='color-picker-circle'
-      style={{backgroundColor: `rgb(${red}, ${green}, ${blue})`}}>
+  <div className='component-container-2'>
+    <div className='controls-container color-picker-controls'>
+      <div className='input-container'>
+        <div className='input-item'>
+          <label>Red</label>
+          <input className='input-number' type='number' value={`${red}`}
+            onChange={event => handleChangeRGB(event, 'red')}/>
+          <input type='range' min='0' max='255' value={`${red}`} className='slider'
+            onChange={event => handleChangeRGB(event, 'red')}/>
+        </div>
+        <div className='input-item'>
+          <label>Green</label>
+          <input className='input-number' type='number' value={`${green}`}
+            onChange={event => handleChangeRGB(event, 'green')}/>
+          <input type='range' min='0' max='255' value={`${green}`} className='slider'
+            onChange={event => handleChangeRGB(event, 'green')}/>
+        </div>
+        <div className='input-item'>
+          <label>Blue</label>
+          <input className='input-number' type='number' value={`${blue}`}
+            onChange={event => handleChangeRGB(event, 'blue')}/>
+          <input type='range' min='0' max='255' value={`${blue}`} className='slider'
+            onChange={event => handleChangeRGB(event, 'blue')}/>
+        </div>
+      </div>
+      <button onClick={rgb2hex}>Get HEX Value</button>
+      <input onChange={(event) => handleChangeHEX(event)}
+        onKeyDown={(event) => handleKeyDown(event)}
+        value={`#${hexCode.toUpperCase()}`}/>
+      <button onClick={reset}>Reset</button>
+      <button onClick={saveColor}>Save Color</button>
     </div>
-    <div className='input-container'>
-      <div className='input-item'>
-        <label>Red</label>
-        <input className='input-number' type='number' value={`${red}`}
-          onChange={event => handleChangeRGB(event, 'red')}/>
-        <input type='range' min='0' max='255' value={`${red}`} className='slider'
-          onChange={event => handleChangeRGB(event, 'red')}/>
-      </div>
-      <div className='input-item'>
-        <label>Green</label>
-        <input className='input-number' type='number' value={`${green}`}
-          onChange={event => handleChangeRGB(event, 'green')}/>
-        <input type='range' min='0' max='255' value={`${green}`} className='slider'
-          onChange={event => handleChangeRGB(event, 'green')}/>
-      </div>
-      <div className='input-item'>
-        <label>Blue</label>
-        <input className='input-number' type='number' value={`${blue}`}
-          onChange={event => handleChangeRGB(event, 'blue')}/>
-        <input type='range' min='0' max='255' value={`${blue}`} className='slider'
-          onChange={event => handleChangeRGB(event, 'blue')}/>
+    
+    <div className='component-display'>
+      <div className='color-picker-square'
+        style={{backgroundColor: `rgb(${red}, ${green}, ${blue})`}}>
       </div>
     </div>
-    <button onClick={rgb2hex}>Get HEX code</button>
-    <button onClick={saveColor}>Save Color</button>
-    <button onClick={reset}>Reset</button>
-    <input onChange={(event) => handleChangeHEX(event)}
-      onKeyDown={(event) => handleKeyDown(event)}
-      value={`#${hexCode.toUpperCase()}`}/>
   </div>
   )
 }

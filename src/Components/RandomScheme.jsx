@@ -113,11 +113,14 @@ export default function RandomScheme(){
   }
 
   return(
-  <div>
-    {/*<button onClick={() => clear()}>Clear</button>*/}
-    <button onClick={() => saveAllColors()}>Save All</button>
-    <button onClick={() => getAPI()}>Generate Color Scheme</button>
-    <div className='color-scheme-container'>
+  <div className='component-container-2'>
+    <div className='controls-container'>
+      {/*<button onClick={() => clear()}>Clear</button>*/}
+      <button onClick={() => saveAllColors()}>Save All</button>
+      <button onClick={() => getAPI()}>Generate Color Scheme</button>
+    </div>
+    
+    <div className='component-display color-scheme-container'>
       {colorSchemeLoop()}
     </div>
   </div>

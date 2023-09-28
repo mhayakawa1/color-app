@@ -90,44 +90,50 @@ export default function ColorWheel(){
   }
   
   return(
-  <div>
-    <div className='wheel-container'>
-      <button onClick={() => findColorScheme('red')} 
-        className={`color-wheel-circle red ${classesArr2[0] ? 'dropshadow' : ''}`}></button>
-      <button onClick={() => findColorScheme('redOrange')}
-        className={`color-wheel-circle red-orange ${classesArr2[1] ? 'dropshadow' : ''}`}></button>
-      <button onClick={() => findColorScheme('orange')} 
-        className={`color-wheel-circle orange ${classesArr2[2] ? 'dropshadow' : ''}`}></button>
-      <button onClick={() => findColorScheme('orangeYellow')} 
-        className={`color-wheel-circle orange-yellow ${classesArr2[3] ? 'dropshadow' : ''}`}></button>
-      <button onClick={() => findColorScheme('yellow')} 
-        className={`color-wheel-circle yellow ${classesArr2[4] ? 'dropshadow' : ''}`}></button>
-      <button onClick={() => findColorScheme('yellowGreen')} 
-        className={`color-wheel-circle yellow-green ${classesArr2[5] ? 'dropshadow' : ''}`}></button>
-      <button onClick={() => findColorScheme('green')} 
-        className={`color-wheel-circle green ${classesArr2[6] ? 'dropshadow' : ''}`}></button>
-      <button onClick={() => findColorScheme('greenBlue')} 
-        className={`color-wheel-circle green-blue ${classesArr2[7] ? 'dropshadow' : ''}`}></button>
-      <button onClick={() => findColorScheme('blue')} 
-        className={`color-wheel-circle blue ${classesArr2[8] ? 'dropshadow' : ''}`}></button>
-      <button onClick={() => findColorScheme('bluePurple')} 
-        className={`color-wheel-circle blue-purple ${classesArr2[9] ? 'dropshadow' : ''}`}></button>
-      <button onClick={() => findColorScheme('purple')} 
-        className={`color-wheel-circle purple ${classesArr2[10] ? 'dropshadow' : ''}`}></button>
-      <button onClick={() => findColorScheme('purpleRed')} 
-        className={`color-wheel-circle purple-red ${classesArr2[11] ? 'dropshadow' : ''}`}></button>
+  <div className='component-container-2'>
+    <div className='controls-container'>
+      <select className='color-scheme-dropdown'
+        onChange={handleDropdown}>
+        <option value='monochromatic'>Monochromatic</option>
+        <option value='complementary'>Complementary</option>
+        <option value='analagous'>Analogous</option>
+        <option value='split-complementary'>Split-Complementary</option>
+        <option value='triadic'>Triadic</option>
+        <option value='tetradic'>Tetradic</option>      
+      </select>
+
+      <div>
+        {colorNamesLoop()}
+      </div>
     </div>
-    <select className='color-scheme-dropdown'
-      onChange={handleDropdown}>
-      <option value='monochromatic'>Monochromatic</option>
-      <option value='complementary'>Complementary</option>
-      <option value='analagous'>Analogous</option>
-      <option value='split-complementary'>Split-Complementary</option>
-      <option value='triadic'>Triadic</option>
-      <option value='tetradic'>Tetradic</option>      
-    </select>
-    <div>
-      {colorNamesLoop()}
+
+    <div className='component-display'>
+      <div className='wheel-container'>
+        <button onClick={() => findColorScheme('red')} 
+          className={`color-wheel-circle red ${classesArr2[0] ? 'dropshadow' : ''}`}></button>
+        <button onClick={() => findColorScheme('redOrange')}
+          className={`color-wheel-circle red-orange ${classesArr2[1] ? 'dropshadow' : ''}`}></button>
+        <button onClick={() => findColorScheme('orange')} 
+          className={`color-wheel-circle orange ${classesArr2[2] ? 'dropshadow' : ''}`}></button>
+        <button onClick={() => findColorScheme('orangeYellow')} 
+          className={`color-wheel-circle orange-yellow ${classesArr2[3] ? 'dropshadow' : ''}`}></button>
+        <button onClick={() => findColorScheme('yellow')} 
+          className={`color-wheel-circle yellow ${classesArr2[4] ? 'dropshadow' : ''}`}></button>
+          <button onClick={() => findColorScheme('yellowGreen')} 
+          className={`color-wheel-circle yellow-green ${classesArr2[5] ? 'dropshadow' : ''}`}></button>
+        <button onClick={() => findColorScheme('green')} 
+          className={`color-wheel-circle green ${classesArr2[6] ? 'dropshadow' : ''}`}></button>
+        <button onClick={() => findColorScheme('greenBlue')} 
+          className={`color-wheel-circle green-blue ${classesArr2[7] ? 'dropshadow' : ''}`}></button>
+        <button onClick={() => findColorScheme('blue')} 
+          className={`color-wheel-circle blue ${classesArr2[8] ? 'dropshadow' : ''}`}></button>
+        <button onClick={() => findColorScheme('bluePurple')} 
+          className={`color-wheel-circle blue-purple ${classesArr2[9] ? 'dropshadow' : ''}`}></button>
+        <button onClick={() => findColorScheme('purple')} 
+          className={`color-wheel-circle purple ${classesArr2[10] ? 'dropshadow' : ''}`}></button>
+        <button onClick={() => findColorScheme('purpleRed')} 
+          className={`color-wheel-circle purple-red ${classesArr2[11] ? 'dropshadow' : ''}`}></button>
+      </div>
     </div>
   </div>
   )

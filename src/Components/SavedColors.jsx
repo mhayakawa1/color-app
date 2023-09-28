@@ -102,7 +102,7 @@ export default function SavedColors(){
     }
     for(let i = 0; i < splitArr.length; i++){
       const item = <div key={`(${splitArr[i][0]}, ${splitArr[i][1]}, ${splitArr[i][2]})`} className='saved-color-item'>
-        <div className='saved-color-circle' style={{background: `rgb(${splitArr[i][0]}, ${splitArr[i][1]}, ${splitArr[i][2]})`}}>
+        <div className='saved-color-square' style={{background: `rgb(${splitArr[i][0]}, ${splitArr[i][1]}, ${splitArr[i][2]})`}}>
         </div>
         <div className='saved-color-info'>
             <p className='saved-color-value'>{`RGB(${splitArr[i][0]},${splitArr[i][1]},${splitArr[i][2]})`}</p>
@@ -120,20 +120,19 @@ export default function SavedColors(){
   }
 
   return(    
-  <div>
+  <div className='component-container-2'>
     <div className='controls-container'>
-
+      <button onClick={savedColors === '' ? null : () => clearAll('clear all')}>Clear All</button>
+        {showConfirm ? //popup to confirm action to clear all colors
+        <div className='confirm-clear-all'>
+          <p>Are you sure you want to clear all colors?</p>
+          <button onClick={() => clearAll('yes')}>Yes</button>
+          <button onClick={() => clearAll('no')}>No</button>
+        </div> 
+      : null}
     </div>
-    <button onClick={savedColors === '' ? null : () => clearAll('clear all')}>Clear All</button>
-      {showConfirm ? //popup to confirm action to clear all colors
-      <div className='confirm-clear-all'>
-        <p>Are you sure you want to clear all colors?</p>
-        <button onClick={() => clearAll('yes')}>Yes</button>
-        <button onClick={() => clearAll('no')}>No</button>
-      </div> 
-    : null}
 
-    <div className='saved-colors-container'>{savedColorsLoop()}</div>
+    <div className='component-display saved-colors-container'>{savedColorsLoop()}</div>
   </div>
   )
 }

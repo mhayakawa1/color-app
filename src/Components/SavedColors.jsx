@@ -106,7 +106,7 @@ export default function SavedColors(){
         <div className='color-info'>
             <p className='color-value'>{`RGB: (${splitArr[i][0]},${splitArr[i][1]},${splitArr[i][2]})`}</p>
             <p className='color-value'>HEX: #{hexOutput[i-1]}</p>
-            <button onClick={() => deleteColor(splitArr[i])}>Delete</button>
+            <button className='btn-standard btn-small' onClick={() => deleteColor(splitArr[i])}>Delete</button>
           </div>
       </div>   
       if(splitArr[i][0] !== ''){
@@ -121,12 +121,13 @@ export default function SavedColors(){
   return(    
   <div className='component-container-2'>
     <div className='controls-container'>
-      <button onClick={savedColors === '' ? null : () => clearAll('clear all')}>Clear All</button>
+      <button  className='btn-standard'
+        onClick={savedColors === '' ? null : () => clearAll('clear all')}>Clear All</button>
         {showConfirm ? //popup to confirm action to clear all colors
         <div className='confirm-clear-all'>
           <p>Are you sure you want to clear all colors?</p>
-          <button onClick={() => clearAll('yes')}>Yes</button>
-          <button onClick={() => clearAll('no')}>No</button>
+          <button className='btn-standard btn-small' onClick={() => clearAll('yes')}>Yes</button>
+          <button className='btn-standard btn-small' onClick={() => clearAll('no')}>No</button>
         </div> 
       : null}
     </div>

@@ -78,14 +78,14 @@ export default function RandomScheme(){
     for(let i = 0; i < split.length; i++){
       if(split.length > 1){     
         renderScheme.push(
-          <div key={i}>
+          <div key={i} className='color-item'>
             <div style={{backgroundColor: `#${split[i]}`}}
-              className='random-scheme-color-circle'>
+              className='color-square'>
             </div>
-            <div className='scheme-color-info'>
+            <div className='color-info'>
+              <p className='color-value'>RGB: ({rgbArr.split('*')[i]})</p>
+              <p className='color-value'>HEX: #{split[i].toUpperCase()}</p>
               <button onClick={() => saveSchemeColor(i)}>Save</button>
-              <p>HEX: #{split[i].toUpperCase()}</p>
-              <p>RGB: {rgbArr.split('*')[i]}</p>
             </div>
           </div>
         )
@@ -120,7 +120,7 @@ export default function RandomScheme(){
       <button onClick={() => getAPI()}>Generate Color Scheme</button>
     </div>
     
-    <div className='component-display color-scheme-container'>
+    <div className='component-display colors-container'>
       {colorSchemeLoop()}
     </div>
   </div>

@@ -162,12 +162,12 @@ export default function ColorPicker(){
             onChange={event => handleChangeRGB(event, 'blue')}/>
         </div>
       </div>
-      <button onClick={rgb2hex}>Get HEX Value</button>
+      <button className='btn-standard' onClick={rgb2hex}>Get HEX Value</button>
       <input onChange={(event) => handleChangeHEX(event)}
         onKeyDown={(event) => handleKeyDown(event)}
         value={`#${hexCode.toUpperCase()}`}/>
-      <button onClick={reset}>Reset</button>
-      <button onClick={saveColor}>Save Color</button>
+      <button className='btn-standard' onClick={reset}>Reset</button>
+      <button  className='btn-standard'onClick={saveColor}>Save Color</button>
     </div>
     
     <div className='component-display'>

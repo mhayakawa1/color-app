@@ -95,19 +95,18 @@ export default function SavedColors(){
       setSavedColors(splitArr)
       localStorage.setItem('savedColors', splitArr);
     }
-    //console.log(splitArr.length, hexOutput.length)
     for(let i = 0; i < splitArr.length; i++){
       //replace all elements in splitArr with array made of each element
       splitArr.splice(i, 1, splitArr[i].split(','))
     }
     for(let i = 0; i < splitArr.length; i++){
-      const item = <div key={`(${splitArr[i][0]}, ${splitArr[i][1]}, ${splitArr[i][2]})`} className='saved-color-item'>
-        <div className='saved-color-square' style={{background: `rgb(${splitArr[i][0]}, ${splitArr[i][1]}, ${splitArr[i][2]})`}}>
+      const item = <div key={`(${splitArr[i][0]}, ${splitArr[i][1]}, ${splitArr[i][2]})`} className='color-item'>
+        <div className='color-square' style={{background: `rgb(${splitArr[i][0]}, ${splitArr[i][1]}, ${splitArr[i][2]})`}}>
         </div>
-        <div className='saved-color-info'>
-            <p className='saved-color-value'>{`RGB(${splitArr[i][0]},${splitArr[i][1]},${splitArr[i][2]})`}</p>
-            <p className='saved-color-value'>#{hexOutput[i-1]}</p>
-            <button className='delete-saved-color' onClick={() => deleteColor(splitArr[i])}>Delete</button>
+        <div className='color-info'>
+            <p className='color-value'>{`RGB: (${splitArr[i][0]},${splitArr[i][1]},${splitArr[i][2]})`}</p>
+            <p className='color-value'>HEX: #{hexOutput[i-1]}</p>
+            <button onClick={() => deleteColor(splitArr[i])}>Delete</button>
           </div>
       </div>   
       if(splitArr[i][0] !== ''){
@@ -132,7 +131,7 @@ export default function SavedColors(){
       : null}
     </div>
 
-    <div className='component-display saved-colors-container'>{savedColorsLoop()}</div>
+    <div className='component-display colors-container'>{savedColorsLoop()}</div>
   </div>
   )
 }

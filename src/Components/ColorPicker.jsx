@@ -7,7 +7,7 @@ export default function ColorPicker(){
   const [green, setGreen] = useState(0);
   const [blue, setBlue] = useState(0);
   const [rgbCode, setRgbCode] = useState('');
-  const [hexCode, setHexCode] = useState('000000');
+  const [hexCode, setHexCode] = useState('');
   const hex = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'a', 'b', 'c', 'd', 'e', 'f']
 
   const onStorageUpdate = (e) => {
@@ -82,8 +82,8 @@ export default function ColorPicker(){
   }
 
   const rgb2hex = () =>{
-    setRgbCode(`${red},${green},${blue}`)
-    let rgbInput = rgbCode.split(',')
+    //setRgbCode(`${red},${green},${blue}`)
+    let rgbInput = [red, green, blue]
     let hexOutput = []
     for(let i = 0; i < rgbInput.length; i++){
       rgbInput[i] = rgbInput[i]/16
@@ -126,7 +126,7 @@ export default function ColorPicker(){
   }  
 
   const reset = () => {
-    setRgbCode('0,0,0')
+    //setRgbCode('0,0,0')
     setHexCode('000000')
     setRed(0)
     setGreen(0)
@@ -171,8 +171,14 @@ export default function ColorPicker(){
     </div>
     
     <div className='component-display'>
-      <div className='color-picker-square'
-        style={{backgroundColor: `rgb(${red}, ${green}, ${blue})`}}>
+      <div className='custom-color-container'>
+        <div className='custom-color-square'
+          style={{backgroundColor: `rgb(${red}, ${green}, ${blue})`}}>
+        </div>      
+        <div className='custom-color-info'>
+          <p>{`RGB: (${red}, ${green}, ${blue})`}</p>
+          <p>HEX: {hexCode === '' ? '-' : `#${hexCode.toUpperCase()}`}</p>
+        </div>
       </div>
     </div>
   </div>

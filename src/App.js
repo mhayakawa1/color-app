@@ -22,12 +22,11 @@ function App() {
   function switchComponent(comp){
     setDisplay(comp)
   }
-  console.log(display.type.name)
+  //console.log(display.type.name)
 
   return (
     <div className='app'>
       <div className='menu'>
-
         <button onClick={() => switchComponent(<SavedColors />)} 
           className={`menu-item-1 ${display.type.name === 'SavedColors' ? 'active' : ''}`}>Saved Colors</button>
         <button onClick={() => switchComponent(<ColorPicker />)}

@@ -100,12 +100,11 @@ body{
 
 .component-display{
   width: 100%;
+  height: auto;
   padding: 15px !important;
   background-color: rgb(69,69,69,.5);
   border-bottom-right-radius: 5px !important;
 }
-
-
 
 h3{
   color: white;
@@ -115,13 +114,13 @@ h3{
 /*APP.JS ENDS HERE*/
 
 /*SAVED COLORS STARTS HERE*/
-.saved-colors-container{
+.colors-container{
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
 }
 
-.saved-color-item{
+.color-item{
   width: auto;
   height: auto;
   padding: .5rem;
@@ -129,13 +128,14 @@ h3{
   border-radius: 5px;
 }
 
-.saved-color-square{
+.color-square{
   width: 7rem;
   height: 7rem;
   border-radius: 5px;
 }
 
-.saved-color-info{
+.color-info{
+  height: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -143,7 +143,7 @@ h3{
   gap: 0;
 }
 
-.saved-color-value{
+.color-value{
   margin: .5rem 0 0 0;
   font-size: .75rem;
   line-height: .75rem;
@@ -151,7 +151,7 @@ h3{
   color: rgb(80,80,80,.5);
 }
 
-.delete-saved-color{
+.color-item button{
   padding: 0;
   font-size: .75rem;
   margin: .5rem 0 0 0;
@@ -182,10 +182,29 @@ h3{
   width: 10rem;
 }
 
-.color-picker-square{
-  height: 100%;
-  width: 100%;
+.custom-color-container{
+  width: auto;
   border-radius: 5px;
+  padding: 15px;
+  background-color: white;
+}
+
+.custom-color-square{
+  min-height: 20rem;
+  width: auto;
+  border-radius: 5px;
+}
+
+.custom-color-info{
+
+}
+
+.custom-color-info p{  
+  margin: .5rem 0 0 0;
+  font-size: 1rem;
+  line-height: 1rem;
+  height: 1rem;
+  color: rgb(80,80,80,.5);
 }
 
 /*RANDOM COLOR SCHEME STARTS HERE*/

@@ -85,7 +85,7 @@ export default function RandomScheme(){
             <div className='color-info'>
               <p className='color-value'>RGB: ({rgbArr.split('*')[i]})</p>
               <p className='color-value'>HEX: #{split[i].toUpperCase()}</p>
-              <button onClick={() => saveSchemeColor(i)}>Save</button>
+              <button className='btn-standard btn-small' onClick={() => saveSchemeColor(i)}>Save</button>
             </div>
           </div>
         )
@@ -116,8 +116,8 @@ export default function RandomScheme(){
   <div className='component-container-2'>
     <div className='controls-container'>
       {/*<button onClick={() => clear()}>Clear</button>*/}
-      <button onClick={() => saveAllColors()}>Save All</button>
-      <button onClick={() => getAPI()}>Generate Color Scheme</button>
+      <button className='btn-standard' onClick={() => saveAllColors()}>Save All</button>
+      <button className='btn-standard' onClick={() => getAPI()}>Generate Scheme</button>
     </div>
     
     <div className='component-display colors-container'>

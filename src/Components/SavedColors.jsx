@@ -44,7 +44,6 @@ export default function SavedColors(){
         setShowConfirm(false);
     }
   }
-
   {/*
   const rgb2hex = () =>{
     setRgbCode(`${red},${green},${blue}`)
@@ -126,8 +125,8 @@ export default function SavedColors(){
         {showConfirm ? //popup to confirm action to clear all colors
         <div className='confirm-clear-all'>
           <p>Are you sure you want to clear all colors?</p>
-          <button className='btn-standard btn-small' onClick={() => clearAll('yes')}>Yes</button>
-          <button className='btn-standard btn-small' onClick={() => clearAll('no')}>No</button>
+          <button className='btn-standard btn-secondary btn-small' onClick={() => clearAll('yes')}>Yes</button>
+          <button className='btn-standard btn-secondary btn-small' onClick={() => clearAll('no')}>No</button>
         </div> 
       : null}
     </div>

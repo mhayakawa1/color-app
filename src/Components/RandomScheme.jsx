@@ -114,7 +114,7 @@ export default function RandomScheme(){
 
   return(
   <div className='component-container-2'>
-    <div className='controls-container'>
+    <div className='controls-container scheme-controls-container'>
       {/*<button onClick={() => clear()}>Clear</button>*/}
       <button className='btn-standard' onClick={() => saveAllColors()}>Save All</button>
       <button className='btn-standard' onClick={() => getAPI()}>Generate Scheme</button>

@@ -328,12 +328,18 @@ h3{
 /*RANDOM COLOR SCHEME STARTS HERE*/
 
 /*COLOR WHEEL STARTS HERE*/
+.dropdown-container{
+  border: 1px solid rgb(69,69,69);
+  border-radius: 5px;
+  filter: drop-shadow(2px 2px 4px rgb(69,69,69,.5));
+}
+
 .color-scheme-dropdown{
   height: 32px;
-  border-radius: 5px;
   padding: 0 0 0 8px;
-  /*filter: drop-shadow(2px 2px 4px rgb(69,69,69,.5));*/
-  border: 1px solid rgb(69,69,69);
+  border-radius: 5px;
+  border: none;
+  border-right: 8px solid transparent;
 }
 
 .wheel-container{

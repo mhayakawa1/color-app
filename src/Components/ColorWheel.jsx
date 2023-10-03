@@ -92,15 +92,18 @@ export default function ColorWheel(){
   return(
   <div className='component-container-2'>
     <div className='controls-container'>
-      <select className='color-scheme-dropdown'
-        onChange={handleDropdown}>
-        <option value='monochromatic'>Monochromatic</option>
-        <option value='complementary'>Complementary</option>
-        <option value='analagous'>Analogous</option>
-        <option value='split-complementary'>Split-Complementary</option>
-        <option value='triadic'>Triadic</option>
-        <option value='tetradic'>Tetradic</option>      
-      </select>
+      <div className='dropdown-container'>
+        <select className='color-scheme-dropdown'
+          onChange={handleDropdown}>
+          <option value='monochromatic'>Monochromatic</option>
+          <option value='complementary'>Complementary</option>
+          <option value='analagous'>Analogous</option>
+          <option value='split-complementary'>Split-Complementary</option>
+          <option value='triadic'>Triadic</option>
+          <option value='tetradic'>Tetradic</option>      
+        </select>
+      </div>
+      
 
       <div>
         {colorNamesLoop()}

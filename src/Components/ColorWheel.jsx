@@ -73,13 +73,12 @@ export default function ColorWheel(){
   }
   
   const colorNamesLoop = () => {
-    let arr = colorsArr
     let renderColorNames = []
 
     for(let i = 0; i < colorNamesArr.length; i++){
       if(classesArr2[i] === true){
         renderColorNames.push(
-          <p key={i}>{colorNamesArr[i]}</p>
+          <li key={i}>{colorNamesArr[i]}</li>
         )
       }
     }    
@@ -88,7 +87,21 @@ export default function ColorWheel(){
     renderColorNames
    )
   }
-  
+
+  const reset = () => {
+    classesArr = ['red', 'redOrange', 'orange', 'orangeYellow', 
+    'yellow', 'yellowGreen', 'green', 'greenBlue',
+    'blue', 'bluePurple', 'purple', 'purpleRed']
+    colorsArr = ['red', 'redOrange', 'orange', 'orangeYellow', 
+    'yellow', 'yellowGreen', 'green', 'greenBlue',
+    'blue', 'bluePurple', 'purple', 'purpleRed']
+    selectedColors = [];
+    for(let i = 0; i < classesArr.length; i++){      
+      classesArr2[i] = false
+    }
+    console.log(classesArr2)
+  }  
+
   return(
   <div className='component-container-2'>
     <div className='controls-container'>
@@ -103,14 +116,10 @@ export default function ColorWheel(){
           <option value='tetradic'>Tetradic</option>      
         </select>
       </div>
-      
-
-      <div>
-        {colorNamesLoop()}
-      </div>
+      <button className='btn-standard' onClick={() => reset()}>Reset</button>
     </div>
 
-    <div className='component-display'>
+    <div className='component-display component-container-2'>
       <div className='wheel-container'>
         <button onClick={() => findColorScheme('red')} 
           className={`color-wheel-circle red ${classesArr2[0] ? 'dropshadow' : ''}`}></button>
@@ -137,6 +146,10 @@ export default function ColorWheel(){
         <button onClick={() => findColorScheme('purpleRed')} 
           className={`color-wheel-circle purple-red ${classesArr2[11] ? 'dropshadow' : ''}`}></button>
       </div>
+      
+      <ul>
+        {colorNamesLoop()}
+      </ul>
     </div>
   </div>
   )

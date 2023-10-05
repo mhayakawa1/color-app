@@ -8,6 +8,7 @@ export default function ColorPicker(){
   const [blue, setBlue] = useState(0);
   const [rgbCode, setRgbCode] = useState('0,0,0');
   const [hexCode, setHexCode] = useState('');
+  const [displayHexCode, setDisplayHexCode] = useState('');
   const hex = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'a', 'b', 'c', 'd', 'e', 'f']
 
   const onStorageUpdate = (e) => {
@@ -19,6 +20,7 @@ export default function ColorPicker(){
 
   const handleChangeRGB = (event, color) =>{
     setHexCode('')
+    setDisplayHexCode('')
     let numValue;    
     function setColor(color){//set useState variable of selected color to number entered
       switch(color){
@@ -59,6 +61,7 @@ export default function ColorPicker(){
     if(event.keyCode === 13 && event.target.value.length === 7
         && /^[A-Fa-f0-9]*$/.test(event.target.value.slice(1)) === true){
       let hexInput = event.target.value.toLowerCase().slice(1).split('')
+      setDisplayHexCode(event.target.value.toUpperCase().slice(1))
       for(let i = 0; i < hexInput.length; i++){
         if(/[0-9]/.test(hexInput[i]) === false){
           hexInput.splice(i, 1, hex.indexOf(hexInput[i]))
@@ -96,6 +99,7 @@ export default function ColorPicker(){
       }
     }
     setHexCode(hexOutput.join(''))
+    setDisplayHexCode(hexOutput.join(''))
   }
 
   useEffect(() => {
@@ -128,6 +132,7 @@ export default function ColorPicker(){
   const reset = () => {
     setRgbCode('0,0,0')
     setHexCode('')
+    setDisplayHexCode('')
     setRed(0)
     setGreen(0)
     setBlue(0)
@@ -180,7 +185,7 @@ export default function ColorPicker(){
         </div>      
         <div className='custom-color-info'>
           <p>{`RGB: (${red},${green},${blue})`}</p>
-          <p>HEX: {hexCode === '' ? '-' : `#${hexCode.toUpperCase()}`}</p>
+          <p>HEX: {displayHexCode === '' ? '-' : `#${displayHexCode.toUpperCase()}`}</p>
         </div>
       </div>
     </div>

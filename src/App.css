@@ -1,30 +1,8 @@
-
-/*
-animated gradient
-body {
-	background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-	background-size: 400% 400%;
-	animation: gradient 15s ease infinite;
-	height: 100vh;
-}
-
-@keyframes gradient {
-	0% {
-		background-position: 0% 50%;
-	}
-	50% {
-		background-position: 100% 50%;
-	}
-	100% {
-		background-position: 0% 50%;
-	}
-}
-
-*/
 /*APP.JS STARTS HERE*/
 body{
-  padding: 3rem 0 1rem 0;
-  /*background: black;*/
+  padding: 4rem 0 1rem 0;
+  background: black;
+  overflow-y: scroll;
 }
 
 .app{
@@ -47,27 +25,27 @@ button, p, input, select, label, li{
   height: 44px;
   border-radius: 5px;
   padding: 0 1rem 0 1rem;
-  filter: drop-shadow(2px 2px 4px rgb(69,69,69,.5));
-  border: 1px solid rgb(69,69,69);
+  filter: drop-shadow(0px 0px 4px rgb(255,255,255,.25));
+  border: 2px solid black;
   background-color: white;
 }
 
 .btn-secondary{
-  border: 1px solid rgb(69,69,69);
+  border: 2px solid rgb(69,69,69);
   background-color: rgb(220,220,220);
   color: rgb(69,69,69);
   border-radius: 20px;
 }
 
 .btn-standard:hover{
-  border: 1px solid white;
+  border: 2px solid white;
   color:white;
   background-color: rgb(69,69,69,.5);
 }
 
 .btn-standard:active{
   background-color: rgb(0,0,0,0) !important;
-  border: 1px solid white;
+  border: 2px solid white;
   color: white;
 }
 
@@ -106,8 +84,6 @@ button, p, input, select, label, li{
   margin: 0;
   width: auto;
   height: auto;
-  /*padding: 1rem;
-  background-color: rgb(69,69,69,.5);*/
   border-bottom-left-radius: 5px !important;
   border-bottom-right-radius: 5px !important;
 }
@@ -126,12 +102,13 @@ button, p, input, select, label, li{
 
 .component-display{
   width: 35rem;
-  min-height: 12rem;
-  padding: 1rem !important;
+  min-height: 15rem;
+  padding: 1rem;
   background-color: rgb(69,69,69,.5);
   border-bottom-right-radius: 5px !important;
   margin: 0;
-
+  display: flex;
+  justify-content: center;
 }
 
 h3{
@@ -147,6 +124,8 @@ h3{
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
+  width: 32rem;
+  margin: 0 0 0 .25px;
 }
 
 .no-colors{
@@ -159,13 +138,14 @@ h3{
   height: auto;
   background-color: white;
   border-radius: 5px;
-  filter: drop-shadow(2px 2px 4px rgb(69,69,69,.5));
+  filter: drop-shadow(0px 0px 4px rgb(255,255,255,.25));
   padding: .5rem 0 .5rem 0;
 }
 
 .color-block{
   width: 9rem;
   height: 7rem;
+  filter: drop-shadow(0px 0px 4px rgb(69,69,69,.25));
   border-radius: 5px;
   margin: auto;
 }
@@ -191,8 +171,8 @@ h3{
   padding: 0 1rem 0 1rem;
   font-size: .75rem;
   margin: .5rem 0 0 0;
-  filter: drop-shadow(2px 2px 4px rgb(69,69,69,.5));
-  border: 1px solid rgb(69,69,69);
+  filter: drop-shadow(0px 0px 4px rgb(69,69,69,.5));
+  border: 2px solid rgb(69,69,69);
 }
 
 .confirm-clear-all{
@@ -288,32 +268,45 @@ h3{
   height: 9rem;
   border: 3px solid;
   border-radius: 50%;
-  margin: 0 auto 0 auto;
+  margin: auto;
   background-color: rgb(69,69,69,.5);
   color: white;
   font-size: 1rem;
 }
 
+.random-color:hover{
+  background-color: rgb(0,0,0,.5);
+}
+
+.random-color:active{
+  background-color: rgb(0,0,0,0);
+}
+
 .custom-color-container{
-  width: auto;
+  width: 100%;
   border-radius: 5px;
   padding: 1rem;
   background-color: white;
-  filter: drop-shadow(2px 2px 4px rgb(69,69,69,.5));
+  filter: drop-shadow(0px 0px 4px rgb(255,255,255,.25));
 }
 
-.custom-color-square{
+.custom-color-block{
   min-height: 20rem;
   width: auto;
   border-radius: 5px;
+  filter: drop-shadow(0px 0px 4px rgb(69,69,69,.25));
 }
 
 .custom-color-info{
-  display: static;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem 0 0 0;
+  gap: .5rem;
 }
 
-.custom-color-info p{  
-  margin: .5rem 0 0 0;
+.custom-color-info p{
+  margin: 0;
   font-size: 1rem;
   line-height: 1rem;
   height: 1rem;
@@ -356,20 +349,13 @@ h3{
   margin: 0;
 }
 
-/*.random-scheme-color-circle button{
-  opacity: 0%;
-}
-
-.random-scheme-color-circle button:hover{
-  opacity: 100%;
-}*/
 /*RANDOM COLOR SCHEME STARTS HERE*/
 
 /*COLOR WHEEL STARTS HERE*/
 .dropdown-container{
-  border: 1px solid rgb(69,69,69);
+  border: 2px solid black;
   border-radius: 5px;
-  filter: drop-shadow(2px 2px 4px rgb(69,69,69,.5));
+  filter: drop-shadow(0px 0px 4px rgb(255,255,255,.25));
   margin: 0 0 1rem 0;
 }
 
@@ -390,7 +376,7 @@ h3{
   display: flex;
   justify-content: center;
   align-items: center;
-  filter: drop-shadow(2px 2px 4px rgb(69,69,69,.5));
+  filter: drop-shadow(0px 0px 4px rgb(0,0,0,.5));
   margin: auto;
 }
 

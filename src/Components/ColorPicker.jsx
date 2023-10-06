@@ -102,6 +102,15 @@ export default function ColorPicker(){
     setDisplayHexCode(hexOutput.join(''))
   }
 
+  const random = () =>{
+    setHexCode('')
+    setDisplayHexCode('')
+    setRed(Math.round(Math.random() * (255)))
+    setGreen(Math.round(Math.random() * (255)))
+    setBlue(Math.round(Math.random() * (255)))
+    setRgbCode(`${red},${green},${blue}`)   
+  }
+
   useEffect(() => {
     setSavedColors(localStorage.getItem('savedColors') || '');
     setRed(localStorage.getItem('red') || '');
@@ -168,7 +177,7 @@ export default function ColorPicker(){
         </div>
       </div>
       <div className='hex-container'>
-        <button className='btn-standard btn-small' onClick={rgb2hex}>Get HEX Value</button>
+        <button className='btn-standard btn-small' onClick={rgb2hex}>RGB → HEX</button>
         <input onChange={(event) => handleChangeHEX(event)}
           onKeyDown={(event) => handleKeyDown(event)}
           value={`#${hexCode.toUpperCase()}`}/>
@@ -176,6 +185,9 @@ export default function ColorPicker(){
       
       <button className='btn-standard' onClick={reset}>Reset</button>
       <button  className='btn-standard'onClick={saveColor}>Save Color</button>
+      <button className='random-color' onClick={random}
+        style={{filter: `drop-shadow(0px 0px 4px rgb(${red},${green},${blue},.5))`,
+          borderColor: `rgb(${red},${green},${blue})`}}>Random<br/>Color</button>
     </div>
     
     <div className='component-display'>

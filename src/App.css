@@ -23,7 +23,7 @@ body {
 */
 /*APP.JS STARTS HERE*/
 body{
-  padding: 3rem 0 0 0;
+  padding: 3rem 0 1rem 0;
   /*background: black;*/
 }
 
@@ -126,10 +126,12 @@ button, p, input, select, label, li{
 
 .component-display{
   width: 35rem;
-  height: auto;
+  min-height: 12rem;
   padding: 1rem !important;
   background-color: rgb(69,69,69,.5);
   border-bottom-right-radius: 5px !important;
+  margin: 0;
+
 }
 
 h3{
@@ -141,24 +143,31 @@ h3{
 
 /*SAVED COLORS STARTS HERE*/
 .colors-container{
+  align-self: center;
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
 }
 
+.no-colors{
+  margin: auto;
+  color: white;
+}
+
 .color-item{
-  width: auto;
+  width: 10rem;
   height: auto;
-  padding: .5rem;
   background-color: white;
   border-radius: 5px;
   filter: drop-shadow(2px 2px 4px rgb(69,69,69,.5));
+  padding: .5rem 0 .5rem 0;
 }
 
-.color-square{
-  width: 7rem;
+.color-block{
+  width: 9rem;
   height: 7rem;
   border-radius: 5px;
+  margin: auto;
 }
 
 .color-info{
@@ -184,6 +193,22 @@ h3{
   margin: .5rem 0 0 0;
   filter: drop-shadow(2px 2px 4px rgb(69,69,69,.5));
   border: 1px solid rgb(69,69,69);
+}
+
+.confirm-clear-all{
+  margin: 1rem 0 0 0;
+  padding: 0;
+}
+
+.confirm-clear-all p{
+  padding: 0;
+  margin: 0;
+}
+
+.confirm-btns{
+  display: flex;
+  justify-content: end;
+  gap: .5rem;
 }
 /*SAVED COLORS ENDS HERE*/
 
@@ -256,6 +281,17 @@ h3{
   outline: none;
   padding: 0 8px 0 8px;
   background-color: rgb(220,220,220);
+}
+
+.random-color{
+  width: 9rem;
+  height: 9rem;
+  border: 3px solid;
+  border-radius: 50%;
+  margin: 0 auto 0 auto;
+  background-color: rgb(69,69,69,.5);
+  color: white;
+  font-size: 1rem;
 }
 
 .custom-color-container{
@@ -355,6 +391,7 @@ h3{
   justify-content: center;
   align-items: center;
   filter: drop-shadow(2px 2px 4px rgb(69,69,69,.5));
+  margin: auto;
 }
 
 .color-wheel-circle{
@@ -367,11 +404,11 @@ h3{
 
 ul{
   color: white;
+  padding: 0 0 0 1rem;
 }
 
 li{
   font-size: 1rem !important;
-
 }
 
 .dropshadow{

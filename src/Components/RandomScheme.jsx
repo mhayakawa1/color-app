@@ -80,7 +80,7 @@ export default function RandomScheme(){
         renderScheme.push(
           <div key={i} className='color-item'>
             <div style={{backgroundColor: `#${split[i]}`}}
-              className='color-square'>
+              className='color-block'>
             </div>
             <div className='color-info'>
               <p className='color-value'>RGB: ({rgbArr.split('*')[i]})</p>

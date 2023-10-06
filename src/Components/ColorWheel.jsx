@@ -89,17 +89,23 @@ export default function ColorWheel(){
   }
 
   const reset = () => {
-    classesArr = ['red', 'redOrange', 'orange', 'orangeYellow', 
-    'yellow', 'yellowGreen', 'green', 'greenBlue',
-    'blue', 'bluePurple', 'purple', 'purpleRed']
-    colorsArr = ['red', 'redOrange', 'orange', 'orangeYellow', 
-    'yellow', 'yellowGreen', 'green', 'greenBlue',
-    'blue', 'bluePurple', 'purple', 'purpleRed']
+    classesArr = [...classesArr.splice(classesArr.indexOf('red')), ...classesArr.splice(0)];
+    colorsArr = [...colorsArr.splice(colorsArr.indexOf('red')), ...colorsArr.splice(0)];
     selectedColors = [];
-    for(let i = 0; i < classesArr.length; i++){      
-      classesArr2[i] = false
-    }
-    console.log(classesArr2)
+    setClassesArr2({
+      0: false,
+      1: false,
+      2: false,
+      3: false,
+      4: false,
+      5: false,
+      6: false,
+      7: false,
+      8: false,
+      9: false,
+      10: false,
+      11: false
+    })
   }  
 
   return(
@@ -117,6 +123,9 @@ export default function ColorWheel(){
         </select>
       </div>
       <button className='btn-standard' onClick={() => reset()}>Reset</button>
+      <ul>
+        {colorNamesLoop()}
+      </ul>
     </div>
 
     <div className='component-display component-container-2'>
@@ -146,10 +155,6 @@ export default function ColorWheel(){
         <button onClick={() => findColorScheme('purpleRed')} 
           className={`color-wheel-circle purple-red ${classesArr2[11] ? 'dropshadow' : ''}`}></button>
       </div>
-      
-      <ul>
-        {colorNamesLoop()}
-      </ul>
     </div>
   </div>
   )

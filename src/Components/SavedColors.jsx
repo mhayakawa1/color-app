@@ -113,9 +113,11 @@ export default function SavedColors(){
       : null}
     </div>
 
-    <div className='component-display colors-container'>
-      {savedColorsLoop()}
-      {savedColors.length === 0 ? <p className='no-colors'>You haven't saved any colors yet.</p> : null}
+    <div className='component-display'>
+      <div className='colors-container'>
+        {savedColorsLoop()}
+      </div>      
+      {savedColors.length === 0 ? <p className='no-colors'>You have no saved colors.</p> : null}
     </div>
   </div>
   )

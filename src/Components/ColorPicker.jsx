@@ -110,13 +110,32 @@ export default function ColorPicker(){
     setBlue(Math.round(Math.random() * (255)))
     setRgbCode(`${red},${green},${blue}`)   
   }
+  
+  const reset = () => {
+    setRgbCode('0,0,0')
+    setHexCode('')
+    setDisplayHexCode('')
+    setRed('')
+    setGreen('')
+    setBlue('')
+    localStorage.setItem('red', '')
+    localStorage.setItem('green', '')
+    localStorage.setItem('blue', '')
+  }
 
   useEffect(() => {
     setSavedColors(localStorage.getItem('savedColors') || '');
     setRed(localStorage.getItem('red') || '');
     setGreen(localStorage.getItem('green') || '');
     setBlue(localStorage.getItem('blue') || '');
-
+    if(red === '' && green === '' && blue === ''){
+      setRed(0)
+      setGreen(0)
+      setBlue(0)
+      localStorage.setItem('red', 0)
+      localStorage.setItem('green', 0)
+      localStorage.setItem('blue', 0)
+    }
     window.addEventListener('storage', onStorageUpdate);
     return () => {
       window.removeEventListener('storage', onStorageUpdate);
@@ -137,18 +156,6 @@ export default function ColorPicker(){
       localStorage.setItem('savedColors', savedColors + '*' + currentColor)
     }
   }  
-
-  const reset = () => {
-    setRgbCode('0,0,0')
-    setHexCode('')
-    setDisplayHexCode('')
-    setRed(0)
-    setGreen(0)
-    setBlue(0)
-    localStorage.setItem('red', 0)
-    localStorage.setItem('green', 0)
-    localStorage.setItem('blue', 0)
-  }
 
   return(    
   <div className='component-container-2'>
@@ -194,7 +201,7 @@ export default function ColorPicker(){
       <div className='custom-color-container'>
         <div className='custom-color-block'
           style={{backgroundColor: `rgb(${red}, ${green}, ${blue})`}}>
-        </div>      
+        </div>
         <div className='custom-color-info'>
           <p>{`RGB: (${red},${green},${blue})`}</p>
           <p>HEX: {displayHexCode === '' ? '-' : `#${displayHexCode.toUpperCase()}`}</p>

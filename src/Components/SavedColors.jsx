@@ -44,24 +44,6 @@ export default function SavedColors(){
         setShowConfirm(false);
     }
   }
-  {/*
-  const rgb2hex = () =>{
-    setRgbCode(`${red},${green},${blue}`)
-    let rgbInput = rgbCode.split(',')
-    let hexOutput = []
-    for(let i = 0; i < rgbInput.length; i++){
-      rgbInput[i] = rgbInput[i]/16
-      rgbInput[i] = rgbInput[i].toString().split('.')
-      rgbInput[i][1] = '.' + rgbInput[i][1]
-      if(rgbInput[i][1] === '.undefined'){
-        hexOutput.push(hex[rgbInput[i][0]], '0')
-      }else{
-        hexOutput.push(hex[rgbInput[i][0]], hex[rgbInput[i][1]*16])
-      }
-    }
-    setHexCode(hexOutput.join(''))
-  }
-*/}
 
   const savedColorsLoop = () => {
     //convert rgb to hex
@@ -75,11 +57,9 @@ export default function SavedColors(){
         itemSplit[j] = itemSplit[j].toString().split('.')
         itemSplit[j][1] = '.' + itemSplit[j][1]
         if(itemSplit[j][1] === '.undefined'){
-          //hexOutput.push(hex[itemSplit[j][0]], '0')
           itemStr = itemStr + hex[itemSplit[j][0]] + '0'
         }else{
           itemStr = itemStr + hex[itemSplit[j][0]] + hex[itemSplit[j][1]*16]
-          //hexOutput.push(hex[itemSplit[j][0]], hex[itemSplit[j][1]*16])
         }
       }
       hexOutput.push(itemStr.toUpperCase())
@@ -100,7 +80,7 @@ export default function SavedColors(){
     }
     for(let i = 0; i < splitArr.length; i++){
       const item = <div key={`(${splitArr[i][0]}, ${splitArr[i][1]}, ${splitArr[i][2]})`} className='color-item'>
-        <div className='color-square' style={{background: `rgb(${splitArr[i][0]}, ${splitArr[i][1]}, ${splitArr[i][2]})`}}>
+        <div className='color-block' style={{background: `rgb(${splitArr[i][0]}, ${splitArr[i][1]}, ${splitArr[i][2]})`}}>
         </div>
         <div className='color-info'>
             <p className='color-value'>{`RGB: (${splitArr[i][0]},${splitArr[i][1]},${splitArr[i][2]})`}</p>
@@ -125,13 +105,18 @@ export default function SavedColors(){
         {showConfirm ? //popup to confirm action to clear all colors
         <div className='confirm-clear-all'>
           <p>Are you sure you want to clear all colors?</p>
-          <button className='btn-standard btn-secondary btn-small' onClick={() => clearAll('yes')}>Yes</button>
-          <button className='btn-standard btn-secondary btn-small' onClick={() => clearAll('no')}>No</button>
+          <div className='confirm-btns'>
+            <button className='btn-standard btn-secondary btn-small' onClick={() => clearAll('yes')}>Yes</button>
+            <button className='btn-standard btn-secondary btn-small' onClick={() => clearAll('no')}>No</button>
+          </div>          
         </div> 
       : null}
     </div>
 
-    <div className='component-display colors-container'>{savedColorsLoop()}</div>
+    <div className='component-display colors-container'>
+      {savedColorsLoop()}
+      {savedColors.length === 0 ? <p className='no-colors'>You haven't saved any colors yet.</p> : null}
+    </div>
   </div>
   )
 }

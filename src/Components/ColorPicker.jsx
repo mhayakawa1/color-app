@@ -186,13 +186,13 @@ export default function ColorPicker(){
       <button className='btn-standard' onClick={reset}>Reset</button>
       <button  className='btn-standard'onClick={saveColor}>Save Color</button>
       <button className='random-color' onClick={random}
-        style={{filter: `drop-shadow(0px 0px 4px rgb(${red},${green},${blue},.5))`,
+        style={{filter: `drop-shadow(0px 0px 4px rgb(${red},${green},${blue}))`,
           borderColor: `rgb(${red},${green},${blue})`}}>Random<br/>Color</button>
     </div>
     
     <div className='component-display'>
       <div className='custom-color-container'>
-        <div className='custom-color-square'
+        <div className='custom-color-block'
           style={{backgroundColor: `rgb(${red}, ${green}, ${blue})`}}>
         </div>      
         <div className='custom-color-info'>

@@ -1,11 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
-
-{/*Goals
-- generate circles for every color
-- be able to delete colors with undo button
-- delete all colors button - are you sure popup window
-*/}
 
 export default function SavedColors(){
   const [savedColors, setSavedColors] = useState('');
@@ -115,9 +108,8 @@ export default function SavedColors(){
 
     <div className='component-display'>
       <div className='colors-container'>
-        {savedColorsLoop()}
-      </div>      
-      {savedColors.length === 0 ? <p className='no-colors'>You have no saved colors.</p> : null}
+        {savedColors.length === 0 ? <p className='no-colors'>You have no saved colors.</p> : savedColorsLoop()}
+      </div>
     </div>
   </div>
   )

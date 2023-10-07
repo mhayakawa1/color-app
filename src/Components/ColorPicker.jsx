@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 
 export default function ColorPicker(){
-  const [altered, setAltered] = useState(false);
+  const [notAltered, setNotAltered] = useState(false);
   const [savedColors, setSavedColors] = useState('');
   const [red, setRed] = useState(0);//rgb number values
   const [green, setGreen] = useState(0);
@@ -20,8 +20,9 @@ export default function ColorPicker(){
   }
 
   const handleChangeRGB = (event, color) =>{
-    setAltered(true)
-    localStorage.setItem('altered', true);
+    setNotAltered(true)
+    localStorage.setItem('notAltered', true);
+    console.log(1, notAltered)
     setHexCode('')
     setDisplayHexCode('')
     let numValue;    
@@ -115,6 +116,7 @@ export default function ColorPicker(){
   }
   
   const reset = () => {
+    setNotAltered(false)
     setRgbCode('0,0,0')
     setHexCode('')
     setDisplayHexCode('')
@@ -130,9 +132,9 @@ export default function ColorPicker(){
     setSavedColors(localStorage.getItem('savedColors') || '');
     setRed(localStorage.getItem('red') || '');
     setGreen(localStorage.getItem('green') || '');
-    setBlue(localStorage.getItem('blue') || '');
-    setAltered(localStorage.getItem('altered') || '');
-    if(altered === false){      
+    setBlue(localStorage.getItem('blue') || '');    
+    if(notAltered === true){
+      console.log(2, notAltered)
       setRed(0)
       setGreen(0)
       setBlue(0)
@@ -140,12 +142,12 @@ export default function ColorPicker(){
       localStorage.setItem('green', 0)
       localStorage.setItem('blue', 0)
     }
+    setNotAltered(localStorage.getItem('notAltered') || '');
     window.addEventListener('storage', onStorageUpdate);
     return () => {
       window.removeEventListener('storage', onStorageUpdate);
     };
   }, [])
-    console.log(altered)
   
   const saveColor = () => {
     let dupeColor = false;

@@ -22,7 +22,6 @@ export default function ColorPicker(){
   const handleChangeRGB = (event, color) =>{
     setNotAltered(true)
     localStorage.setItem('notAltered', true);
-    console.log(1, notAltered)
     setHexCode('')
     setDisplayHexCode('')
     let numValue;    
@@ -134,7 +133,6 @@ export default function ColorPicker(){
     setGreen(localStorage.getItem('green') || '');
     setBlue(localStorage.getItem('blue') || '');    
     if(notAltered === true){
-      console.log(2, notAltered)
       setRed(0)
       setGreen(0)
       setBlue(0)

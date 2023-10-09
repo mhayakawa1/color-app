@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 
 export default function ColorPicker(){
-  const [notAltered, setNotAltered] = useState(false);
+  const [altered, setAltered] = useState(false);
   const [savedColors, setSavedColors] = useState('');
   const [red, setRed] = useState(0);//rgb number values
   const [green, setGreen] = useState(0);
@@ -20,8 +20,8 @@ export default function ColorPicker(){
   }
 
   const handleChangeRGB = (event, color) =>{
-    setNotAltered(true)
-    localStorage.setItem('notAltered', true);
+    setAltered(true)
+    localStorage.setItem('altered', true);
     setHexCode('')
     setDisplayHexCode('')
     let numValue;    
@@ -29,18 +29,21 @@ export default function ColorPicker(){
       switch(color){
         case 'red': 
           setRed(numValue);
-          localStorage.setItem('red', numValue);
           setRgbCode(`${event.target.value},${green},${blue}`);
+          localStorage.setItem('red', numValue);
+          localStorage.setItem('rgbCode', `${event.target.value},${green},${blue}`);
           break;
         case 'green': 
           setGreen(numValue);
-          localStorage.setItem('green', numValue);
           setRgbCode(`${red},${event.target.value},${blue}`);
+          localStorage.setItem('green', numValue);
+          localStorage.setItem('rgbCode', `${red},${event.target.value},${blue}`);
           break;
         case 'blue': 
           setBlue(numValue);
-          localStorage.setItem('blue', numValue);
           setRgbCode(`${red},${green},${event.target.value}`);
+          localStorage.setItem('green', numValue);
+          localStorage.setItem('rgbCode', `${red},${green},${event.target.value}`);
       }
     }
     if(event.target.value[0] === '0' && event.target.value.length > 1){
@@ -81,9 +84,11 @@ export default function ColorPicker(){
       setRed(rgbOutput[0]);
       setGreen(rgbOutput[1]);
       setBlue(rgbOutput[2]);
+      setRgbCode(`${rgbOutput[0]},${rgbOutput[1]},${rgbOutput[2]}`)
       localStorage.setItem('red', rgbOutput[0]);
       localStorage.setItem('green', rgbOutput[1]);
       localStorage.setItem('blue', rgbOutput[2]);
+      localStorage.setItem('rgbCode', `${rgbOutput[0]},${rgbOutput[1]},${rgbOutput[2]}`)
     }
   }
 
@@ -115,33 +120,27 @@ export default function ColorPicker(){
   }
   
   const reset = () => {
-    setNotAltered(false)
-    setRgbCode('0,0,0')
     setHexCode('')
     setDisplayHexCode('')
     setRed(0)
     setGreen(0)
     setBlue(0)
+    setRgbCode('0,0,0')
     localStorage.setItem('red', 0)
     localStorage.setItem('green', 0)
     localStorage.setItem('blue', 0)
+    localStorage.setItem('rgbCode', '0,0,0')
   }
 
   useEffect(() => {
     setSavedColors(localStorage.getItem('savedColors') || '');
     setRed(localStorage.getItem('red') || '');
     setGreen(localStorage.getItem('green') || '');
-    setBlue(localStorage.getItem('blue') || '');    
-    if(notAltered === true){
-      setRed(0)
-      setGreen(0)
-      setBlue(0)
-      localStorage.setItem('red', 0)
-      localStorage.setItem('green', 0)
-      localStorage.setItem('blue', 0)
-    }
-    setNotAltered(localStorage.getItem('notAltered') || '');
-    window.addEventListener('storage', onStorageUpdate);
+    setBlue(localStorage.getItem('blue') || '');  
+    setRgbCode(localStorage.getItem('rgbCode') || '');
+    setAltered(localStorage.getItem('altered') || '');
+    window.addEventListener('storage', onStorageUpdate);    
+    console.log(altered)
     return () => {
       window.removeEventListener('storage', onStorageUpdate);
     };

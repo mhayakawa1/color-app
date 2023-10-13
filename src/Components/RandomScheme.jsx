@@ -122,7 +122,7 @@ export default function RandomScheme(){
     
     <div className='component-display'>
       <div className='colors-container'>
-          {colorSchemeLoop()}
+          {schemeArr === '' ? <p className='no-colors'>Click "New Color Scheme" to view colors.</p> : colorSchemeLoop()}
       </div>      
     </div>
   </div>

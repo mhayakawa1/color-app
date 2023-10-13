@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
 
 export default function ColorPicker(){
   const [altered, setAltered] = useState(false);
@@ -20,33 +19,32 @@ export default function ColorPicker(){
   }
 
   const handleChangeRGB = (event, color) =>{
-    setAltered(true)
-    localStorage.setItem('altered', true);
+    //console.log(event.target.value)
     setHexCode('')
     setDisplayHexCode('')
     let numValue;    
     function setColor(color){//set useState variable of selected color to number entered
       switch(color){
         case 'red': 
-          setRed(numValue);
+          setRed(event.target.value);
           setRgbCode(`${event.target.value},${green},${blue}`);
-          localStorage.setItem('red', numValue);
+          localStorage.setItem('red', event.target.value);
           localStorage.setItem('rgbCode', `${event.target.value},${green},${blue}`);
           break;
         case 'green': 
-          setGreen(numValue);
+          setGreen(event.target.value);
           setRgbCode(`${red},${event.target.value},${blue}`);
-          localStorage.setItem('green', numValue);
+          localStorage.setItem('green', event.target.value);
           localStorage.setItem('rgbCode', `${red},${event.target.value},${blue}`);
           break;
         case 'blue': 
-          setBlue(numValue);
+          setBlue(event.target.value);
           setRgbCode(`${red},${green},${event.target.value}`);
-          localStorage.setItem('green', numValue);
+          localStorage.setItem('blue', event.target.value);
           localStorage.setItem('rgbCode', `${red},${green},${event.target.value}`);
       }
     }
-    if(event.target.value[0] === '0' && event.target.value.length > 1){
+    if(event.target.value[0] === 0 && event.target.value.length > 1){
       //if num entered starts with 0 and the length is >1
       //set numValue to 0 and call setColor with selected color
       numValue = 0
@@ -136,11 +134,9 @@ export default function ColorPicker(){
     setSavedColors(localStorage.getItem('savedColors') || '');
     setRed(localStorage.getItem('red') || '');
     setGreen(localStorage.getItem('green') || '');
-    setBlue(localStorage.getItem('blue') || '');  
-    setRgbCode(localStorage.getItem('rgbCode') || '');
-    setAltered(localStorage.getItem('altered') || '');
-    window.addEventListener('storage', onStorageUpdate);    
-    console.log(altered)
+    setBlue(localStorage.getItem('blue') || '');
+    //setRgbCode(localStorage.getItem('rgbCode') || '');
+    window.addEventListener('storage', onStorageUpdate);
     return () => {
       window.removeEventListener('storage', onStorageUpdate);
     };
@@ -166,23 +162,23 @@ export default function ColorPicker(){
     <div className='controls-container color-picker-controls'>
       <div className='input-container'>
         <div className='input-item'>
-          <input type='range' min='0' max='255' value={`${red}`} className='slider'
+          <input type='range' min='0' max='255' value={red === '' ? 0 : red} className='slider'
             onChange={event => handleChangeRGB(event, 'red')}/>
-          <input className='input-number' type='number' value={`${red}`}
+          <input className='input-number' type='number' value={red === '' ? 0 : red}
             onChange={event => handleChangeRGB(event, 'red')}/>
           <label>Red</label>
         </div>
         <div className='input-item'>
-          <input type='range' min='0' max='255' value={`${green}`} className='slider'
+          <input type='range' min='0' max='255' value={green === '' ? 0 : green} className='slider'
             onChange={event => handleChangeRGB(event, 'green')}/>
-          <input className='input-number' type='number' value={`${green}`}
+          <input className='input-number' type='number' value={green === '' ? 0 : green}
             onChange={event => handleChangeRGB(event, 'green')}/>
           <label>Green</label>
         </div>
         <div className='input-item'>
-          <input type='range' min='0' max='255' value={`${blue}`} className='slider'
+          <input type='range' min='0' max='255' value={blue === '' ? 0 : blue} className='slider'
             onChange={event => handleChangeRGB(event, 'blue')}/>
-          <input className='input-number' type='number' value={`${blue}`}
+          <input className='input-number' type='number' value={blue === '' ? 0 : blue}
             onChange={event => handleChangeRGB(event, 'blue')}/>
           <label>Blue</label>
         </div>
@@ -197,17 +193,17 @@ export default function ColorPicker(){
       <button className='btn-standard' onClick={reset}>Reset</button>
       <button  className='btn-standard'onClick={saveColor}>Save Color</button>
       <button className='random-color' onClick={random}
-        style={{filter: `drop-shadow(0px 0px 4px rgb(${red},${green},${blue}))`,
-          borderColor: `rgb(${red},${green},${blue})`}}>Random<br/>Color</button>
+        style={{filter: `drop-shadow(0px 0px 4px rgb(${red === '' ? 0 : red},${green === '' ? 0 : green},${blue === '' ? 0 : blue}))`,
+          borderColor: `rgb(${red === '' ? 0 : red},${green === '' ? 0 : green},${blue === '' ? 0 : blue})`}}>Random<br/>Color</button>
     </div>
     
     <div className='component-display'>
       <div className='custom-color-container'>
         <div className='custom-color-block'
-          style={{backgroundColor: `rgb(${red}, ${green}, ${blue})`}}>
+          style={{backgroundColor: `rgb(${red === '' ? 0 : red},${green === '' ? 0 : green},${blue === '' ? 0 : blue})`}}>
         </div>
         <div className='custom-color-info'>
-          <p>{`RGB: (${red},${green},${blue})`}</p>
+          <p>{`RGB: (${red === '' ? 0 : red},${green === '' ? 0 : green},${blue === '' ? 0 : blue})`}</p>
           <p>HEX: {displayHexCode === '' ? '-' : `#${displayHexCode.toUpperCase()}`}</p>
         </div>
       </div>

@@ -1,7 +1,5 @@
 import './App.css';
 import React, {useState} from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { NavLink } from 'react-router-dom';
 
 import ColorPicker from './Components/ColorPicker';
 import ColorWheel from './Components/ColorWheel';

@@ -1,13 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 
-{/*Goals
-- http://colormind.io/api-access/
-https://www.colr.org/api.html
-- Fetch random color scheme using API
-- generate new one on button click
-- Save colors, save whole scheme
-*/}
+{/*https://www.colr.org/api.html*/}
 
 export default function RandomScheme(){
   const [savedColors, setSavedColors] = useState('');
@@ -107,15 +101,9 @@ export default function RandomScheme(){
       };
   },[]);
 
-  const clear = () =>{
-    setSchemeArr('')
-    localStorage.setItem('schemeArr', '');
-  }
-
   return(
   <div className='component-container-2'>
     <div className='controls-container scheme-controls-container'>
-      {/*<button onClick={() => clear()}>Clear</button>*/}
       <button className='btn-standard' onClick={() => saveAllColors()}>Save All</button>
       <button className='btn-standard' onClick={() => getAPI()}>New Color Scheme</button>
     </div>

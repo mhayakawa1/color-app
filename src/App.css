@@ -30,13 +30,6 @@ button, p, input, select, label, li{
   background-color: white;
 }
 
-.btn-secondary{
-  border: 2px solid rgb(69,69,69);
-  background-color: rgb(220,220,220);
-  color: rgb(69,69,69);
-  border-radius: 20px;
-}
-
 .btn-standard:hover{
   border: 2px solid white;
   color:white;
@@ -49,6 +42,21 @@ button, p, input, select, label, li{
   color: white;
 }
 
+
+.btn-secondary{  
+  background-color: rgb(0,0,0,0);
+  border: 2px solid white;
+  color: white;
+}
+
+.btn-secondary:hover{
+  background-color: rgb(80,80,80);
+}
+
+.btn-secondary:active{
+  background-color: rgb(0,0,0,.5);
+}
+
 .btn-small{
   height: 32px !important;
 }
@@ -58,10 +66,13 @@ button, p, input, select, label, li{
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   height: 50px;
+  display: flex;
+  flex-direction: column;
 }
 
 .menu button{
-  height: 49px;
+  height: 44px;
+  width: 8rem;
   border-radius: 0;
   border: none;
   background-color: rgb(0,0,0,0);
@@ -71,13 +82,34 @@ button, p, input, select, label, li{
   filter: none;
 }
 
-.active{
-  color: white !important;  
-  border-bottom: 3px solid white !important;
+.filler{
+  background-color: rgb(0,0,0,0);  
+  height: 3px;
+  width: 100%;  
+}
+
+.active-bar{
+  background-color: white;  
+  height: 3px;
+  width: 8rem;
+  transition: all 1s ease-out;
+  /*border-bottom: 3px solid white !important;*/
 }
 
 .menu-item-1{
-  border-top-left-radius: 5px !important;
+  margin: 0;
+}
+
+.menu-item-2{
+  margin: 0 0 0 8rem;
+}
+
+.menu-item-3{
+  margin: 0 0 0 16rem;
+}
+
+.menu-item-4{
+  margin: 0 0 0 24rem;
 }
 
 .component-container{
@@ -183,12 +215,13 @@ h3{
 .confirm-clear-all p{
   padding: 0;
   margin: 0;
+  color: white;
 }
 
 .confirm-btns{
   display: flex;
   justify-content: end;
-  gap: .5rem;
+  gap: 1rem;
 }
 /*SAVED COLORS ENDS HERE*/
 

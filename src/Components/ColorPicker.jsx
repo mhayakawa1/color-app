@@ -6,7 +6,6 @@ export default function ColorPicker(){
   const [red, setRed] = useState(0);//rgb number values
   const [green, setGreen] = useState(0);
   const [blue, setBlue] = useState(0);
-  const [rgbCode, setRgbCode] = useState('0,0,0');
   const [hexCode, setHexCode] = useState('');
   const [displayHexCode, setDisplayHexCode] = useState('');
   const hex = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'a', 'b', 'c', 'd', 'e', 'f']
@@ -19,7 +18,6 @@ export default function ColorPicker(){
   }
 
   const handleChangeRGB = (event, color) =>{
-    //console.log(event.target.value)
     setHexCode('')
     setDisplayHexCode('')
     let numValue;    
@@ -27,21 +25,15 @@ export default function ColorPicker(){
       switch(color){
         case 'red': 
           setRed(event.target.value);
-          setRgbCode(`${event.target.value},${green},${blue}`);
           localStorage.setItem('red', event.target.value);
-          localStorage.setItem('rgbCode', `${event.target.value},${green},${blue}`);
           break;
         case 'green': 
           setGreen(event.target.value);
-          setRgbCode(`${red},${event.target.value},${blue}`);
-          localStorage.setItem('green', event.target.value);
-          localStorage.setItem('rgbCode', `${red},${event.target.value},${blue}`);
+          localStorage.setItem('green', event.target.value);;
           break;
         case 'blue': 
           setBlue(event.target.value);
-          setRgbCode(`${red},${green},${event.target.value}`);
           localStorage.setItem('blue', event.target.value);
-          localStorage.setItem('rgbCode', `${red},${green},${event.target.value}`);
       }
     }
     if(event.target.value[0] === 0 && event.target.value.length > 1){
@@ -82,16 +74,13 @@ export default function ColorPicker(){
       setRed(rgbOutput[0]);
       setGreen(rgbOutput[1]);
       setBlue(rgbOutput[2]);
-      setRgbCode(`${rgbOutput[0]},${rgbOutput[1]},${rgbOutput[2]}`)
       localStorage.setItem('red', rgbOutput[0]);
       localStorage.setItem('green', rgbOutput[1]);
       localStorage.setItem('blue', rgbOutput[2]);
-      localStorage.setItem('rgbCode', `${rgbOutput[0]},${rgbOutput[1]},${rgbOutput[2]}`)
     }
   }
 
   const rgb2hex = () =>{
-    setRgbCode(`${red},${green},${blue}`)
     let rgbInput = [red, green, blue]
     let hexOutput = []
     for(let i = 0; i < rgbInput.length; i++){
@@ -114,7 +103,6 @@ export default function ColorPicker(){
     setRed(Math.round(Math.random() * (255)))
     setGreen(Math.round(Math.random() * (255)))
     setBlue(Math.round(Math.random() * (255)))
-    setRgbCode(`${red},${green},${blue}`)   
   }
   
   const reset = () => {
@@ -123,11 +111,9 @@ export default function ColorPicker(){
     setRed(0)
     setGreen(0)
     setBlue(0)
-    setRgbCode('0,0,0')
     localStorage.setItem('red', 0)
     localStorage.setItem('green', 0)
     localStorage.setItem('blue', 0)
-    localStorage.setItem('rgbCode', '0,0,0')
   }
 
   useEffect(() => {
@@ -135,7 +121,6 @@ export default function ColorPicker(){
     setRed(localStorage.getItem('red') || '');
     setGreen(localStorage.getItem('green') || '');
     setBlue(localStorage.getItem('blue') || '');
-    //setRgbCode(localStorage.getItem('rgbCode') || '');
     window.addEventListener('storage', onStorageUpdate);
     return () => {
       window.removeEventListener('storage', onStorageUpdate);

@@ -1,10 +1,4 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
-
-{/*Goals
-- When button is clicked with color scheme, colors are hightlighted
-- Dropdown with different color schemes
-*/}
 
 export default function ColorWheel(){
   const [schemeType, setSchemeType] = useState('monochromatic')

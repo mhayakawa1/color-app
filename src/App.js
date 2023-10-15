@@ -12,6 +12,8 @@ function App() {
     setDisplay(comp)
   }
 
+  console.log(display)
+
   return (
     <div className='app'>
       <div className='menu'> 

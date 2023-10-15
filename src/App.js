@@ -12,7 +12,7 @@ function App() {
     setDisplay(comp)
   }
 
-  console.log(display.type.name)
+  console.log(display)
 
   return (
     <div className='app'>

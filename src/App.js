@@ -22,11 +22,12 @@ function App() {
           <button onClick={() => switchComponent('RandomScheme')}>Color Schemes</button>
           <button onClick={() => switchComponent('ColorWheel')}>Color Wheel</button>
         </div>
-        <span className={`active-bar ${
-          display === 'SavedColors' ? 'menu-item-1'
-          : display === 'ColorPicker' ? 'menu-item-2'
-          : display ==='RandomScheme' ? 'menu-item-3'
-          : 'menu-item-4'}`}>
+        <span className='active-bar' style={
+          display === 'SavedColors' ? {margin: '0'}
+          : display === 'ColorPicker' ? {margin: '0 0 0 8rem'}
+          : display ==='RandomScheme' ? {margin: '0 0 0 16rem'}
+          : {margin: '0 0 0 24rem'}
+        }>
         </span>
       </div>
 

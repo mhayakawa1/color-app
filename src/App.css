@@ -96,7 +96,7 @@ button, p, input, select, label, li{
   background-color: white;  
   height: 3px;
   width: 8rem;
-  transition: all .75s ease-out;
+  transition: all 1s ease-out;
 }
 
 .menu-item-1{

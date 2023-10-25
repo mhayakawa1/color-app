@@ -16,6 +16,35 @@ body{
   border: 1px solid rgb(220,220,220);
 }
 
+
+
+a{
+  color: white;
+  text-decoration: none;
+}
+
+.title-headings{
+  font-size: 4rem;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+@media screen and (min-width: 2560px){
+}
+
+@media screen and (min-width: 1440px){
+}
+
+@media screen and (max-width: 769px){
+}
+
+@media screen and (max-width: 426px){
+}
+
+@media screen and (max-width: 376px){
+}
+
+
 button, p, input, select, label, li{
   font-family: 'Poppins', sans-serif;
   font-size: .75rem;

@@ -1,6 +1,6 @@
 /*APP.JS STARTS HERE*/
 body{
-  padding: 4rem 0 1rem 0;
+  padding: 10% 0 1rem 0;
   background: black;
   overflow-y: scroll;
 }
@@ -8,7 +8,7 @@ body{
 .app{
   border-radius: 5px;
   margin: auto;
-  width: 50rem;
+  max-width: 50rem;
   display: flex;
   flex-direction: column;
   background: rgb(80,80,80,.5);
@@ -16,7 +16,23 @@ body{
   border: 1px solid rgb(220,220,220);
 }
 
+@media screen and (min-width: 2560px){
+}
 
+@media screen and (min-width: 1440px){
+}
+
+@media screen and (max-width: 900px){
+}
+
+@media screen and (max-width: 769px){
+}
+
+@media screen and (max-width: 426px){
+}
+
+@media screen and (max-width: 376px){
+}
 
 a{
   color: white;
@@ -27,21 +43,6 @@ a{
   font-size: 4rem;
   text-transform: uppercase;
   margin: 0;
-}
-
-@media screen and (min-width: 2560px){
-}
-
-@media screen and (min-width: 1440px){
-}
-
-@media screen and (max-width: 769px){
-}
-
-@media screen and (max-width: 426px){
-}
-
-@media screen and (max-width: 376px){
 }
 
 
@@ -143,13 +144,13 @@ button, p, input, select, label, li{
 .controls-container{
   padding: 1rem;
   border-right: 1px solid rgb(220,220,220);
-  width: 15rem;
+  width: 30%;
   display: flex;
   flex-direction: column;
 }
 
 .component-display{
-  width: 35rem;
+  width: 70%;
   min-height: 15rem;
   padding: 1rem;
   background-color: rgb(69,69,69,.5);
@@ -170,6 +171,7 @@ h3{
 .colors-container{
   align-self: center;
   display: flex;
+  justify-content: space-around;
   flex-wrap: wrap;
   gap: 1rem;
   width: 32rem;
@@ -179,6 +181,11 @@ h3{
 .no-colors{
   margin: auto;
   color: white;
+}
+
+.container-filler{
+  width: 10rem;
+  height: auto;  
 }
 
 .color-item{

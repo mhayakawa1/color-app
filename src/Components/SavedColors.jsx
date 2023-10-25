@@ -109,6 +109,8 @@ export default function SavedColors(){
     <div className='component-display'>
       <div className='colors-container'>
         {savedColors.length === 0 ? <p className='no-colors'>You have no saved colors.</p> : savedColorsLoop()}
+        {savedColors.length%3 === 1 || savedColors.length%3 === 2 ? <div aria-hidden='true' className='container-filler'></div> : null}
+        {savedColors.length%3 === 2 ? <div aria-hidden='true' className='container-filler'></div> : null}
       </div>
     </div>
   </div>

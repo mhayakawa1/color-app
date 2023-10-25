@@ -171,7 +171,7 @@ h3{
 .colors-container{
   align-self: center;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   flex-wrap: wrap;
   gap: 1rem;
   width: 32rem;
@@ -185,7 +185,6 @@ h3{
 
 .container-filler{
   width: 10rem;
-  height: auto;  
 }
 
 .color-item{

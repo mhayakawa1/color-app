@@ -111,6 +111,8 @@ export default function RandomScheme(){
     <div className='component-display'>
       <div className='colors-container'>
           {schemeArr === '' ? <p className='no-colors'>Click "New Color Scheme" to view colors.</p> : colorSchemeLoop()}
+          {schemeArr.split(',').length%3 === 1 || schemeArr.split(',').length%3 === 2 ? <div aria-hidden='true' className='container-filler'></div> : null}
+          {schemeArr.split(',').length%3 === 1 ? <div aria-hidden='true' className='container-filler'></div> : null}
       </div>      
     </div>
   </div>

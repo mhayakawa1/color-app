@@ -31,9 +31,8 @@ function App() {
             : display === 'ColorPicker' ? {margin: '0 0 0 25%'}
             : display ==='RandomScheme' ? {margin: '0 0 0 50%'}
             : {margin: '0 0 0 75%'}
-          }>
-        </span>
-
+            }>
+          </span>
         </div>
       </div>
 

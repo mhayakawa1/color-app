@@ -175,8 +175,10 @@ export default function ColorPicker(){
           value={`#${hexCode.toUpperCase()}`}/>
       </div>
       
-      <button className='btn-standard' onClick={reset}>Reset</button>
-      <button  className='btn-standard'onClick={saveColor}>Save Color</button>
+      <div className='reset-save'>
+        <button className='btn-standard reset' onClick={reset}>Reset</button>
+        <button className='btn-standard save'onClick={saveColor}>Save Color</button>
+      </div>
       <button className='random-color' onClick={random}
         style={{filter: `drop-shadow(0px 0px 4px rgb(${red === '' ? 0 : red},${green === '' ? 0 : green},${blue === '' ? 0 : blue}))`,
           borderColor: `rgb(${red === '' ? 0 : red},${green === '' ? 0 : green},${blue === '' ? 0 : blue})`}}>Random<br/>Color</button>

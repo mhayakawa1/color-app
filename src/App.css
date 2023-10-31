@@ -33,6 +33,22 @@ body{
 }
 
 @media screen and (max-width: 496px){
+  body{
+    width: 100vw;
+    height: 100vh;
+    padding: 0;
+    overflow-y: hidden !important;
+  }
+
+  .app{
+    min-width: 320px;
+    max-width: 100vw;
+    overflow: hidden !important;
+    height: 100vh;
+    border: none;
+    margin: none;
+    border: 1px solid red;
+  }
 }
 
 @media screen and (max-width: 376px){
@@ -158,6 +174,11 @@ button, p, input, select, label, li{
   }
 }
 
+@media screen and (max-width: 496px){
+  .menu{
+  }
+}
+
 .component-container{
   margin: 0;
   width: auto;
@@ -210,6 +231,12 @@ button, p, input, select, label, li{
   .component-display{
     width: 100%;
     padding: 1rem;
+  }
+}
+
+@media screen and (max-width: 496px){
+  .component-container{
+    width: 100vw;
   }
 }
 

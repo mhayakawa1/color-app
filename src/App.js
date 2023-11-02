@@ -4,28 +4,38 @@ import ColorPicker from './Components/ColorPicker';
 import ColorWheel from './Components/ColorWheel';
 import RandomScheme from './Components/RandomScheme';
 import SavedColors from './Components/SavedColors';
+import {AiOutlineMenu} from 'react-icons/ai';
+import {AiOutlineClose} from 'react-icons/ai';
 
 function App() {
   const [display, setDisplay] = useState('SavedColors');
+  const [menuVisible, setMenuVisible] = useState(false);
 
   function switchComponent(comp){
     setDisplay(comp)
   }
 
+  function toggleMenu(){
+    setMenuVisible(!menuVisible)
+  }
+
+  
+const menuBtns = <div className='menu-btns-container'>
+<button onClick={() => switchComponent('SavedColors')}
+  className={`menu-btn-1 ${display === 'SavedColors' ? 'selected' : ''}`}>Saved Colors</button>
+<button onClick={() => switchComponent('ColorPicker')}
+  className='menu-btn-2'>Color Picker</button>
+<button onClick={() => switchComponent('RandomScheme')}
+  className='menu-btn-3'>Color Schemes</button>
+<button onClick={() => switchComponent('ColorWheel')}
+  className='menu-btn-4'>Color Wheel</button>
+</div>
+
   return (
     <div className='app'>
       <div className='menu-container'>
         <div className='menu'>
-          <div>
-            <button onClick={() => switchComponent('SavedColors')}
-              className='menu-btn-1'>Saved Colors</button>
-            <button onClick={() => switchComponent('ColorPicker')}
-              className='menu-btn-2'>Color Picker</button>
-            <button onClick={() => switchComponent('RandomScheme')}
-              className='menu-btn-3'>Color Schemes</button>
-            <button onClick={() => switchComponent('ColorWheel')}
-              className='menu-btn-4'>Color Wheel</button>
-          </div>
+          {menuBtns}
           <span className='active-bar' style={
             display === 'SavedColors' ? {margin: '0'}
             : display === 'ColorPicker' ? {margin: '0 0 0 25%'}
@@ -34,6 +44,14 @@ function App() {
             }>
           </span>
         </div>
+      </div>
+      <div className='menu-mobile'>
+
+        <button className='dropdown-menu-btn' onClickCapture={toggleMenu}>
+          {menuVisible === false ? <AiOutlineClose className='icon'></AiOutlineClose> : 
+            <AiOutlineMenu className='icon'></AiOutlineMenu>}          
+        </button>
+        {menuVisible === true ? null : menuBtns}
       </div>
 
       <div className='component-container'>

@@ -18,17 +18,16 @@ function App() {
   function toggleMenu(){
     setMenuVisible(!menuVisible)
   }
-
   
-const menuBtns = <div className='menu-btns-container'>
+const menuBtns = <div className={`menu-btns-container ${menuVisible === true ? 'menu-btns-height fade-in' : 'fade-out'}`}>
 <button onClick={() => switchComponent('SavedColors')}
   className={`menu-btn-1 ${display === 'SavedColors' ? 'selected' : ''}`}>Saved Colors</button>
 <button onClick={() => switchComponent('ColorPicker')}
-  className='menu-btn-2'>Color Picker</button>
+  className={`menu-btn-2 ${display === 'SavedColors' ? 'selected' : ''}`}>Color Picker</button>
 <button onClick={() => switchComponent('RandomScheme')}
-  className='menu-btn-3'>Color Schemes</button>
+  className={`menu-btn-3 ${display === 'SavedColors' ? 'selected' : ''}`}>Color Schemes</button>
 <button onClick={() => switchComponent('ColorWheel')}
-  className='menu-btn-4'>Color Wheel</button>
+  className={`menu-btn-4 ${display === 'SavedColors' ? 'selected' : ''}`}>Color Wheel</button>
 </div>
 
   return (
@@ -46,12 +45,11 @@ const menuBtns = <div className='menu-btns-container'>
         </div>
       </div>
       <div className='menu-mobile'>
-
         <button className='dropdown-menu-btn' onClickCapture={toggleMenu}>
           {menuVisible === false ? <AiOutlineClose className='icon'></AiOutlineClose> : 
             <AiOutlineMenu className='icon'></AiOutlineMenu>}          
         </button>
-        {menuVisible === true ? null : menuBtns}
+        {menuBtns}
       </div>
 
       <div className='component-container'>

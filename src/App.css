@@ -186,10 +186,12 @@ button, p, input, select, label, li{
   }
 
   .menu-mobile{
+    height: auto;
     display: flex;
     flex-direction: column;
     padding: 1rem;
     border-bottom: 1px solid rgb(220,220,220);
+    transition: all .75s ease-out !important;
   }
 
   /*
@@ -230,7 +232,13 @@ button, p, input, select, label, li{
     display: flex;
     align-items: end;
     flex-direction: column;
-  }  
+    height: 0rem;
+    transition: all .75s ease-out;
+  }
+
+  .menu-btns-height{
+    height: 8rem;
+  }
 
   .menu-btns-container button{
     height: 2rem;
@@ -254,6 +262,115 @@ button, p, input, select, label, li{
   .active-bar{
     display: none;
   }
+}
+
+.fade-in{  
+  visibility: visible;
+  animation: fadeIn 2s;
+  -webkit-animation: fadeIn 2s;
+  -moz-animation: fadeIn 2s;
+  -o-animation: fadeIn 2s;
+  -ms-animation: fadeIn 2s;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-moz-keyframes fadeIn {
+  0% {
+opacity: 0;
+}
+  100% {
+opacity: 1;
+}
+}
+
+@-o-keyframes fadeIn {
+  0% {
+opacity: 0;
+}
+  100% {
+opacity: 1;
+}
+}
+
+@-ms-keyframes fadeIn {
+  0% {
+opacity: 0;
+}
+  100% {
+opacity: 1;
+}
+}
+
+.fade-out{
+  animation: fadeOut .25s;
+  animation-fill-mode: forwards !important;
+  -webkit-animation: fadeOut .25s;
+  -moz-animation: fadeOut .25s;
+  -o-animation: fadeOut .25s;
+  -ms-animation: fadeOut .25s;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes fadeOut {
+  0% {
+opacity: 1;
+}
+  100% {
+opacity: 0;
+}
+}
+
+@-moz-keyframes fadeOut {
+  0% {
+opacity: 1;
+}
+  100% {
+opacity: 0;
+}
+}
+
+@-o-keyframes fadeOut {
+  0% {
+opacity: 1;
+}
+  100% {
+opacity: 0;
+}
+}
+
+@-ms-keyframes fadeOut {
+  0% {
+opacity: 1;
+}
+  100% {
+opacity: 0;
+visibility: hidden;
+}
 }
 
 .component-container{

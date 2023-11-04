@@ -179,9 +179,6 @@ button, p, input, select, label, li{
 
 @media screen and (max-width: 496px){
   .menu-container{
-    /*height: auto;
-    width: 100vw;
-    border: 1px solid red;*/
     display: none;
   }
 
@@ -193,25 +190,7 @@ button, p, input, select, label, li{
     border-bottom: 1px solid rgb(220,220,220);
     transition: all .75s ease-out !important;
   }
-
-  /*
-  .menu{
-    width: 100vw;
-  }
-
-  .dropdown-menu-btn{
-    width: auto;
-    height: auto;
-    background-color: rgb(0,0,0,0);
-    display: flex;
-    flex-direction: column;
-    gap: .25rem;
-    padding: 0;
-    border: none;
-    border-radius: none;
-    margin: 1rem;
-  }*/
-
+  
   .dropdown-menu-btn{
     background-color: rgb(0,0,0,0);
     align-self: flex-end;
@@ -251,18 +230,12 @@ button, p, input, select, label, li{
     text-shadow: 0px 0px 8px rgb(255,255,255);
   }
 
-  /*.menu div{
-    display: flex;
-    flex-direction: column;
-  }
-  .selected{
-    background: linear-gradient(rgb(0,0,0,0),rgb(0,0,0,.75)) !important;
-  }*/
-
   .active-bar{
     display: none;
   }
 }
+
+@media screen and (max-width: 496px){
 
 .fade-in{  
   visibility: visible;
@@ -273,14 +246,14 @@ button, p, input, select, label, li{
   -ms-animation: fadeIn 2s;
 }
 
-@keyframes fadeIn {
+  @keyframes fadeIn {
   0% {
     opacity: 0;
   }
   100% {
     opacity: 1;
   }
-}
+  }
 
 @-webkit-keyframes fadeIn {
   0% {
@@ -293,29 +266,29 @@ button, p, input, select, label, li{
 
 @-moz-keyframes fadeIn {
   0% {
-opacity: 0;
-}
+    opacity: 0;
+  }
   100% {
-opacity: 1;
-}
+    opacity: 1;
+  }
 }
 
 @-o-keyframes fadeIn {
   0% {
-opacity: 0;
-}
+    opacity: 0;
+  }
   100% {
-opacity: 1;
-}
+    opacity: 1;
+  }
 }
 
 @-ms-keyframes fadeIn {
   0% {
-opacity: 0;
-}
+    opacity: 0;
+  }
   100% {
-opacity: 1;
-}
+    opacity: 1;
+  }
 }
 
 .fade-out{
@@ -338,41 +311,40 @@ opacity: 1;
 
 @-webkit-keyframes fadeOut {
   0% {
-opacity: 1;
-}
+    opacity: 1;
+  }
   100% {
-opacity: 0;
-}
+    opacity: 0;
+  }
 }
 
 @-moz-keyframes fadeOut {
   0% {
-opacity: 1;
-}
+    opacity: 1;
+  }
   100% {
-opacity: 0;
-}
+    opacity: 0;
+  }
 }
 
 @-o-keyframes fadeOut {
   0% {
-opacity: 1;
-}
+    opacity: 1;
+  }
   100% {
-opacity: 0;
-}
+    opacity: 0;
+  }
 }
 
 @-ms-keyframes fadeOut {
   0% {
-opacity: 1;
-}
+    opacity: 1;
+  }
   100% {
-opacity: 0;
-visibility: hidden;
+    opacity: 0;
+  }
 }
 }
-
 .component-container{
   margin: 0;
   width: auto;
@@ -448,7 +420,8 @@ h3{
   justify-content: space-around;
   flex-wrap: wrap;
   gap: 1rem;
-  width: 100%;
+  width: auto;
+  max-width: 40rem;
   margin: 0 0 0 .25px;
 }
 

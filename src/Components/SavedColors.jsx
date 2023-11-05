@@ -93,7 +93,7 @@ export default function SavedColors(){
   return(    
   <div className='component-container-2'>
     <div className='controls-container'>
-      <button  className='btn-standard'
+      <button className='btn-standard'
         onClick={savedColors === '' ? null : () => clearAll('clear all')}>Clear All</button>
         {showConfirm ? //popup to confirm action to clear all colors
         <div className='confirm-clear-all'>

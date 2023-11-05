@@ -46,8 +46,8 @@ const menuBtns = <div className={`menu-btns-container ${menuVisible === true ? '
       </div>
       <div className='menu-mobile'>
         <button className='dropdown-menu-btn' onClickCapture={toggleMenu}>
-          {menuVisible === false ? <AiOutlineClose className='icon'></AiOutlineClose> : 
-            <AiOutlineMenu className='icon'></AiOutlineMenu>}          
+          {menuVisible === false ? <AiOutlineMenu className='icon'></AiOutlineMenu> : 
+            <AiOutlineClose className='icon'></AiOutlineClose>}          
         </button>
         {menuBtns}
       </div>

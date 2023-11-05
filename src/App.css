@@ -46,7 +46,6 @@ body{
     overflow: hidden !important;
     margin: none;
     border: none;
-
   }
 }
 
@@ -85,6 +84,10 @@ button, p, input, select, label, li{
   .btn-standard{
     margin: 0;
   }
+}
+
+@media screen and (max-width: 769px){
+  
 }
 
 .btn-standard:hover{
@@ -391,7 +394,6 @@ button, p, input, select, label, li{
     padding: 1rem;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
   }
 
   .component-display{
@@ -403,6 +405,22 @@ button, p, input, select, label, li{
 @media screen and (max-width: 496px){
   .component-container{
     width: 100vw;
+    height: 100%;
+  }
+
+  .component-container-2{
+    height: 100%;
+  }
+
+  .controls-container{
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    height: auto;
+  }
+
+  .component-display{
+    height: 100%;
   }
 }
 
@@ -708,7 +726,7 @@ h3{
 
 /*COLOR WHEEL STARTS HERE*/
 .dropdown-container{
-  width: 11rem;
+  width: 10.75rem;
   border: 2px solid black;
   border-radius: 5px;
   filter: drop-shadow(0px 0px 4px rgb(255,255,255,.25));
@@ -716,12 +734,44 @@ h3{
 }
 
 .color-scheme-dropdown{
-  height: 32px;
-  width: 11rem;
+  width: 100%;
+  height: 40px;
   padding: 0 0 0 8px;
-  border-radius: 5px;
+  border-radius: 3px;
   border: none;
   border-right: 8px solid transparent;
+}
+
+.color-names-2{
+  display: none;
+}
+
+@media screen and (max-width: 769px){
+  .dropdown-container{
+    margin: 0;
+  }
+
+  .color-wheel-controls{
+    gap: 1rem;
+  }
+}
+
+@media screen and (max-width: 496px){
+  .dropdown-container{
+    margin: 0;
+  }
+
+  .color-scheme-dropdown{
+    height: 40px;
+  }
+
+  .color-names-1{
+    display: none;
+  }
+
+  .color-names-2{
+    display: block;
+  }
 }
 
 .controls-container ul{

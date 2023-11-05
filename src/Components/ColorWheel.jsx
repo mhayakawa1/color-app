@@ -104,7 +104,7 @@ export default function ColorWheel(){
 
   return(
   <div className='component-container-2'>
-    <div className='controls-container'>
+    <div className='controls-container color-wheel-controls'>
       <div className='dropdown-container'>
         <select className='color-scheme-dropdown'
           onChange={handleDropdown}>
@@ -116,8 +116,8 @@ export default function ColorWheel(){
           <option value='tetradic'>Tetradic</option>      
         </select>
       </div>
-      <button className='btn-standard' onClick={() => reset()}>Reset</button>
-      <ul>
+      <button className='btn-standard color-wheel-reset' onClick={() => reset()}>Reset</button>
+      <ul className='color-names-1'>
         {colorNamesLoop()}
       </ul>
     </div>
@@ -149,6 +149,9 @@ export default function ColorWheel(){
         <button onClick={() => findColorScheme('purpleRed')} 
           className={`color-wheel-circle purple-red ${classesArr2[11] ? 'dropshadow' : ''}`}></button>
       </div>
+      <ul className='color-names-2'>
+        {colorNamesLoop()}
+      </ul>
     </div>
   </div>
   )

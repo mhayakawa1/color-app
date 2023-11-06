@@ -103,7 +103,7 @@ export default function ColorWheel(){
   }  
 
   return(
-  <div className='component-container-2'>
+  <div className='component-container-2 color-wheel-component'>
     <div className='controls-container color-wheel-controls'>
       <div className='dropdown-container'>
         <select className='color-scheme-dropdown'
@@ -122,7 +122,7 @@ export default function ColorWheel(){
       </ul>
     </div>
 
-    <div className='component-display component-container-2'>
+    <div className='component-display color-wheel-display'>
       <div className='wheel-container'>
         <button onClick={() => findColorScheme('red')} 
           className={`color-wheel-circle red ${classesArr2[0] ? 'dropshadow' : ''}`}></button>

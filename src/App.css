@@ -606,7 +606,7 @@ h3{
 
 @media screen and (max-width: 496px){
   .color-picker-controls{
-    grid-template-columns: 14rem 7rem;
+    grid-template-columns: 13rem 7rem;
     grid-template-rows: 5rem 7rem;
     gap: 1rem;
     padding: 1rem;
@@ -618,6 +618,24 @@ h3{
     width: 100%;
     height: 100%;
     align-self: self-start;
+  }
+}
+
+@media screen and (max-width: 376px){
+  .color-picker-controls{
+    grid-template-columns: 10rem 6rem;
+    grid-template-rows: auto;
+    gap: 1rem;
+  }
+
+  .input-container{
+    grid-column: 1/3;
+    width: 100%;
+    height: 100%;
+  }
+
+  .slider{
+    width: 11rem;
   }
 }
 
@@ -718,6 +736,30 @@ h3{
     grid-row: 2;
     margin: 0;
     align-self: self-start;
+  }
+}
+
+@media screen and (max-width: 376px){
+  .hex-container{
+    grid-column: 1/3;
+    grid-row: 2;
+    flex-direction: row;
+    height: 100%;
+    border: 1px solid red;
+  }
+
+  .color-picker-controls .reset-save{
+    grid-row: 3;
+    height: 100%;
+  }
+
+  .random-color{
+    width: 6rem;
+    height: 6rem;
+    font-size: .75rem;
+    grid-row: 3;
+    align-self: center;
+    margin: auto;
   }
 }
 

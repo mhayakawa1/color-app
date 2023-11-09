@@ -774,13 +774,14 @@ h3{
 
 @media screen and (max-width: 496px){
   .custom-color-container{
-    height: 20rem;
+    height: 75%;
   }
 
   .custom-color-block{
-    min-height: 15rem;
+    min-height: 80%;
   }
 }
+
 
 .custom-color-info{
   display: flex;
@@ -933,9 +934,9 @@ h3{
   border-style: none;
 }
 
-@media screen and (max-width: 320px){
+@media screen and (max-width: 496px){
   .color-wheel-circle{
-    width: 1rem;
+    width: 3rem;
     height: 3rem;
   }
 }
@@ -1025,6 +1026,56 @@ li{
 .purple-red{
   background-color: #9a0058;
   transform: rotate(240deg) translate(9rem);
+}
+
+@media screen and (max-width: 496px){
+  .red{
+    transform: rotate(270deg) translate(7rem);
+  }
+    
+  .red-orange{
+    transform: rotate(300deg) translate(7rem);
+  }
+    
+  .orange{
+    transform: rotate(330deg) translate(7rem);
+  }
+  
+  .orange-yellow{
+    transform: rotate(0deg) translate(7rem);
+  }
+    
+  .yellow{
+    transform: rotate(30deg) translate(7rem);
+  }
+    
+  .yellow-green{
+    transform: rotate(60deg) translate(7rem);
+  }
+    
+  .green{
+    transform: rotate(90deg) translate(7rem);
+  }
+    
+  .green-blue{
+    transform: rotate(120deg) translate(7rem);
+  }
+    
+  .blue{
+    transform: rotate(150deg) translate(7rem);
+  }
+  
+  .blue-purple{
+    transform: rotate(180deg) translate(7rem);
+  }
+  
+  .purple{
+    transform: rotate(210deg) translate(7rem);
+  }
+  
+  .purple-red{
+    transform: rotate(240deg) translate(7rem);
+  }
 }
 
 /*COLOR WHEEL ENDS HERE*/

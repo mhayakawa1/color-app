@@ -404,11 +404,11 @@ button, p, input, select, label, li{
 
 @media screen and (max-width: 496px){
   .component-container{
-    min-height: 100%;
+    min-height: 100vh;
   }
 
   .component-container-2{
-    min-height: 100%;
+    min-height: 100vh;
   }
 
   .controls-container{
@@ -419,8 +419,9 @@ button, p, input, select, label, li{
   }
 
   .component-display{
-    height: 100%;
-    padding: 1rem;
+    min-height: 100vh;
+    display: flex;
+    align-items: start;
   }
 }
 
@@ -433,7 +434,7 @@ h3{
 
 /*SAVED COLORS STARTS HERE*/
 .colors-container{
-  align-self: center;
+  align-self: start;
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
@@ -764,6 +765,8 @@ h3{
   padding: 1rem;
   background-color: white;
   filter: drop-shadow(0px 0px 4px rgb(255,255,255,.25));
+  display: flex;
+  flex-direction: column;
 }
 
 .custom-color-block{
@@ -775,12 +778,13 @@ h3{
 
 @media screen and (max-width: 496px){
   .custom-color-container{
-    height: 75%;
-    min-height: 15rem;
+    align-self: start;
+    height: 50%;
+    margin: 0 auto 0 auto;
   }
 
   .custom-color-block{
-    min-height: 80%;
+    min-height: 15rem;
   }
 }
 
@@ -924,6 +928,7 @@ h3{
 
 @media screen and (max-width: 496px){
   .wheel-container{
+    margin: 0 auto 0 auto;
     width: auto;
   }
 }

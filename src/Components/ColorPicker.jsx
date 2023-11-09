@@ -184,7 +184,7 @@ export default function ColorPicker(){
           borderColor: `rgb(${red === '' ? 0 : red},${green === '' ? 0 : green},${blue === '' ? 0 : blue})`}}>Random<br/>Color</button>
     </div>
     
-    <div className='component-display'>
+    <div className='component-display custom-color-display'>
       <div className='custom-color-container'>
         <div className='custom-color-block'
           style={{backgroundColor: `rgb(${red === '' ? 0 : red},${green === '' ? 0 : green},${blue === '' ? 0 : blue})`}}>

@@ -449,6 +449,7 @@ h3{
     height: auto;
     justify-content: center;
     margin: 0;
+    gap: auto;
   }
 }
 
@@ -503,14 +504,14 @@ h3{
   border: 2px solid rgb(69,69,69);
 }
 
-@media screen and (max-width: 320px){
+@media screen and (max-width: 376px){
   .color-item{
     width: 8rem;
   }
 
   .color-block{
     width: 7rem;
-    height: 6rem;
+    height: 5.5rem;
   }
 
   .container-filler{

@@ -79,7 +79,7 @@ export default function SavedColors(){
             <p className='color-value'>{`RGB: (${splitArr[i][0]},${splitArr[i][1]},${splitArr[i][2]})`}</p>
             <p className='color-value'>HEX: #{hexOutput[i-1]}</p>
             <button className='btn-standard btn-small' onClick={() => deleteColor(splitArr[i])}>Delete</button>
-          </div>
+        </div>
       </div>   
       if(splitArr[i][0] !== ''){
         itemsArr.push(item)

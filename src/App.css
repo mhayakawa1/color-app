@@ -17,12 +17,21 @@ body{
   border: 1px solid rgb(220,220,220);
 }
 
-@media screen and (min-width: 2560px){
-}
-
 @media screen and (min-width: 1440px){
+  body{
+    padding: 12vh 0 12vh;
+  }
+  
   .app{
     border-radius: 7.5px;
+    max-width: 100rem;
+  }
+}
+
+@media screen and (min-width: 2560px){
+  .app{
+    border-radius: 10px;
+    max-width: 120rem;
   }
 }
 
@@ -65,7 +74,6 @@ a{
   text-transform: uppercase;
   margin: 0;
 }
-
 
 button, p, input, select, label, li{
   font-family: 'Poppins', sans-serif;
@@ -122,6 +130,7 @@ button, p, input, select, label, li{
   padding: 0 16px 0 16px;
 }
 
+
 @media screen and (min-width: 1440px){
   button, p, input, select, label, li{
     font-size: 1.125rem;
@@ -152,6 +161,39 @@ button, p, input, select, label, li{
     height: 48px !important;
     width: 7.5rem;
     padding: 0 24px 0 24px;
+  }
+}
+
+@media screen and (min-width: 2560px){
+  button, p, input, select, label, li{
+    font-size: 1.5rem;
+  }
+
+  .btn-standard{
+    height: 88px;
+    width: 22rem;
+    border-radius: 10px;
+    padding: 0 32px 0 32px !important;
+    border: 4px solid black;
+  }
+    
+  .btn-standard:hover{
+    border: 4px solid white;
+  }
+
+  .btn-standard:active{
+    border: 4px solid white;
+  }
+
+  .btn-secondary{
+    border: 4px solid white;
+    padding: 0 32px 0 32px;
+  }
+
+  .btn-small{
+    height: 64px !important;
+    width: 10rem;
+    padding: 0 32px 0 32px;
   }
 }
 
@@ -212,6 +254,30 @@ button, p, input, select, label, li{
   .active-bar{
     height: 4.5px !important;
     width: 12rem;
+  }
+}
+
+@media screen and (min-width: 2560px){
+  .menu-container{
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    height: 100px;
+  }
+
+  .menu{
+    width: 64rem;
+  }
+
+  .menu div button{
+    height: 94px;
+    width: 16rem;
+    padding: 0 32px 0 32px;
+    font-size: 1.5rem;
+  }
+
+  .active-bar{
+    height: 6px !important;
+    width: 16rem;
   }
 }
 
@@ -295,15 +361,14 @@ button, p, input, select, label, li{
 }
 
 @media screen and (max-width: 496px){
-
-.fade-in{  
-  visibility: visible;
-  animation: fadeIn 2s;
-  -webkit-animation: fadeIn 2s;
-  -moz-animation: fadeIn 2s;
-  -o-animation: fadeIn 2s;
-  -ms-animation: fadeIn 2s;
-}
+  .fade-in{  
+    visibility: visible;
+    animation: fadeIn 2s;
+    -webkit-animation: fadeIn 2s;
+    -moz-animation: fadeIn 2s;
+    -o-animation: fadeIn 2s;
+    -ms-animation: fadeIn 2s;
+  }
 
   @keyframes fadeIn {
   0% {
@@ -314,96 +379,97 @@ button, p, input, select, label, li{
   }
   }
 
-@-webkit-keyframes fadeIn {
-  0% {
-    opacity: 0;
+  @-webkit-keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
   }
-  100% {
-    opacity: 1;
+
+  @-moz-keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @-o-keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @-ms-keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  .fade-out{
+    animation: fadeOut .25s;
+    animation-fill-mode: forwards !important;
+    -webkit-animation: fadeOut .25s;
+    -moz-animation: fadeOut .25s;
+    -o-animation: fadeOut .25s;
+    -ms-animation: fadeOut .25s;
+  }
+
+  @keyframes fadeOut {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+  @-webkit-keyframes fadeOut {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+  @-moz-keyframes fadeOut {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+  @-o-keyframes fadeOut {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+  @-ms-keyframes fadeOut {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
   }
 }
 
-@-moz-keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@-o-keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@-ms-keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-.fade-out{
-  animation: fadeOut .25s;
-  animation-fill-mode: forwards !important;
-  -webkit-animation: fadeOut .25s;
-  -moz-animation: fadeOut .25s;
-  -o-animation: fadeOut .25s;
-  -ms-animation: fadeOut .25s;
-}
-
-@keyframes fadeOut {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
-@-webkit-keyframes fadeOut {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
-@-moz-keyframes fadeOut {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
-@-o-keyframes fadeOut {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
-@-ms-keyframes fadeOut {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-}
 .component-container{
   margin: 0;
   width: auto;
@@ -457,6 +523,24 @@ button, p, input, select, label, li{
   }
 }
 
+@media screen and (min-width: 2560px){  
+  .component-container{
+    border-bottom-left-radius: 10px !important;
+    border-bottom-right-radius: 10px !important;
+  }
+
+  .controls-container{
+    padding: 2rem;
+    min-width: 30rem;
+  }
+
+  .component-display{
+    min-height: 30rem;
+    padding: 2rem;
+    border-bottom-right-radius: 10px !important;
+  }
+}
+
 @media screen and (max-width: 769px){
   .component-container-2{
     flex-direction: column;
@@ -504,7 +588,6 @@ h3{
   color: white;
   font-weight: normal;
 }
-
 /*APP.JS ENDS HERE*/
 
 /*SAVED COLORS STARTS HERE*/
@@ -522,6 +605,13 @@ h3{
   .colors-container{
     gap: 1.5rem;
     max-width: 60rem
+  }
+}
+
+@media screen and (min-width: 2560px){
+  .colors-container{
+    gap: 2rem;
+    max-width: 70rem
   }
 }
 
@@ -609,6 +699,35 @@ h3{
   }
 }
 
+@media screen and (min-width: 2560px){
+  .container-filler{
+    width: 20rem;
+  }
+  
+  .color-item{
+    width: 20rem;
+    height: 24rem;
+    border-radius: 10px;
+    padding: 1rem 0 1rem 0;
+  }
+  
+  .color-block{
+    border-radius: 10px;
+  }
+  
+  .color-value{
+    margin: 1rem 0 0 0;
+    font-size: 1.5rem;
+    line-height: 1.5rem;
+  }
+  
+  .color-item button{
+    padding: 0 2rem 0 2rem;
+    font-size: 1.5rem;
+    margin: 1rem 0 0 0;
+  }  
+}
+
 @media screen and (max-width: 376px){
   .color-item{
     width: 8rem;
@@ -639,6 +758,34 @@ h3{
   display: flex;
   justify-content: end;
   gap: 1rem;
+}
+
+@media screen and (min-width: 2560px){
+  .confirm-clear-all{
+    margin: 1.5rem 0 0 0;
+  }
+
+  .confirm-clear-all p{
+    margin: 0 0 1.5rem 0;
+  }
+  
+  .confirm-btns{
+    gap: 1.5rem;
+  }
+}
+
+@media screen and (min-width: 2560px){
+  .confirm-clear-all{
+    margin: 2rem 0 0 0;
+  }
+
+  .confirm-clear-all p{
+    margin: 0 0 2rem 0;
+  }
+  
+  .confirm-btns{
+    gap: 2rem;
+  }
 }
 /*SAVED COLORS ENDS HERE*/
 
@@ -721,6 +868,36 @@ h3{
   .slider::-moz-range-thumb {
     width: 22.5px;
     height: 22.5px;
+  }
+}
+
+@media screen and (min-width: 2560px){
+  .color-picker-controls{
+    gap: 2rem;
+  }
+  
+  .input-item label{
+    width: 5rem;
+  }
+  
+  .input-number{
+    width: 5rem;
+    margin: 0 10px 0 10px;
+  }
+  
+  .slider{
+    width: 14rem;
+    height: 10px;
+  }
+  
+  .slider::-webkit-slider-thumb{
+    width: 30px;
+    height: 30px;
+  }
+  
+  .slider::-moz-range-thumb{
+    width: 30px;
+    height: 30px;
   }
 }
 
@@ -834,6 +1011,35 @@ h3{
   }
 }
 
+@media screen and (min-width: 2560px){
+  .hex-container{
+    gap: 2rem;
+  }
+  
+  .hex-container .btn-small{
+    min-width: 14rem !important;
+    max-width: 14rem !important;
+  }
+  
+  .hex-container input{
+    min-width: 8rem !important;
+    max-width: 8rem !important;
+    height: 64px;
+    padding: 0 16px 0 16px;
+  }
+  
+  .reset-save{
+    gap: 2rem;
+  }
+  
+  .random-color{
+    width: 18rem;
+    height: 18rem;
+    border: 6px solid;
+    font-size: 2rem;
+  }
+}
+
 @media screen and (max-width: 769px){
   .hex-container{
     grid-column: 1/2;
@@ -934,6 +1140,18 @@ h3{
   }
 }
 
+@media screen and (min-width: 2560px){
+  .custom-color-container{
+    border-radius: 10px;
+    padding: 2rem;
+  }
+  
+  .custom-color-block{
+    min-height: 40rem;
+    border-radius: 10px;
+  }
+}
+
 @media screen and (max-width: 496px){
   .custom-color-container{
     align-self: start;
@@ -972,6 +1190,19 @@ h3{
     font-size: 1.5rem;
     line-height: 1.5rem;
     height: 1.5rem;
+  }
+}
+
+@media screen and (min-width: 2560px){
+  .custom-color-info{
+    padding: 2rem 0 0 0;
+    gap: 1rem;
+  }
+  
+  .custom-color-info p{
+    font-size: 2rem;
+    line-height: 2rem;
+    height: 2rem;
   }
 }
 
@@ -1063,6 +1294,21 @@ h3{
   }
 }
 
+@media screen and (min-width: 2560px){
+  .dropdown-container{
+    height: 80px;
+    width: 21.5rem;
+    border: 4px solid black;
+    margin: 0 auto 2rem auto;
+  }
+  
+  .color-scheme-dropdown{
+    padding: 0 0 0 16px;
+    border-radius: 6px;
+    border-right: 16px solid transparent;
+  }
+}
+
 @media screen and (max-width: 769px){
   .dropdown-container{
     margin: 0;
@@ -1094,11 +1340,6 @@ h3{
   }
 }
 
-.controls-container ul{
-  width: 10rem;
-  margin: 1rem auto 0 auto;
-}
-
 .wheel-container{
   padding: 1rem;
   width: auto;
@@ -1115,6 +1356,13 @@ h3{
   .wheel-container{
     padding: 1.5rem;
     height: 30rem;
+  }
+}
+
+@media screen and (min-width: 2560px){
+  .wheel-container{
+    padding: 2rem;
+    height: 40rem;
   }
 }
 
@@ -1140,6 +1388,13 @@ h3{
   }
 }
 
+@media screen and (min-width: 2560px){
+  .color-wheel-circle{
+    width: 8rem;
+    height: 8rem;
+  }
+}
+
 @media screen and (max-width: 496px){
   .color-wheel-circle{
     width: 3rem;
@@ -1147,7 +1402,9 @@ h3{
   }
 }
 
-ul{
+ul{  
+  width: 10rem;
+  margin: 1rem auto 0 auto;
   color: white;
   padding: 0 0 0 1rem;
 }
@@ -1158,11 +1415,25 @@ li{
 
 @media screen and (min-width: 1440px){
   ul{
+    width: 15rem;
+    margin: 1.5rem auto 0 auto;
     padding: 0 0 0 1.5rem;
   }
 
   li{
     font-size: 1.5rem !important;
+  }
+}
+
+@media screen and (min-width: 2560px){
+  ul{
+    width: 20rem;
+    margin: 2rem auto 0 auto;
+    padding: 0 0 0 2rem;
+  }
+
+  li{
+    font-size: 2rem !important;
   }
 }
 
@@ -1182,6 +1453,24 @@ li{
   100% {
     filter: drop-shadow(0px 0px 5px white);
   }
+}
+
+@media screen and (min-width: 2560px){
+  
+@keyframes pulse{
+  0% {
+    filter: drop-shadow(0px 0px 10px white);
+  }
+      
+  60% {
+    filter: drop-shadow(0px 0px 2rem white);
+  }
+      
+  100% {
+    filter: drop-shadow(0px 0px 10px white);
+  }
+}
+
 }
 
 .red{
@@ -1244,7 +1533,6 @@ li{
   transform: rotate(240deg) translate(9rem);
 }
 
-
 @media screen and (min-width: 1440px){
   .red{
     transform: rotate(270deg) translate(13.5rem);
@@ -1292,6 +1580,57 @@ li{
   
   .purple-red{
     transform: rotate(240deg) translate(13.5rem);
+  }
+}
+
+
+@media screen and (min-width: 2560px){
+  .red{
+    transform: rotate(270deg) translate(18rem);
+  }
+    
+  .red-orange{
+    transform: rotate(300deg) translate(18rem);
+  }
+    
+  .orange{
+    transform: rotate(330deg) translate(18rem);
+  }
+  
+  .orange-yellow{
+    transform: rotate(0deg) translate(18rem);
+  }
+    
+  .yellow{
+    transform: rotate(30deg) translate(18rem);
+  }
+    
+  .yellow-green{
+    transform: rotate(60deg) translate(18rem);
+  }
+    
+  .green{
+    transform: rotate(90deg) translate(18rem);
+  }
+    
+  .green-blue{
+    transform: rotate(120deg) translate(18rem);
+  }
+    
+  .blue{
+    transform: rotate(150deg) translate(18rem);
+  }
+  
+  .blue-purple{
+    transform: rotate(180deg) translate(18rem);
+  }
+  
+  .purple{
+    transform: rotate(210deg) translate(18rem);
+  }
+  
+  .purple-red{
+    transform: rotate(240deg) translate(18rem);
   }
 }
 

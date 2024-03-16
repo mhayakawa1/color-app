@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
-export default function ColorPicker(){
-  const [altered, setAltered] = useState(false);
+export default function ColorPicker(props){
   const [savedColors, setSavedColors] = useState('');
-  const [red, setRed] = useState(0);//rgb number values
+  const [red, setRed] = useState(0);
   const [green, setGreen] = useState(0);
   const [blue, setBlue] = useState(0);
   const [hexCode, setHexCode] = useState('');

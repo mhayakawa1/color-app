@@ -6,8 +6,11 @@ import RandomScheme from './Components/RandomScheme';
 import SavedColors from './Components/SavedColors';
 import {AiOutlineMenu} from 'react-icons/ai';
 import {AiOutlineClose} from 'react-icons/ai';
-
+{/*
+get rid of localstorage, share state between components
+*/}
 function App() {
+  const [savedColors, setSavedColors] = useState('');
   const [display, setDisplay] = useState('SavedColors');
   const [menuVisible, setMenuVisible] = useState(false);
 
@@ -53,7 +56,7 @@ const menuBtns = <div className={`menu-btns-container ${menuVisible === true ? '
       </div>
 
       <div className='component-container'>
-        {display === 'SavedColors' ? <SavedColors />
+        {display === 'SavedColors' ? <SavedColors data='' />
           : display === 'ColorPicker' ? <ColorPicker />
           : display ==='RandomScheme' ? <RandomScheme/>
           : <ColorWheel/>}

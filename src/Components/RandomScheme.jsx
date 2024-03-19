@@ -4,14 +4,13 @@ import React, { useState, useEffect } from 'react';
 http://colormind.io/api/
 */}
 
-export default function RandomScheme(){
+export default function RandomScheme(props){
   const [savedColors, setSavedColors] = useState('');
   const [schemeArr, setSchemeArr] = useState([]);
-  const [hexCodes, setHexCodes] = useState([]);
   const [rgbArr, setRgbArr] = useState('');
   const hexVals = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'a', 'b', 'c', 'd', 'e', 'f'];
 
-  const getAPI = () =>{
+const getAPI = () =>{
     fetch('http://colormind.io/api/', {
       method: 'POST',
       body: JSON.stringify({
@@ -24,7 +23,11 @@ export default function RandomScheme(){
     })
   }
 
-  const saveSchemeColor = (i) =>{
+  const saveSchemeColor = (colors) =>{
+    console.log(colors)
+    if(props.data.includes(colors) === false){
+      props.clickHandler(colors, false, false)
+    }
     {/*if(savedColors.includes(rgbArr.split('*')[i]) === false){
       setSavedColors(savedColors + '*' + rgbArr.split('*')[i])
       localStorage.setItem('savedColors', savedColors + '*' + rgbArr.split('*')[i]);
@@ -32,7 +35,7 @@ export default function RandomScheme(){
   }
 
   const saveAllColors = () =>{   
-    let split1 = rgbArr.split('*');
+    {/*let split1 = rgbArr.split('*');
     let arr = [];
     for(let i = 0; i < split1.length; i++){
       if(savedColors.split('*').includes(split1[i]) === false){
@@ -40,7 +43,13 @@ export default function RandomScheme(){
       }
     }
     setSavedColors(savedColors + '*' + arr.join('*'))
-    localStorage.setItem('savedColors', savedColors + '*' + arr.join('*'));
+    localStorage.setItem('savedColors', savedColors + '*' + arr.join('*'));*/}
+    for(let i = 0; i < schemeArr.length; i++){
+      if(props.data.includes(schemeArr[i]) === false){
+        props.clickHandler(schemeArr[i], true, false)
+      }
+    }
+    
   }
 
   const colorSchemeLoop = () => {
@@ -69,7 +78,7 @@ export default function RandomScheme(){
             <div className='color-info'>
               <p className='color-value'>RGB: {`${color[0]},${color[1]},${color[2]}`}</p>
               <p className='color-value'>HEX: #{hexOutput.join('').toUpperCase()}</p>
-              <button className='btn-standard btn-small' onClick={() => saveSchemeColor(i)}>Save</button>
+              <button className='btn-standard btn-small' onClick={() => saveSchemeColor(schemeArr[i])}>Save</button>
             </div>
           </div>
         )

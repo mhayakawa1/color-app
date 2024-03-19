@@ -1,25 +1,10 @@
 import React, { useState, useEffect } from 'react';
 
-export default function SavedColors(){
+export default function SavedColors(props){
   const [savedColors, setSavedColors] = useState('');
   const [showConfirm, setShowConfirm] = useState(false);
   const hex = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'a', 'b', 'c', 'd', 'e', 'f']
   const [lastDeleted, setLastDeleted] = useState('');//create undo delete color feature?
-
-  const onStorageUpdate = (e) => {
-    const { key, newValue } = e;
-    if(key === 'savedColors'){
-      setSavedColors(newValue)
-    }
-  }
-
-  useEffect(() => {
-    setSavedColors(localStorage.getItem('savedColors') || '');
-    window.addEventListener('storage', onStorageUpdate);
-      return () => {
-        window.removeEventListener('storage', onStorageUpdate);
-      };
-    }, []);
 
   const clearAll = (str) => {
     switch(str){
@@ -27,11 +12,7 @@ export default function SavedColors(){
         setShowConfirm(true);
         break;
       case 'yes':
-        setSavedColors('');
-        localStorage.setItem('savedColors', '');
-        setSavedColors('');
-        localStorage.setItem('savedColors', '');
-        setShowConfirm(false);
+        console.log(savedColors)
         break;
       case 'no':
         setShowConfirm(false);
@@ -39,7 +20,8 @@ export default function SavedColors(){
   }
 
   const savedColorsLoop = () => {
-    //convert rgb to hex
+    let itemsArr = []
+  {/*  //convert rgb to hex
     let rgbInput = savedColors.split('*').splice(1)
     let hexOutput = []
     for(let i = 0; i < rgbInput.length; i++){
@@ -59,7 +41,6 @@ export default function SavedColors(){
     }
 
     let splitArr = savedColors.split('*');//array from savedColors, split into multiple arrays
-    let itemsArr = []
 
     const deleteColor = (rgb) => {
       splitArr = splitArr.filter(elem => elem !== rgb)
@@ -84,12 +65,29 @@ export default function SavedColors(){
       if(splitArr[i][0] !== ''){
         itemsArr.push(item)
       }
+    }*/}
+    for(let i = 0; i < props.data.length; i++){
+      const item = <div key={props.data[i].join('')} className='color-item'>
+        <div className='color-block' style={{background: `rgb(${props.data[i].join('')}}`}}>
+        </div>
+        <div className='color-info'>
+            <p className='color-value'>{`RGB: (${props.data.join('')})`}</p>
+            <p className='color-value'>HEX: #</p>
+            <button className='btn-standard btn-small' 
+            //onClick={() => deleteColor(splitArr[i])}
+            >Delete</button>
+        </div>
+      </div>   
+      if(props.data.length > 0){
+        itemsArr.push(item)
+      }{/**/}
     }
+    
     return(
       itemsArr
     )
   }
-
+//console.log('sc: ', props.data)
   return(    
   <div className='component-container-2'>
     <div className='controls-container'>

@@ -24,32 +24,19 @@ const getAPI = () =>{
   }
 
   const saveSchemeColor = (colors) =>{
-    console.log(colors)
     if(props.data.includes(colors) === false){
       props.clickHandler(colors, false, false)
     }
-    {/*if(savedColors.includes(rgbArr.split('*')[i]) === false){
-      setSavedColors(savedColors + '*' + rgbArr.split('*')[i])
-      localStorage.setItem('savedColors', savedColors + '*' + rgbArr.split('*')[i]);
-    }*/}
   }
 
-  const saveAllColors = () =>{   
-    {/*let split1 = rgbArr.split('*');
-    let arr = [];
-    for(let i = 0; i < split1.length; i++){
-      if(savedColors.split('*').includes(split1[i]) === false){
-        arr.push(split1[i])
-      }
-    }
-    setSavedColors(savedColors + '*' + arr.join('*'))
-    localStorage.setItem('savedColors', savedColors + '*' + arr.join('*'));*/}
+  const saveAllColors = () =>{
+    let toAdd = []
     for(let i = 0; i < schemeArr.length; i++){
       if(props.data.includes(schemeArr[i]) === false){
-        props.clickHandler(schemeArr[i], true, false)
+        toAdd.push(schemeArr[i])
       }
     }
-    
+    props.clickHandler(toAdd, true, false)
   }
 
   const colorSchemeLoop = () => {

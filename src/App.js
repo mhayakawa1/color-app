@@ -24,11 +24,10 @@ function App() {
 
   const handleClick = (newColors, multipleColors, clear) =>{
     let test = []
-    //console.log(newColors)
     if(multipleColors === false){
       test.push(newColors)
     }else{
-      test.push(newColors).flat(2)
+      test = [...test, ...newColors]
     }
     setSavedColors(savedColors.concat(test))
   }

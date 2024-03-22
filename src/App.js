@@ -22,14 +22,19 @@ function App() {
     setMenuVisible(!menuVisible)
   }
 
-  const handleClick = (newColors, multipleColors, clear) =>{
+  const handleClick = (colorInput, multipleColors, deleteColor) =>{
     let test = []
-    if(multipleColors === false){
-      test.push(newColors)
+    if(deleteColor === false){
+      if(multipleColors === false){
+        test.push(colorInput)
+      }else{
+        test = [...test, ...colorInput]
+      }
+      setSavedColors(savedColors.concat(test))
     }else{
-      test = [...test, ...newColors]
+      console.log(deleteColor)
     }
-    setSavedColors(savedColors.concat(test))
+    
   }
 
   const menuBtns = <div className={`menu-btns-container ${menuVisible === true ? 'menu-btns-height fade-in' : 'fade-out'}`}>

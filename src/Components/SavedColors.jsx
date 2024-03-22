@@ -42,7 +42,7 @@ export default function SavedColors(props){
             <p className='color-value'>{`RGB: (${props.data[i].join(',')})`}</p>
             <p className='color-value'>HEX: #{hexOutput.join('').toUpperCase()}</p>
             <button className='btn-standard btn-small' 
-            //onClick={() => deleteColor(splitArr[i])}
+            onClick={() => props.clickHandler(props.data[i], false, true)}
             >Delete</button>
         </div>
       </div>

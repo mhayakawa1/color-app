@@ -1,8 +1,4 @@
-import React, { useState, useEffect } from 'react';
-
-{/*https://www.colr.org/api.html
-http://colormind.io/api/
-*/}
+import React, { useState } from 'react';
 
 export default function RandomScheme(props){
   const [savedColors, setSavedColors] = useState('');

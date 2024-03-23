@@ -1,20 +1,19 @@
 import React, { useState, useEffect } from 'react';
 
 export default function SavedColors(props){
-  const [savedColors, setSavedColors] = useState('');
   const [showConfirm, setShowConfirm] = useState(false);
-  const hexVals = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'a', 'b', 'c', 'd', 'e', 'f']
-  const [lastDeleted, setLastDeleted] = useState('');//create undo delete color feature?
+  const hexVals = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'a', 'b', 'c', 'd', 'e', 'f'];
 
-  const clearAll = (str) => {
-    switch(str){
+  const clearAll = (input) => {
+    switch(input){
       case 'clear all':
         setShowConfirm(true);
         break;
-      case 'yes':
-        console.log(savedColors)
+      case true:
+        props.clickHandler(props.data, true, true)
+        setShowConfirm(false)
         break;
-      case 'no':
+      case false:
         setShowConfirm(false);
     }
   }
@@ -58,13 +57,13 @@ export default function SavedColors(props){
   <div className='component-container-2'>
     <div className='controls-container'>
       <button className='btn-standard'
-        onClick={savedColors === '' ? null : () => clearAll('clear all')}>Clear All</button>
+        onClick={props.data.length === 0 ? null : () => clearAll('clear all')}>Clear All</button>
         {showConfirm ? //popup to confirm action to clear all colors
         <div className='confirm-clear-all'>
           <p>Are you sure you want to clear all colors?</p>
           <div className='confirm-btns'>
-            <button className='btn-standard btn-secondary btn-small' onClick={() => clearAll('yes')}>Yes</button>
-            <button className='btn-standard btn-secondary btn-small' onClick={() => clearAll('no')}>No</button>
+            <button className='btn-standard btn-secondary btn-small' onClick={() => clearAll(true)}>Yes</button>
+            <button className='btn-standard btn-secondary btn-small' onClick={() => clearAll(false)}>No</button>
           </div>          
         </div> 
       : null}

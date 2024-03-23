@@ -1,20 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 export default function ColorPicker(props){
-  const [savedColors, setSavedColors] = useState('');
   const [red, setRed] = useState(0);
   const [green, setGreen] = useState(0);
   const [blue, setBlue] = useState(0);
   const [hexCode, setHexCode] = useState('');
   const [displayHexCode, setDisplayHexCode] = useState('');
-  const hex = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'a', 'b', 'c', 'd', 'e', 'f']
-
-  const onStorageUpdate = (e) => {
-    const { key, newValue } = e;
-    if(key === 'savedColors'){
-      setSavedColors(newValue)
-    }
-  }
+  const hexVals = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'a', 'b', 'c', 'd', 'e', 'f']
 
   const handleChangeRGB = (event, color) =>{
     setHexCode('')
@@ -24,15 +16,12 @@ export default function ColorPicker(props){
       switch(color){
         case 'red': 
           setRed(event.target.value);
-          localStorage.setItem('red', event.target.value);
           break;
         case 'green': 
           setGreen(event.target.value);
-          localStorage.setItem('green', event.target.value);;
           break;
         case 'blue': 
           setBlue(event.target.value);
-          localStorage.setItem('blue', event.target.value);
       }
     }
     if(event.target.value[0] === 0 && event.target.value.length > 1){
@@ -59,7 +48,7 @@ export default function ColorPicker(props){
       setDisplayHexCode(event.target.value.toUpperCase().slice(1))
       for(let i = 0; i < hexInput.length; i++){
         if(/[0-9]/.test(hexInput[i]) === false){
-          hexInput.splice(i, 1, hex.indexOf(hexInput[i]))
+          hexInput.splice(i, 1, hexVals.indexOf(hexInput[i]))
         }else{
           hexInput.splice(i, 1, Number(hexInput[i]))
         }
@@ -73,9 +62,6 @@ export default function ColorPicker(props){
       setRed(rgbOutput[0]);
       setGreen(rgbOutput[1]);
       setBlue(rgbOutput[2]);
-      localStorage.setItem('red', rgbOutput[0]);
-      localStorage.setItem('green', rgbOutput[1]);
-      localStorage.setItem('blue', rgbOutput[2]);
     }
   }
 
@@ -87,9 +73,9 @@ export default function ColorPicker(props){
       rgbInput[i] = rgbInput[i].toString().split('.')
       rgbInput[i][1] = '.' + rgbInput[i][1]
       if(rgbInput[i][1] === '.undefined'){
-        hexOutput.push(hex[rgbInput[i][0]], '0')
+        hexOutput.push(hexVals[rgbInput[i][0]], '0')
       }else{
-        hexOutput.push(hex[rgbInput[i][0]], hex[rgbInput[i][1]*16])
+        hexOutput.push(hexVals[rgbInput[i][0]], hexVals[rgbInput[i][1]*16])
       }
     }
     setHexCode(hexOutput.join(''))
@@ -110,34 +96,12 @@ export default function ColorPicker(props){
     setRed(0)
     setGreen(0)
     setBlue(0)
-    localStorage.setItem('red', 0)
-    localStorage.setItem('green', 0)
-    localStorage.setItem('blue', 0)
   }
-
-  useEffect(() => {
-    setSavedColors(localStorage.getItem('savedColors') || '');
-    setRed(localStorage.getItem('red') || '');
-    setGreen(localStorage.getItem('green') || '');
-    setBlue(localStorage.getItem('blue') || '');
-    window.addEventListener('storage', onStorageUpdate);
-    return () => {
-      window.removeEventListener('storage', onStorageUpdate);
-    };
-  }, [])
   
   const saveColor = () => {
-    let dupeColor = false;
-    let currentColor = `${red},${green},${blue}`;
-    let split = savedColors.split('*');
-    for(let i = 0; i < split.length; i++){
-      if(split[i] === currentColor){
-        dupeColor = true
-      }
-    }
-    if(dupeColor === false){
-      setSavedColors(savedColors + '*' + currentColor)
-      localStorage.setItem('savedColors', savedColors + '*' + currentColor)
+    let color = [red, green, blue]
+    if(props.data.includes(color) === false){
+      props.clickHandler(color, false, false)
     }
   }
 

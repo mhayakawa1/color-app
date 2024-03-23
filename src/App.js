@@ -6,9 +6,7 @@ import RandomScheme from './Components/RandomScheme';
 import SavedColors from './Components/SavedColors';
 import {AiOutlineMenu} from 'react-icons/ai';
 import {AiOutlineClose} from 'react-icons/ai';
-{/*
-get rid of localstorage, share state between components
-*/}
+
 function App() {
   const [savedColors, setSavedColors] = useState([]);
   const [display, setDisplay] = useState('SavedColors');
@@ -31,10 +29,11 @@ function App() {
         test = [...test, ...colorInput]
       }
       setSavedColors(savedColors.concat(test))
+    }else if(multipleColors === false){
+      setSavedColors(savedColors.filter(i => i !== colorInput))
     }else{
-      console.log(deleteColor)
-    }
-    
+      setSavedColors([]);
+    }  
   }
 
   const menuBtns = <div className={`menu-btns-container ${menuVisible === true ? 'menu-btns-height fade-in' : 'fade-out'}`}>

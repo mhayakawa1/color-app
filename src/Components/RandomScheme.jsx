@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 
 export default function RandomScheme(props){
-  const [savedColors, setSavedColors] = useState('');
   const [schemeArr, setSchemeArr] = useState([]);
-  const [rgbArr, setRgbArr] = useState('');
   const hexVals = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'a', 'b', 'c', 'd', 'e', 'f'];
 
 const getAPI = () =>{
-    fetch('http://colormind.io/api/', {
+    fetch(
+      'http://colormind.io/api/', 
+      {
       method: 'POST',
       body: JSON.stringify({
         model: 'default'

@@ -41,8 +41,8 @@ function App() {
     className={`menu-btn-1 ${display === 'SavedColors' ? 'selected' : ''}`}>Saved Colors</button>
   <button onClick={() => switchComponent('ColorPicker')}
     className={`menu-btn-2 ${display === 'SavedColors' ? 'selected' : ''}`}>Color Picker</button>
-  <button onClick={() => switchComponent('RandomScheme')}
-    className={`menu-btn-3 ${display === 'SavedColors' ? 'selected' : ''}`}>Color Schemes</button>
+  {/*<button onClick={() => switchComponent('RandomScheme')}
+    className={`menu-btn-3 ${display === 'SavedColors' ? 'selected' : ''}`}>Color Schemes</button>*/}
   <button onClick={() => switchComponent('ColorWheel')}
     className={`menu-btn-4 ${display === 'SavedColors' ? 'selected' : ''}`}>Color Wheel</button>
   </div>
@@ -55,8 +55,9 @@ function App() {
           <span className='active-bar' style={
             display === 'SavedColors' ? {margin: '0'}
             : display === 'ColorPicker' ? {margin: '0 0 0 25%'}
-            : display ==='RandomScheme' ? {margin: '0 0 0 50%'}
-            : {margin: '0 0 0 75%'}
+            //: display ==='RandomScheme' ? {margin: '0 0 0 50%'}
+            //: {margin: '0 0 0 75%'}
+            : {margin: '0 0 0 50%'}
             }>
           </span>
         </div>

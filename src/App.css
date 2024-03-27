@@ -740,8 +740,9 @@ h3{
 }
 
 .confirm-clear-all{
-  margin: 1rem 0 0 0;
+  margin: 1rem auto 0 auto;
   padding: 0;
+  width: 11rem;
 }
 
 .confirm-clear-all p{
@@ -752,8 +753,11 @@ h3{
 
 .confirm-btns{
   display: flex;
-  justify-content: end;
-  gap: 1rem;
+  justify-content: space-between;
+}
+
+.confirm-btns button{
+  margin: 0;
 }
 
 @media screen and (min-width: 2560px){

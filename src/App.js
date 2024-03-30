@@ -1,5 +1,5 @@
 import './App.css';
-import React, {useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import ColorPicker from './Components/ColorPicker';
 import ColorWheel from './Components/ColorWheel';
 import RandomScheme from './Components/RandomScheme';
@@ -11,6 +11,24 @@ function App() {
   const [savedColors, setSavedColors] = useState([]);
   const [display, setDisplay] = useState('SavedColors');
   const [menuVisible, setMenuVisible] = useState(false);
+  const [saveColorData, setSaveColorData] = useState('');
+
+  const onStorageUpdate = (e) => {
+    const { key, newValue } = e;
+    if (key === 'saveColorData') {
+      setSaveColorData(newValue);
+    }
+  };
+
+  useEffect(() => {
+    setSaveColorData(localStorage.getItem('saveColorData') || '');
+    if(localStorage.getItem('saveColorData').length > 0){
+      setSavedColors(localStorage.getItem('saveColorData').split('*').map(i => i.split(',')))
+    }    
+    window.addEventListener('storage', onStorageUpdate);
+    return () => {
+      window.removeEventListener('storage', onStorageUpdate);
+    };}, []);
 
   function switchComponent(comp){
     setDisplay(comp)
@@ -21,19 +39,25 @@ function App() {
   }
 
   const handleClick = (colorInput, multipleColors, deleteColor) =>{
-    let test = []
+    let add = []
     if(deleteColor === false){
       if(multipleColors === false){
-        test.push(colorInput)
+        add.push(colorInput)
       }else{
-        test = [...test, ...colorInput]
+        add = [...add, ...colorInput]
       }
-      setSavedColors(savedColors.concat(test))
+      setSavedColors(savedColors.concat(add))
+      setSaveColorData(savedColors.concat(add).join('*'))
+      localStorage.setItem('saveColorData', savedColors.concat(add).join('*'));
     }else if(multipleColors === false){
-      setSavedColors(savedColors.filter(i => i !== colorInput))
+      setSavedColors(savedColors.filter(i => i !== colorInput));
+      setSaveColorData(savedColors.filter(i => i !== colorInput).join('*'))
+      localStorage.setItem('saveColorData', savedColors.filter(i => i !== colorInput).join('*'));
     }else{
       setSavedColors([]);
-    }  
+      setSaveColorData('');
+      localStorage.setItem('saveColorData', '');
+    }
   }
 
   const menuBtns = <div className={`menu-btns-container ${menuVisible === true ? 'menu-btns-height fade-in' : 'fade-out'}`}>

@@ -760,6 +760,18 @@ h3{
   margin: 0;
 }
 
+@media screen and (max-width: 769px){
+  .confirm-clear-all{
+    margin: auto;
+    width: auto;
+  }
+
+  .confirm-btns{
+    justify-content: start;
+    gap: 1rem;
+  }
+}
+
 @media screen and (min-width: 2560px){
   .confirm-clear-all{
     margin: 1.5rem 0 0 0;

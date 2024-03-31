@@ -22,9 +22,12 @@ function App() {
 
   useEffect(() => {
     setSaveColorData(localStorage.getItem('saveColorData') || '');
-    if(localStorage.getItem('saveColorData').length > 0){
-      setSavedColors(localStorage.getItem('saveColorData').split('*').map(i => i.split(',')))
-    }    
+    
+    if(localStorage.getItem('saveColorData') !== null){
+      if(localStorage.getItem('saveColorData').length > 0){
+        setSavedColors(localStorage.getItem('saveColorData').split('*').map(i => i.split(',')))
+      }
+    }
     window.addEventListener('storage', onStorageUpdate);
     return () => {
       window.removeEventListener('storage', onStorageUpdate);

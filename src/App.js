@@ -24,7 +24,9 @@ function App() {
     setSaveColorData(localStorage.getItem('saveColorData') || '');
     
     if(localStorage.getItem('saveColorData') !== null){
-      setSavedColors(localStorage.getItem('saveColorData').split('*').map(i => i.split(',')))
+      if(localStorage.getItem('saveColorData').length > 0){
+        setSavedColors(localStorage.getItem('saveColorData').split('*').map(i => i.split(',')))
+      }
     }
     window.addEventListener('storage', onStorageUpdate);
     return () => {

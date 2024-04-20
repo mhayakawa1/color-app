@@ -65,7 +65,7 @@ export default function ColorPicker(props){
     }
   }
 
-  const rgb2hex = () =>{
+  const rgbToHex = () =>{
     let rgbInput = [red, green, blue]
     let hexOutput = []
     for(let i = 0; i < rgbInput.length; i++){
@@ -132,7 +132,7 @@ export default function ColorPicker(props){
         </div>
       </div>
       <div className='hex-container'>
-        <button className='btn-standard btn-small' onClick={rgb2hex}>RGB → HEX</button>
+        <button className='btn-standard btn-small' onClick={rgbToHex}>RGB → HEX</button>
         <input onChange={(event) => handleChangeHEX(event)}
           onKeyDown={(event) => handleKeyDown(event)}
           value={`#${hexCode.toUpperCase()}`}/>

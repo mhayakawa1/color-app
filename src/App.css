@@ -594,6 +594,7 @@ h3{
   flex-wrap: wrap;
   gap: 1rem;
   width: auto;
+  min-height: 100%;
   max-width: 35rem;
 }
 
@@ -747,7 +748,7 @@ h3{
 
 .confirm-clear-all p{
   padding: 0 1rem 0 1rem 0;
-  margin: 0 .5rem 1rem .5rem;
+  margin: 0 0 1rem 0;
   color: white;
 }
 

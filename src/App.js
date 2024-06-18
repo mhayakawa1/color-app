@@ -75,7 +75,7 @@ function App() {
   </div>
 
   return (
-    <div className='app'>
+    <main className='app'>
       <div className='menu-container'>
         <div className='menu'>
           {menuBtns}
@@ -103,7 +103,7 @@ function App() {
           : display ==='RandomScheme' ? <RandomScheme clickHandler={handleClick} data={savedColors} />
           : <ColorWheel/>}
       </div>
-    </div>
+    </main>
   );
 }
 

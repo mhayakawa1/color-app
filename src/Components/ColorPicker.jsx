@@ -42,7 +42,7 @@ export default function ColorPicker(props){
   }
 
   const handleKeyDown = (event) => {
-    if(event.keyCode === 'Enter' && event.target.value.length === 7
+    if(event.keyCode === 13 && event.target.value.length === 7
         && /^[A-Fa-f0-9]*$/.test(event.target.value.slice(1)) === true){
       let hexInput = event.target.value.toLowerCase().slice(1).split('')
       setDisplayHexCode(event.target.value.toUpperCase().slice(1))

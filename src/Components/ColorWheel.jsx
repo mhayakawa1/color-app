@@ -29,12 +29,11 @@ export default function ColorWheel(){
   let selectedColors = [];
 
   const handleDropdown = (event) => {
-    setSchemeType(event.target.value)    
+    setSchemeType(event.target.value)
   }
 
   const findColorScheme = (colorStr) => {
     colorsArr = [...colorsArr.splice(colorsArr.indexOf(colorStr)), ...colorsArr.splice(0)];
-
     switch(schemeType){
       case 'monochromatic':
         selectedColors = [colorsArr[0]];
@@ -110,7 +109,7 @@ export default function ColorWheel(){
           onChange={handleDropdown}>
           <option value='monochromatic'>Monochromatic</option>
           <option value='complementary'>Complementary</option>
-          <option value='analagous'>Analogous</option>
+          <option value='analogous'>Analogous</option>
           <option value='split-complementary'>Split-Complementary</option>
           <option value='triadic'>Triadic</option>
           <option value='tetradic'>Tetradic</option>      

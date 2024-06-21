@@ -773,9 +773,10 @@ h3{
   }
 }
 
-@media screen and (min-width: 2560px){
+@media screen and (min-width: 1440px){
   .confirm-clear-all{
-    margin: 1.5rem 0 0 0;
+    margin: 1.5rem auto 0 auto;
+    width: 16.5rem;
   }
 
   .confirm-clear-all p{
@@ -789,7 +790,8 @@ h3{
 
 @media screen and (min-width: 2560px){
   .confirm-clear-all{
-    margin: 2rem 0 0 0;
+    margin: 2rem auto 0 auto;
+    width: 22rem;
   }
 
   .confirm-clear-all p{

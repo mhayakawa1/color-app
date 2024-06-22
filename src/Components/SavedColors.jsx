@@ -58,7 +58,7 @@ export default function SavedColors(props){
     <div className='controls-container'>
       <button className='btn-standard'
         onClick={props.data.length === 0 ? null : () => clearAll('clear all')}>Clear All</button>
-        {showConfirm ? //popup to confirm action to clear all colors
+        {showConfirm ?
         <div className='confirm-clear-all'>
           <p>Are you sure you want to clear all colors?</p>
           <div className='confirm-btns'>

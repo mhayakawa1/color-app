@@ -12,7 +12,7 @@ export default function ColorPicker(props){
     setHexCode('')
     setDisplayHexCode('')
     let numValue;    
-    function setColor(color){//set useState variable of selected color to number entered
+    function setColor(color){
       switch(color){
         case 'red': 
           setRed(event.target.value);
@@ -25,13 +25,9 @@ export default function ColorPicker(props){
       }
     }
     if(event.target.value[0] === 0 && event.target.value.length > 1){
-      //if num entered starts with 0 and the length is >1
-      //set numValue to 0 and call setColor with selected color
       numValue = 0
       setColor(color)
     }else if(event.target.value >= 0 && event.target.value <= 255){
-      //if num is between 0-255
-      //set numValue to 0 and call setColor with selected color
       numValue = event.target.value
       setColor(color)
     }

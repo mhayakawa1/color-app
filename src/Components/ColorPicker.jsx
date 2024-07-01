@@ -144,15 +144,13 @@ export default function ColorPicker(props){
     </div>
     
     <div className='component-display custom-color-display'>
-      <div className='custom-color-container'>
         <div className='custom-color-block'
           style={{backgroundColor: `rgb(${red === '' ? 0 : red},${green === '' ? 0 : green},${blue === '' ? 0 : blue})`}}>
+          <div className='custom-color-info'>
+            <p>{`RGB: (${red === '' ? 0 : red},${green === '' ? 0 : green},${blue === '' ? 0 : blue})`}</p>
+            <p>HEX: {displayHexCode === '' ? '-' : `#${displayHexCode.toUpperCase()}`}</p>
+          </div>
         </div>
-        <div className='custom-color-info'>
-          <p>{`RGB: (${red === '' ? 0 : red},${green === '' ? 0 : green},${blue === '' ? 0 : blue})`}</p>
-          <p>HEX: {displayHexCode === '' ? '-' : `#${displayHexCode.toUpperCase()}`}</p>
-        </div>
-      </div>
     </div>
   </div>
   )

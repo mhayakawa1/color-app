@@ -1140,13 +1140,7 @@ h3{
   box-sizing: border-box;
 }
 
-@media screen and (min-width: 1440px){
-  .custom-color-container{
-    min-width: 37.5rem;
-    border-radius: 7.5px;
-    padding: 1.5rem;
-  }
-  
+@media screen and (min-width: 1440px){  
   .custom-color-block{
     min-height: 30rem;
     border-radius: 7.5px;
@@ -1154,12 +1148,6 @@ h3{
 }
 
 @media screen and (min-width: 2560px){
-  .custom-color-container{
-    min-width: 50rem;
-    border-radius: 10px;
-    padding: 2rem;
-  }
-  
   .custom-color-block{
     min-height: 40rem;
     border-radius: 10px;
@@ -1167,12 +1155,6 @@ h3{
 }
 
 @media screen and (max-width: 496px){
-  .custom-color-container{
-    align-self: start;
-    height: 50%;
-    margin: 0 auto 0 auto;
-  }
-
   .custom-color-block{
     min-height: 15rem;
   }

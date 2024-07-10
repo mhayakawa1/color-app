@@ -54,7 +54,7 @@ export default function SavedColors(props){
   }
 
   return(    
-  <div className='component-container-2'>
+  <div className='component-container-2 saved-colors'>
     <div className='controls-container'>
       <button className='btn-standard'
         onClick={props.data.length === 0 ? null : () => clearAll('clear all')}>Clear All</button>
@@ -64,7 +64,7 @@ export default function SavedColors(props){
           <div className='confirm-btns'>
             <button className='btn-standard btn-secondary btn-small' onClick={() => clearAll(true)}>Yes</button>
             <button className='btn-standard btn-secondary btn-small' onClick={() => clearAll(false)}>No</button>
-          </div>          
+          </div>
         </div> 
       : null}
     </div>

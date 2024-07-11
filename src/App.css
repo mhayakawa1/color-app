@@ -1131,6 +1131,7 @@ h3{
 .custom-color-block{
   width: 100%;
   height: 100%;
+  flex-grow: 1;
   display: flex;
   justify-content: center;
   align-items: end;
@@ -1152,7 +1153,7 @@ h3{
   }
 }
 
-@media screen and (max-width: 496px){
+@media screen and (max-width: 769px){
   .custom-color-block{
     min-height: 15rem;
   }
@@ -1201,6 +1202,12 @@ h3{
     font-size: 2rem;
     line-height: 2rem;
     height: 2rem;
+  }
+}
+
+@media screen and (max-width: 769px){
+  .custom-color-info{
+    border-radius: 0 0 4px 4px;
   }
 }
 

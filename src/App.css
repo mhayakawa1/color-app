@@ -637,6 +637,7 @@ h3{
 .color-item{
   width: 20%;
   min-height: 15rem;
+  height: 40vh;
   background-color: white;
 }
 

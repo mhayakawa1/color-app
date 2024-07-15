@@ -8,7 +8,7 @@ body{
 .app{
   border-radius: 5px;
   margin: auto;
-  min-width: 600px;
+  min-width: 768px;
   max-width: 90%;
   display: flex;
   flex-direction: column;
@@ -37,6 +37,7 @@ body{
 @media screen and (max-width: 769px){
   .app{
     max-width: 90%;
+    min-width: 600px;
   }
 }
 

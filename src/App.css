@@ -639,30 +639,35 @@ h3{
   width: 20%;
   min-height: 15rem;
   height: 40vh;
-  background-color: white;
-}
-
-.color-block{
-  width: 100%;
-  height: 57%;
-  margin: auto;
+  display: flex;
+  align-items: end;
 }
 
 .color-info{
-  height: auto;
+  height: 40%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: end;
   gap: 0;
+  opacity: 100%;
+  padding: 0 0 10% 0;
+  box-sizing: border-box;
+  border: 1px solid red;
+}
+
+.color-info:hover{
+  opacity: 100%;
 }
 
 .color-value{
   margin: .5rem 0 0 0;
   font-size: .5rem;
   line-height: .75rem;
+  font-weight: bold;
   text-align: center;
-  color: rgb(80,80,80,.5);
+  color: white;
 }
 
 .color-item button{

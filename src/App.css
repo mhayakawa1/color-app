@@ -640,6 +640,7 @@ h3{
   min-height: 15rem;
   height: 40vh;
   display: flex;
+  flex-direction: column;
   align-items: end;
 }
 
@@ -654,28 +655,23 @@ h3{
   opacity: 100%;
   padding: 0 0 10% 0;
   box-sizing: border-box;
-  border: 1px solid red;
 }
 
 .color-info:hover{
   opacity: 100%;
 }
 
+.delete-button{
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: 0;
+}
+
 .color-value{
   margin: .5rem 0 0 0;
   font-size: .5rem;
   line-height: .75rem;
-  font-weight: bold;
   text-align: center;
-  color: white;
-}
-
-.color-item button{
-  padding: 0 1rem 0 1rem;
-  font-size: .5rem;
-  margin: .5rem 0 0 0;
-  filter: drop-shadow(0px 0px 4px rgb(69,69,69,.5));
-  border: 2px solid rgb(69,69,69);
 }
 
 @media screen and (min-width: 1440px){

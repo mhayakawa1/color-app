@@ -645,14 +645,14 @@ h3{
 }
 
 .color-info{
-  height: 40%;
+  height: 100%;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: end;
-  gap: 0;
   opacity: 100%;
+  gap: .5rem;
   padding: 0 0 10% 0;
   box-sizing: border-box;
 }
@@ -662,13 +662,11 @@ h3{
 }
 
 .delete-button{
-  width: 1.5rem;
-  height: 1.5rem;
-  padding: 0;
+  width: 90%;
 }
 
 .color-value{
-  margin: .5rem 0 0 0;
+  margin: 0;
   font-size: .5rem;
   line-height: .75rem;
   text-align: center;

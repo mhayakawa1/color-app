@@ -588,10 +588,6 @@ h3{
 /*APP.JS ENDS HERE*/
 
 /*SAVED COLORS STARTS HERE*/
-.saved-colors .component-display{
-  padding: 0;
-}
-
 .colors-container{
   align-self: start;
   display: flex;
@@ -636,24 +632,30 @@ h3{
 }
 
 .color-item{
-  width: 20%;
-  min-height: 15rem;
-  height: 40vh;
+  width: 10rem;
+  height: 15rem;
   display: flex;
   flex-direction: column;
   align-items: end;
+  background-color: white;
+  border-radius: 4px;
+}
+
+.color-block{
+  height: 60%;
+  width: 100%;
+  border-radius: 4px 4px 0 0;
 }
 
 .color-info{
-  height: 100%;
+  height: 40%;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: end;
+  justify-content: center;
   opacity: 100%;
   gap: .5rem;
-  padding: 0 0 10% 0;
   box-sizing: border-box;
 }
 
@@ -661,13 +663,12 @@ h3{
   opacity: 100%;
 }
 
-.delete-button{
-  width: 90%;
+.color-info button{
+  width: auto;
 }
 
 .color-value{
   margin: 0;
-  font-size: .5rem;
   line-height: .75rem;
   text-align: center;
 }

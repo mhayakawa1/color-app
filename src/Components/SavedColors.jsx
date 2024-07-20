@@ -34,11 +34,14 @@ export default function SavedColors(props){
         }
       }
 
-      const item = <div key={props.data[i]} className='color-item' style={{backgroundColor: `rgb(${props.data[i].join(',')})`}}>
+      const item = <div key={props.data[i]} className='color-item' >
+        <div style={{backgroundColor: `rgb(${props.data[i].join(',')})`}}
+          className='color-block'>
+        </div>
         <div className='color-info'>
           <p className='color-value'>{`RGB: (${props.data[i].join(',')})`}</p>
           <p className='color-value'>HEX: #{hexOutput.join('').toUpperCase()}</p>
-          <button className='btn-standard delete-button'
+          <button className='btn-standard btn-small'
             onClick={() => props.clickHandler(props.data[i], false, true)}
             >Delete Color</button>
         </div>

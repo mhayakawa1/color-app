@@ -18,6 +18,10 @@ export default function SavedColors(props){
     }
   }
 
+  const copyText = (colorCode) => {
+    navigator.clipboard.writeText(colorCode);
+  }
+
   const savedColorsLoop = () => {
     let itemsArr = []
     for(let i = 0; i < props.data.length; i++){
@@ -39,11 +43,11 @@ export default function SavedColors(props){
           className='color-block'>
         </div>
         <div className='color-info'>
-          <p className='color-value'>{`RGB: (${props.data[i].join(',')})`}</p>
+          <p className='color-value'>RGB: <span onClick={() => copyText(`${props.data[i].join(',')}`)}>{`(${props.data[i].join(',')})`}</span></p>
           <p className='color-value'>HEX: #{hexOutput.join('').toUpperCase()}</p>
           <button className='btn-standard btn-small'
             onClick={() => props.clickHandler(props.data[i], false, true)}
-            >Delete Color</button>
+            >Delete</button>
         </div>
       </div>
         itemsArr.push(item)

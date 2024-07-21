@@ -593,9 +593,10 @@ h3{
   display: flex;
   justify-content: start;
   flex-wrap: wrap;
-  width: auto;
-  min-height: 100%;
   width: 100%;
+  min-height: 100%;
+  gap: 3.5%;
+  row-gap: 1rem;
 }
 
 @media screen and (min-width: 1440px){
@@ -632,8 +633,8 @@ h3{
 }
 
 .color-item{
-  width: 10rem;
-  height: 15rem;
+  width: 31%;
+  aspect-ratio: 1 / 1.5;
   display: flex;
   flex-direction: column;
   align-items: end;
@@ -663,6 +664,10 @@ h3{
   opacity: 100%;
 }
 
+.color-info span{
+  cursor: pointer;
+}
+
 .color-info button{
   width: auto;
 }
@@ -679,8 +684,7 @@ h3{
   }
   .color-item{
     width: 15rem;
-    height: 18rem;
-    padding: .75rem 0 .75rem 0;
+    height: 22.5rem;
   }
 
   .color-item button{

@@ -44,7 +44,7 @@ export default function SavedColors(props){
         </div>
         <div className='color-info'>
           <p className='color-value'>RGB: <span onClick={() => copyText(`${props.data[i].join(',')}`)}>{`(${props.data[i].join(',')})`}</span></p>
-          <p className='color-value'>HEX: #{hexOutput.join('').toUpperCase()}</p>
+          <p className='color-value'>HEX: <span onClick={() => copyText(`#${hexOutput.join('').toUpperCase()}`)}>#{hexOutput.join('').toUpperCase()}</span></p>
           <button className='btn-standard btn-small'
             onClick={() => props.clickHandler(props.data[i], false, true)}
             >Delete</button>
@@ -63,15 +63,13 @@ export default function SavedColors(props){
     <div className='controls-container'>
       <button className='btn-standard'
         onClick={props.data.length === 0 ? null : () => clearAll('clear all')}>Clear All</button>
-        {showConfirm ?
-        <div className='confirm-clear-all'>
+        <div className={showConfirm ? 'confirm-clear-all' : 'hide-confirm'}>
           <p>Are you sure you want to clear all colors?</p>
           <div className='confirm-btns'>
             <button className='btn-standard btn-secondary btn-small' onClick={() => clearAll(true)}>Yes</button>
             <button className='btn-standard btn-secondary btn-small' onClick={() => clearAll(false)}>No</button>
           </div>
-        </div> 
-      : null}
+        </div>
     </div>
 
     <div className='component-display'>

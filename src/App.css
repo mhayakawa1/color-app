@@ -617,7 +617,6 @@ h3{
   .colors-container{
     max-width: 100%;
     height: auto;
-    justify-content: center;
     margin: 0;
     gap: auto;
   }
@@ -629,7 +628,8 @@ h3{
 }
 
 .container-filler{
-  width: 10rem;
+  width: 31%;
+  aspect-ratio: 1 / 1.5;
 }
 
 .color-item{
@@ -643,13 +643,13 @@ h3{
 }
 
 .color-block{
-  height: 60%;
+  height: 50%;
   width: 100%;
   border-radius: 4px 4px 0 0;
 }
 
 .color-info{
-  height: 40%;
+  height: 50%;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -729,18 +729,17 @@ h3{
   }  
 }
 
+@media screen and (max-width: 496px){
+}
+
 @media screen and (max-width: 376px){
+  .colors-container{
+    gap: 4%;
+  }
+
   .color-item{
-    width: 8rem;
-  }
-
-  .color-block{
-    width: 7rem;
-    height: 5.5rem;
-  }
-
-  .container-filler{
-    width: 8rem;
+    width: 48%;
+    aspect-ratio: 1 / 1.5;
   }
 }
 
@@ -748,6 +747,11 @@ h3{
   margin: 1rem auto 0 auto;
   padding: 0;
   width: 11rem;
+  height: auto;
+}
+
+.hide-confirm{
+  display: none;
 }
 
 .confirm-clear-all p{
@@ -774,6 +778,19 @@ h3{
   .confirm-btns{
     justify-content: start;
     gap: 1rem;
+  }
+}
+
+@media screen and (max-width: 426px){
+  .saved-colors .controls-container{
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+    transition: all .75s ease-out;
+  }
+
+  .confirm-btns{
+    justify-content: center;
   }
 }
 

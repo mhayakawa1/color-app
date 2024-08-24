@@ -634,16 +634,16 @@ h3{
 
 .color-item{
   width: 31%;
-  aspect-ratio: 1 / 1.5;
+  aspect-ratio: 3 / 4;
   display: flex;
   flex-direction: column;
-  align-items: end;
+  align-items: flex-end;
   background-color: white;
   border-radius: 4px;
 }
 
 .color-block{
-  height: 50%;
+  height: 60%;
   width: 100%;
   border-radius: 4px 4px 0 0;
 }
@@ -654,10 +654,10 @@ h3{
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   opacity: 100%;
-  gap: .5rem;
   box-sizing: border-box;
+  padding: 1rem 0;
 }
 
 .color-info:hover{
@@ -755,7 +755,6 @@ h3{
 }
 
 .confirm-clear-all p{
-  padding: 0 1rem 0 1rem 0;
   margin: 0 0 1rem 0;
   color: white;
 }
@@ -770,28 +769,6 @@ h3{
 }
 
 @media screen and (max-width: 769px){
-  .confirm-clear-all{
-    margin: auto;
-    width: auto;
-  }
-
-  .confirm-btns{
-    justify-content: start;
-    gap: 1rem;
-  }
-}
-
-@media screen and (max-width: 426px){
-  .saved-colors .controls-container{
-    flex-direction: column;
-    align-items: center;
-    height: auto;
-    transition: all .75s ease-out;
-  }
-
-  .confirm-btns{
-    justify-content: center;
-  }
 }
 
 @media screen and (min-width: 1440px){
@@ -821,6 +798,73 @@ h3{
   
   .confirm-btns{
     gap: 2rem;
+  }
+}
+
+.copied{
+  color: white;
+  text-align: center;
+  margin: 10% 0 0 0;
+}
+
+@media screen and (max-width: 769px){
+  .saved-colors .controls-container{
+    justify-content: space-between;
+    align-items: center;
+    height: auto;
+    transition: all .75s ease-out;
+  }
+  
+  .copied{
+    margin: auto;
+  }
+  
+  .confirm-clear-all{
+    margin: auto 0;
+    width: auto;
+    display: flex;
+    justify-content: end;
+  }
+
+  .confirm-clear-all p{
+    margin: 0;
+    width: 10rem;
+    padding: 0 1rem;
+    text-align: right;
+  }
+
+  .confirm-btns{
+    gap: 1rem;
+    margin: auto 0;
+  }
+}
+
+@media screen and (max-width: 426px){
+  .saved-colors .controls-container{
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+    transition: all .75s ease-out;
+  }
+
+  .confirm-btns{
+    justify-content: center;
+  }
+}
+
+.fade-copied{
+  animation: fade 8s;
+}
+
+@keyframes fade {
+  0%{
+    opacity: 100%;
+  }
+  50%{
+    opacity: 100%;
+  }
+  100%{
+    opacity: 0%;
   }
 }
 /*SAVED COLORS ENDS HERE*/

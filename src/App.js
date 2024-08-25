@@ -9,7 +9,7 @@ import {AiOutlineClose} from 'react-icons/ai';
 
 function App() {
   const [savedColors, setSavedColors] = useState([]);
-  const [display, setDisplay] = useState('SavedColors');
+  const [display, setDisplay] = useState('Saved Colors');
   const [menuVisible, setMenuVisible] = useState(false);
   const [saveColorData, setSaveColorData] = useState('');
 
@@ -63,27 +63,28 @@ function App() {
     }
   }
 
-  const menuBtns = <div className={`menu-btns-container ${menuVisible === true ? 'menu-btns-height fade-in' : 'fade-out'}`}>
-  <button onClick={() => switchComponent('SavedColors')}
-    className={`menu-btn-1 ${display === 'SavedColors' ? 'selected' : ''}`}>Saved Colors</button>
-  <button onClick={() => switchComponent('ColorPicker')}
-    className={`menu-btn-2 ${display === 'SavedColors' ? 'selected' : ''}`}>Color Picker</button>
-  {/*<button onClick={() => switchComponent('RandomScheme')}
-    className={`menu-btn-3 ${display === 'SavedColors' ? 'selected' : ''}`}>Color Schemes</button>*/}
-  <button onClick={() => switchComponent('ColorWheel')}
-    className={`menu-btn-4 ${display === 'SavedColors' ? 'selected' : ''}`}>Color Wheel</button>
-  </div>
+  const menuButtons = () => {
+    let buttons = [];
+    const components = ['Saved Colors', 'Color Picker', 'Color Wheel'];
+    for(let i = 0; i < components.length; i++){
+      buttons.push(<button key={i} onClick={() => switchComponent(components[i])}>{components[i]}
+      </button>)
+    }
+    return (
+      buttons
+    )
+  }
 
   return (
     <main className='app'>
       <div className='menu-container'>
         <div className='menu'>
-          {menuBtns}
+          <div className={`menu-btns-container ${menuVisible ? 'menu-btns-height fade-in' : 'fade-out'}`}>
+          {menuButtons()}
+          </div>          
           <span className='active-bar' style={
-            display === 'SavedColors' ? {margin: '0'}
-            : display === 'ColorPicker' ? {margin: '0 0 0 25%'}
-            //: display ==='RandomScheme' ? {margin: '0 0 0 50%'}
-            //: {margin: '0 0 0 75%'}
+            display === 'Saved Colors' ? {margin: '0'}
+            : display === 'Color Picker' ? {margin: '0 0 0 25%'}
             : {margin: '0 0 0 50%'}
             }>
           </span>
@@ -91,16 +92,15 @@ function App() {
       </div>
       <div className='menu-mobile'>
         <button className='dropdown-menu-btn' onClickCapture={toggleMenu}>
-          {menuVisible === false ? <AiOutlineMenu className='icon'></AiOutlineMenu> : 
+          {!menuVisible ? <AiOutlineMenu className='icon'></AiOutlineMenu> : 
             <AiOutlineClose className='icon'></AiOutlineClose>}          
         </button>
-        {menuBtns}
+        {menuButtons()}
       </div>
 
       <div className='component-container'>
-        {display === 'SavedColors' ? <SavedColors clickHandler={handleClick} data={savedColors} />
-          : display === 'ColorPicker' ? <ColorPicker clickHandler={handleClick} data={savedColors} />
-          : display ==='RandomScheme' ? <RandomScheme clickHandler={handleClick} data={savedColors} />
+        {display === 'Saved Colors' ? <SavedColors clickHandler={handleClick} data={savedColors} />
+          : display === 'Color Picker' ? <ColorPicker clickHandler={handleClick} data={savedColors} />
           : <ColorWheel/>}
       </div>
     </main>

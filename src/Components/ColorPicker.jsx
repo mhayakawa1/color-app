@@ -6,29 +6,31 @@ export default function ColorPicker(props){
   const [blue, setBlue] = useState(0);
   const [hexCode, setHexCode] = useState('');
   const [displayHexCode, setDisplayHexCode] = useState('');
-  const hexVals = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'a', 'b', 'c', 'd', 'e', 'f']
+  const hexVals = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'a', 'b', 'c', 'd', 'e', 'f'];
+  const rgbValues = [red, green, blue];
 
   const handleChangeRGB = (event, color) =>{
+    const value = event.target.value;
     setHexCode('')
     setDisplayHexCode('')
     let numValue;    
     function setColor(color){
       switch(color){
         case 'red': 
-          setRed(event.target.value);
+          setRed(value);
           break;
         case 'green': 
-          setGreen(event.target.value);
+          setGreen(value);
           break;
         case 'blue': 
-          setBlue(event.target.value);
+          setBlue(value);
       }
     }
-    if(event.target.value[0] === 0 && event.target.value.length > 1){
+    if(value[0] === 0 && value.length > 1){
       numValue = 0
       setColor(color)
-    }else if(event.target.value >= 0 && event.target.value <= 255){
-      numValue = event.target.value
+    }else if(value >= 0 && value <= 255){
+      numValue = value
       setColor(color)
     }
   }
@@ -38,15 +40,16 @@ export default function ColorPicker(props){
   }
 
   const handleKeyDown = (event) => {
-    if(event.keyCode === 13 && event.target.value.length === 7
-        && /^[A-Fa-f0-9]*$/.test(event.target.value.slice(1)) === true){
-      let hexInput = event.target.value.toLowerCase().slice(1).split('')
-      setDisplayHexCode(event.target.value.toUpperCase().slice(1))
+    const keyValue = event.target.value;
+    if(event.keyCode === 13 && keyValue.length === 7
+        && /^[A-Fa-f0-9]*$/.test(keyValue.slice(1)) === true){
+      let hexInput = keyValue.toLowerCase().slice(1).split('')
+      setDisplayHexCode(keyValue.toUpperCase().slice(1))
       for(let i = 0; i < hexInput.length; i++){
         if(/[0-9]/.test(hexInput[i]) === false){
-          hexInput.splice(i, 1, hexVals.indexOf(hexInput[i]))
+          hexInput.splice(i, 1, hexVals.indexOf(hexInput[i]));
         }else{
-          hexInput.splice(i, 1, Number(hexInput[i]))
+          hexInput.splice(i, 1, Number(hexInput[i]));
         }
       }
 
@@ -62,42 +65,42 @@ export default function ColorPicker(props){
   }
 
   const rgbToHex = () =>{
-    let rgbInput = [red, green, blue]
-    let hexOutput = []
+    let rgbInput = [...rgbValues];
+    let hexOutput = [];
     for(let i = 0; i < rgbInput.length; i++){
-      rgbInput[i] = rgbInput[i]/16
-      rgbInput[i] = rgbInput[i].toString().split('.')
-      rgbInput[i][1] = '.' + rgbInput[i][1]
+      rgbInput[i] = rgbInput[i]/16;
+      rgbInput[i] = rgbInput[i].toString().split('.');
+      rgbInput[i][1] = '.' + rgbInput[i][1];
       if(rgbInput[i][1] === '.undefined'){
-        hexOutput.push(hexVals[rgbInput[i][0]], '0')
+        hexOutput.push(hexVals[rgbInput[i][0]], '0');
       }else{
-        hexOutput.push(hexVals[rgbInput[i][0]], hexVals[rgbInput[i][1]*16])
+        hexOutput.push(hexVals[rgbInput[i][0]], hexVals[rgbInput[i][1]*16]);
       }
     }
-    setHexCode(hexOutput.join(''))
-    setDisplayHexCode(hexOutput.join(''))
+    setHexCode(hexOutput.join(''));
+    setDisplayHexCode(hexOutput.join(''));
   }
 
   const random = () =>{
-    setHexCode('')
-    setDisplayHexCode('')
-    setRed(Math.round(Math.random() * (255)))
-    setGreen(Math.round(Math.random() * (255)))
-    setBlue(Math.round(Math.random() * (255)))
+    setHexCode('');
+    setDisplayHexCode('');
+    setRed(Math.round(Math.random() * (255)));
+    setGreen(Math.round(Math.random() * (255)));
+    setBlue(Math.round(Math.random() * (255)));
   }
   
   const reset = () => {
-    setHexCode('')
-    setDisplayHexCode('')
-    setRed(0)
-    setGreen(0)
-    setBlue(0)
+    setHexCode('');
+    setDisplayHexCode('');
+    setRed(0);
+    setGreen(0);
+    setBlue(0);
   }
   
   const saveColor = () => {
-    let color = [red, green, blue]
+    let color = [...rgbValues];
     if(props.data.includes(color) === false){
-      props.clickHandler(color, false, false)
+      props.clickHandler(color, false, false);
     }
   }
 

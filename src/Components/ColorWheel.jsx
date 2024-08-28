@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 export default function ColorWheel(){
   const [schemeType, setSchemeType] = useState('monochromatic');
+  const [colorIndexes, setColorIndexes] = useState([0]);
   const [one, setOne] = useState(false);
   const [classesArr2, setClassesArr2] = useState({
     0: false,
@@ -18,7 +19,7 @@ export default function ColorWheel(){
     11: false
   })
   let classesArr = ['red', 'red-orange', 'orange', 'orange-yellow', 
-  'yellow', 'yellow-green', 'green', 'green-glue',
+  'yellow', 'yellow-green', 'green', 'green-blue',
   'blue', 'blue-purple', 'purple', 'purple-red'];
   let colorsArr = ['red', 'red-orange', 'orange', 'orange-yellow', 
   'yellow', 'yellow-green', 'green', 'green-blue',
@@ -26,31 +27,38 @@ export default function ColorWheel(){
   let colorNamesArr = ['Red', 'Red Orange', 'Orange', 'Orange Yellow', 
   'Yellow', 'Yellow Green', 'Green', 'Green Blue',
   'Blue', 'Blue Purple', 'Purple', 'Purple Red'];
-  const colorsInfo = {
-    'red': false,
-    'red-orange': false,
-    'orange': false,
-    'orange-yellow': false,
-    'yellow': false,
-    'yellow-green': false,
-    'green': false,
-    'green-blue': false,
-    'blue': false,
-    'blue-purple': false,
-    'purple': false,
-    'purple-red': false
-  }
+  let colorsInfo = [
+    {color: 'red', active: false},
+    {color: 'red-orange', active: false},
+    {color: 'orange', active: false},
+    {color: 'orange-yellow', active: false},
+    {color: 'yellow', active: false},
+    {color: 'yellow-green', active: false},
+    {color: 'green', active: false},
+    {color: 'green-blue', active: false},
+    {color: 'blue', active: false},
+    {color: 'blue-purple', active: false},
+    {color: 'purple', active: false},
+    {color: 'purple-red', active: false}
+  ]
+  
   let selectedColors = [];
 
   const handleDropdown = (event) => {
-    setSchemeType(event.target.value)
+    setSchemeType(event.target.value);
+    setColorIndexes([...event.target[event.target.selectedIndex].getAttribute('data-numbers').split(' ')]);
+  }
+
+  const changeSchemeType = (schemeType, arr) => {
+
   }
 
   const findColorScheme = (colorStr) => {
-    console.log(colorsArr)
     colorsArr = [...colorsArr.splice(colorsArr.indexOf(colorStr)), ...colorsArr.splice(0)];
-    console.log(colorsArr)
-    switch(schemeType){
+    colorsInfo = [...colorsInfo.splice(colorsInfo.indexOf(colorsInfo.find((i) => i.color = colorStr))), ...colorsInfo.splice(0)]
+      .map((i) => console.log(i.active))  
+
+    /*switch(schemeType){
       case 'monochromatic':
         selectedColors = [colorsArr[0]];
         break;
@@ -68,12 +76,12 @@ export default function ColorWheel(){
         break;
       case 'tetradic':
         selectedColors = [colorsArr[0], colorsArr[2], colorsArr[6], colorsArr[8]];
-    }
+    }*/
 
     setOne(i => !i)
 
-    for(let i = 0; i < colorsArr.length; i++){
-      if(selectedColors.includes(colorsArr[i]) === true){        
+    for(let i = 0; i < classesArr.length; i++){
+      if(selectedColors.includes(classesArr[i]) === true){        
         classesArr2[i] = true
       }else{
         classesArr2[i] = false
@@ -87,7 +95,7 @@ export default function ColorWheel(){
     for(let i = 0; i < colorsArr.length; i++){
       if(classesArr2[i] === true){
         renderColorNames.push(
-          <li key={i}>{colorsArr[i].split('-').map((i) => i[0].toUpperCase() + i.substring(1, i.length)).join(' ')}</li>
+          //<li key={i}>{colorsArr[i].split('-').map((i) => i[0].toUpperCase() + i.substring(1, i.length)).join(' ')}</li>
         )
       }
     }    
@@ -123,12 +131,12 @@ export default function ColorWheel(){
       <div className='dropdown-container'>
         <select className='color-scheme-dropdown'
           onChange={handleDropdown}>
-          <option value='monochromatic'>Monochromatic</option>
-          <option value='complementary'>Complementary</option>
-          <option value='analogous'>Analogous</option>
-          <option value='split-complementary'>Split-Complementary</option>
-          <option value='triadic'>Triadic</option>
-          <option value='tetradic'>Tetradic</option>      
+          <option value='monochgetAttribute' data-numbers='0'>Monochromatic</option>
+          <option value='complementary' data-numbers='0 6'>Complementary</option>
+          <option value='analogous' data-numbers='0 1 11'>Analogous</option>
+          <option value='split-complementary' data-numbers='0 5 7'>Split-Complementary</option>
+          <option value='triadic' data-numbers='0 4 8'>Triadic</option>
+          <option value='tetradic' data-numbers='0 2 6 8'>Tetradic</option>      
         </select>
       </div>
       <button className='btn-standard color-wheel-reset' onClick={() => reset()}>Reset</button>
@@ -165,7 +173,7 @@ export default function ColorWheel(){
           className={`color-wheel-circle purple-red ${classesArr2[11] ? 'dropshadow' : ''}`}></button>
       </div>
       <ul className='color-names-2'>
-        {colorNamesLoop()}
+        {/*colorNamesLoop()*/}
       </ul>
     </div>
   </div>

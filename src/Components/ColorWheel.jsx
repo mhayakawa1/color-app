@@ -46,18 +46,22 @@ export default function ColorWheel(){
 
   const handleDropdown = (event) => {
     setSchemeType(event.target.value);
-    setColorIndexes([...event.target[event.target.selectedIndex].getAttribute('data-numbers').split(' ')]);
-  }
-
-  const changeSchemeType = (schemeType, arr) => {
-
+    setColorIndexes([...event.target[event.target.selectedIndex]
+      .getAttribute('data-numbers')
+      .split(' ')].map((i) => Number(i)));
   }
 
   const findColorScheme = (colorStr) => {
     colorsArr = [...colorsArr.splice(colorsArr.indexOf(colorStr)), ...colorsArr.splice(0)];
     colorsInfo = [...colorsInfo.splice(colorsInfo.indexOf(colorsInfo.find((i) => i.color = colorStr))), ...colorsInfo.splice(0)]
-      .map((i) => console.log(i.active))  
+    //colorsInfo.map((i) => colorIndexes.includes(colorsInfo.indexOf(i)) ? i.active = !i.active : i.active)
+    
+    for(let i = 0; i < colorsInfo.length; i++){
+      console.log(colorsInfo[i])
+    }
 
+    console.log(colorsInfo)
+    //console.log(colorsInfo.findIndex((i) => i.color = 'blue'))
     /*switch(schemeType){
       case 'monochromatic':
         selectedColors = [colorsArr[0]];
@@ -80,13 +84,13 @@ export default function ColorWheel(){
 
     setOne(i => !i)
 
-    for(let i = 0; i < classesArr.length; i++){
+    /*for(let i = 0; i < classesArr.length; i++){
       if(selectedColors.includes(classesArr[i]) === true){        
         classesArr2[i] = true
       }else{
         classesArr2[i] = false
       }
-    }
+    }*/
   }
   
   const colorNamesLoop = () => {
@@ -108,6 +112,7 @@ export default function ColorWheel(){
   const reset = () => {
     classesArr = [...classesArr.splice(classesArr.indexOf('red')), ...classesArr.splice(0)];
     colorsArr = [...colorsArr.splice(colorsArr.indexOf('red')), ...colorsArr.splice(0)];
+    
     selectedColors = [];
     setClassesArr2({
       0: false,
@@ -124,6 +129,25 @@ export default function ColorWheel(){
       11: false
     })
   }  
+
+  const colorWheelButtons = () => {
+    let buttonsArr = [];
+    const colorsInfoCopy = []
+    
+    for(let i = 0; i < colorsInfo.length; i++){
+      console.log(colorsInfo[i])
+      
+      buttonsArr.push(
+        <button key={i} onClick={() => findColorScheme(colorsInfo[i].color)} 
+          className={`color-wheel-circle ${colorsInfo[i].color}`}></button>
+      )
+
+    }
+
+    return (
+      buttonsArr
+    )
+  }
 
   return(
   <div className='component-container-2 color-wheel-component'>
@@ -146,7 +170,7 @@ export default function ColorWheel(){
     </div>
 
     <div className='component-display color-wheel-display'>
-      <div className='wheel-container'>
+      {/*<div className='wheel-container'>
         <button onClick={() => findColorScheme('red')} 
           className={`color-wheel-circle red ${classesArr2[0] ? 'dropshadow' : ''}`}></button>
         <button onClick={() => findColorScheme('red-orange')}
@@ -171,6 +195,9 @@ export default function ColorWheel(){
           className={`color-wheel-circle purple ${classesArr2[10] ? 'dropshadow' : ''}`}></button>
         <button onClick={() => findColorScheme('purple-red')} 
           className={`color-wheel-circle purple-red ${classesArr2[11] ? 'dropshadow' : ''}`}></button>
+      </div>*/}
+      <div className='wheel-container'>
+        {colorWheelButtons()}
       </div>
       <ul className='color-names-2'>
         {/*colorNamesLoop()*/}

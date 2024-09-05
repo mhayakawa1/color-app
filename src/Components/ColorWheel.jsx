@@ -35,6 +35,15 @@ export default function ColorWheel() {
       .split(' ')].map((i) => Number(i)));
   }
 
+  const changeColorInfo = (reset, newInfo) => {
+    /*
+    newInfo.map((i) =>
+      colorIndexes.includes(newInfo.indexOf(i)) && !reset ? i.active = true : i.active = false
+    )
+    setColorsInfo(newInfo)
+    */
+  }
+
   const findColorScheme = (colorStr) => {
     let newInfo = [...colorsInfo.splice(colorsInfo.indexOf(colorsInfo.find((i) => i.color === colorStr))), ...colorsInfo.splice(0)]
     newInfo.map((i) =>
@@ -53,6 +62,14 @@ export default function ColorWheel() {
     //     )
     //   }
     // }
+    /*for(let i = 0; i < colorsInfo.length; i++){
+      if(colorsInfo[i].active){
+        renderColorNames.push(
+          <li key={i}>{colorsInfo[i].color.split('-').map((i) => i[0].toUpperCase() + i.substring(1, i.length)).join(' ')}</li>
+        )
+      }
+    }
+    */
 
     return (
       renderColorNames

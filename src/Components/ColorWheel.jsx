@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 export default function ColorWheel() {
   const [schemeType, setSchemeType] = useState('monochromatic');
   const [colorIndexes, setColorIndexes] = useState([0]);
-  
+
   let classesArr = ['red', 'red-orange', 'orange', 'orange-yellow',
     'yellow', 'yellow-green', 'green', 'green-blue',
     'blue', 'blue-purple', 'purple', 'purple-red'];
@@ -62,14 +62,14 @@ export default function ColorWheel() {
     //     )
     //   }
     // }
-    /*for(let i = 0; i < colorsInfo.length; i++){
-      if(colorsInfo[i].active){
-        renderColorNames.push(
-          <li key={i}>{colorsInfo[i].color.split('-').map((i) => i[0].toUpperCase() + i.substring(1, i.length)).join(' ')}</li>
-        )
-      }
+    for (let i = 0; i < colorsInfo.length; i++) {
+      /*      if(colorsInfo[i].active){
+          renderColorNames.push(
+            <li key={i}>{colorsInfo[i].color.split('-').map((i) => i[0].toUpperCase() + i.substring(1, i.length)).join(' ')}</li>
+          )
+        }*/
     }
-    */
+
 
     return (
       renderColorNames

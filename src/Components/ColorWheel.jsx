@@ -55,19 +55,12 @@ export default function ColorWheel() {
   const colorNamesLoop = () => {
     let renderColorNames = []
 
-    // for (let i = 0; i < colorsArr.length; i++) {
-    //   if (classesArr2[i] === true) {
-    //     renderColorNames.push(
-    //       //<li key={i}>{colorsArr[i].split('-').map((i) => i[0].toUpperCase() + i.substring(1, i.length)).join(' ')}</li>
-    //     )
-    //   }
-    // }
     for (let i = 0; i < colorsInfo.length; i++) {
-      /*      if(colorsInfo[i].active){
-          renderColorNames.push(
-            <li key={i}>{colorsInfo[i].color.split('-').map((i) => i[0].toUpperCase() + i.substring(1, i.length)).join(' ')}</li>
-          )
-        }*/
+      if (colorsInfo[i].active) {
+        renderColorNames.push(
+          <li key={i}>{colorsInfo[i].color.split('-').map((i) => i[0].toUpperCase() + i.substring(1, i.length)).join(' ')}</li>
+        )
+      }
     }
 
 
@@ -104,7 +97,7 @@ export default function ColorWheel() {
         <div className='dropdown-container'>
           <select className='color-scheme-dropdown'
             onChange={handleDropdown}>
-            <option value='monochgetAttribute' data-numbers='0'>Monochromatic</option>
+            <option value='monochrome' data-numbers='0'>Monochromatic</option>
             <option value='complementary' data-numbers='0 6'>Complementary</option>
             <option value='analogous' data-numbers='0 1 11'>Analogous</option>
             <option value='split-complementary' data-numbers='0 5 7'>Split-Complementary</option>

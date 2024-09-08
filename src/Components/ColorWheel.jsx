@@ -1,15 +1,7 @@
 import React, { useState } from 'react';
 
 export default function ColorWheel() {
-  const [schemeType, setSchemeType] = useState('monochromatic');
   const [colorIndexes, setColorIndexes] = useState([0]);
-
-  let classesArr = ['red', 'red-orange', 'orange', 'orange-yellow',
-    'yellow', 'yellow-green', 'green', 'green-blue',
-    'blue', 'blue-purple', 'purple', 'purple-red'];
-  let colorsArr = ['red', 'red-orange', 'orange', 'orange-yellow',
-    'yellow', 'yellow-green', 'green', 'green-blue',
-    'blue', 'blue-purple', 'purple', 'purple-red'];
 
   const [colorsInfo, setColorsInfo] = useState(
     [
@@ -29,27 +21,15 @@ export default function ColorWheel() {
   )
 
   const handleDropdown = (event) => {
-    setSchemeType(event.target.value);
     setColorIndexes([...event.target[event.target.selectedIndex]
       .getAttribute('data-numbers')
       .split(' ')].map((i) => Number(i)));
   }
 
-  const changeColorInfo = (reset, newInfo) => {
-    /*
-    newInfo.map((i) =>
-      colorIndexes.includes(newInfo.indexOf(i)) && !reset ? i.active = true : i.active = false
-    )
-    setColorsInfo(newInfo)
-    */
-  }
-
-  const findColorScheme = (colorStr) => {
-    let newInfo = [...colorsInfo.splice(colorsInfo.indexOf(colorsInfo.find((i) => i.color === colorStr))), ...colorsInfo.splice(0)]
-    newInfo.map((i) =>
-      colorIndexes.includes(newInfo.indexOf(i)) ? i.active = true : i.active = false
-    )
-    setColorsInfo(newInfo)
+  const changeColorInfo = (reset, selectedColor) => {
+   let newInfo = [...colorsInfo.splice(colorsInfo.indexOf(colorsInfo.find((i) => i.color === selectedColor))), ...colorsInfo.splice(0)];
+   newInfo.map((i) => !reset && colorIndexes.includes(newInfo.indexOf(i)) ? i.active = true : i.active = false);
+   setColorsInfo(newInfo);   
   }
 
   const colorNamesLoop = () => {
@@ -63,17 +43,9 @@ export default function ColorWheel() {
       }
     }
 
-
     return (
       renderColorNames
     )
-  }
-
-  const reset = () => {
-    classesArr = [...classesArr.splice(classesArr.indexOf('red')), ...classesArr.splice(0)];
-    let newInfo = [...colorsInfo]
-    newInfo.map((i) => i.active = false)
-    setColorsInfo(newInfo)
   }
 
   const colorWheelButtons = () => {
@@ -81,7 +53,7 @@ export default function ColorWheel() {
 
     for (let i = 0; i < colorsInfo.length; i++) {
       buttonsArr.push(
-        <button key={i} onClick={() => findColorScheme(colorsInfo[i].color)}
+        <button key={i} onClick={() => changeColorInfo(false, colorsInfo[i].color)}
           className={`color-wheel-circle ${colorsInfo[i].color} ${colorsInfo[i].active ? 'dropshadow' : ''}`}></button>
       )
     }
@@ -105,7 +77,7 @@ export default function ColorWheel() {
             <option value='tetradic' data-numbers='0 2 6 8'>Tetradic</option>
           </select>
         </div>
-        <button className='btn-standard color-wheel-reset' onClick={() => reset()}>Reset</button>
+        <button className='btn-standard color-wheel-reset' onClick={() => changeColorInfo(true, 'red')}>Reset</button>
         <ul className='color-names-1'>
           {colorNamesLoop()}
         </ul>

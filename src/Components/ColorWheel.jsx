@@ -20,6 +20,30 @@ export default function ColorWheel() {
     ]
   )
 
+  const colorSchemeOptions = () => {
+    let options = [];
+
+    const optionsInfo = {
+      'monochrome': '0',
+      'complementary': '0, 6',
+      'analogous': '0 1 11',
+      'split-complementary': '0 5 7',
+      'triadic': '0 4 8',
+      'tetradic': '0 2 6 8'
+    }
+
+    Object.entries(optionsInfo).forEach(entry => {
+      const [key, value] = entry;
+      options.push(
+        <option key={key} value={key} data-numbers={value}>{key[0].toUpperCase() + key.substring(1, key.length)}</option>
+      )
+    })
+
+    return(
+      options
+    )
+  }
+
   const handleDropdown = (event) => {
     setColorIndexes([...event.target[event.target.selectedIndex]
       .getAttribute('data-numbers')
@@ -27,9 +51,9 @@ export default function ColorWheel() {
   }
 
   const changeColorInfo = (reset, selectedColor) => {
-   let newInfo = [...colorsInfo.splice(colorsInfo.indexOf(colorsInfo.find((i) => i.color === selectedColor))), ...colorsInfo.splice(0)];
-   newInfo.map((i) => !reset && colorIndexes.includes(newInfo.indexOf(i)) ? i.active = true : i.active = false);
-   setColorsInfo(newInfo);   
+    let newInfo = [...colorsInfo.splice(colorsInfo.indexOf(colorsInfo.find((i) => i.color === selectedColor))), ...colorsInfo.splice(0)];
+    newInfo.map((i) => !reset && colorIndexes.includes(newInfo.indexOf(i)) ? i.active = true : i.active = false);
+    setColorsInfo(newInfo);   
   }
 
   const colorNamesLoop = () => {
@@ -69,12 +93,7 @@ export default function ColorWheel() {
         <div className='dropdown-container'>
           <select className='color-scheme-dropdown'
             onChange={handleDropdown}>
-            <option value='monochrome' data-numbers='0'>Monochromatic</option>
-            <option value='complementary' data-numbers='0 6'>Complementary</option>
-            <option value='analogous' data-numbers='0 1 11'>Analogous</option>
-            <option value='split-complementary' data-numbers='0 5 7'>Split-Complementary</option>
-            <option value='triadic' data-numbers='0 4 8'>Triadic</option>
-            <option value='tetradic' data-numbers='0 2 6 8'>Tetradic</option>
+              {colorSchemeOptions()}
           </select>
         </div>
         <button className='btn-standard color-wheel-reset' onClick={() => changeColorInfo(true, 'red')}>Reset</button>

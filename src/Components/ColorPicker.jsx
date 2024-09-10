@@ -9,29 +9,44 @@ export default function ColorPicker(props){
   const hexVals = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'a', 'b', 'c', 'd', 'e', 'f'];
   const rgbValues = [red, green, blue];
 
-  const handleChangeRGB = (event, color) =>{
-    const value = event.target.value;
-    setHexCode('')
-    setDisplayHexCode('')
-    let numValue;    
-    function setColor(color){
-      switch(color){
-        case 'red': 
-          setRed(value);
-          break;
-        case 'green': 
-          setGreen(value);
-          break;
-        case 'blue': 
-          setBlue(value);
-      }
+  const changeColor = (array) => {
+    setHexCode('');
+    setDisplayHexCode('');
+    if(array[0] !== undefined){
+      setRed(array[0]);
     }
+    if(array[1] !== undefined){
+      setGreen(array[1]);
+    }
+    if(array[2] !== undefined){
+      setBlue(array[2]);
+    }    
+  }
+
+  const handleChangeRGB = (event, input, index) =>{
+    const value = event.target.value;
+    setHexCode('');
+    setDisplayHexCode('');
+    let numValue;
+    let redValue;
+    let greenValue;
+    let blueValue;
+
     if(value[0] === 0 && value.length > 1){
-      numValue = 0
-      setColor(color)
+      numValue = 0;
     }else if(value >= 0 && value <= 255){
-      numValue = value
-      setColor(color)
+      numValue = value;
+    }
+    console.log(input)
+    switch(input){
+      case 'red':
+        setRed(value);
+        break;
+      case 'green':
+        setGreen(value);
+        break;
+      case 'blue':
+        setBlue(value);
     }
   }
 
@@ -80,22 +95,6 @@ export default function ColorPicker(props){
     setHexCode(hexOutput.join(''));
     setDisplayHexCode(hexOutput.join(''));
   }
-
-  const random = () =>{
-    setHexCode('');
-    setDisplayHexCode('');
-    setRed(Math.round(Math.random() * (255)));
-    setGreen(Math.round(Math.random() * (255)));
-    setBlue(Math.round(Math.random() * (255)));
-  }
-  
-  const reset = () => {
-    setHexCode('');
-    setDisplayHexCode('');
-    setRed(0);
-    setGreen(0);
-    setBlue(0);
-  }
   
   const saveColor = () => {
     let color = [...rgbValues];
@@ -110,23 +109,23 @@ export default function ColorPicker(props){
       <div className='input-container'>
         <div className='input-item'>
           <input type='range' min='0' max='255' value={red === '' ? 0 : red} className='slider'
-            onChange={event => handleChangeRGB(event, 'red')}/>
+            onChange={event => handleChangeRGB(event, 'red', 0)}/>
           <input className='input-number' type='number' value={red === '' ? 0 : red}
-            onChange={event => handleChangeRGB(event, 'red')}/>
+            onChange={event => handleChangeRGB(event, 'red', 0)}/>
           <label>Red</label>
         </div>
         <div className='input-item'>
           <input type='range' min='0' max='255' value={green === '' ? 0 : green} className='slider'
-            onChange={event => handleChangeRGB(event, 'green')}/>
+            onChange={event => handleChangeRGB(event, 'green', 1)}/>
           <input className='input-number' type='number' value={green === '' ? 0 : green}
-            onChange={event => handleChangeRGB(event, 'green')}/>
+            onChange={event => handleChangeRGB(event, 'green', 1)}/>
           <label>Green</label>
         </div>
         <div className='input-item'>
           <input type='range' min='0' max='255' value={blue === '' ? 0 : blue} className='slider'
-            onChange={event => handleChangeRGB(event, 'blue')}/>
+            onChange={event => handleChangeRGB(event, 'blue', 2)}/>
           <input className='input-number' type='number' value={blue === '' ? 0 : blue}
-            onChange={event => handleChangeRGB(event, 'blue')}/>
+            onChange={event => handleChangeRGB(event, 'blue', 2)}/>
           <label>Blue</label>
         </div>
       </div>
@@ -138,10 +137,10 @@ export default function ColorPicker(props){
       </div>
       
       <div className='reset-save'>
-        <button className='btn-standard reset' onClick={reset}>Reset</button>
+        <button className='btn-standard reset' onClick={() => changeColor(0,0,0)}>Reset</button>
         <button className='btn-standard save'onClick={saveColor}>Save Color</button>
       </div>
-      <button className='random-color' onClick={random}
+      <button className='random-color' onClick={() => changeColor([Math.round(Math.random() * (255)),Math.round(Math.random() * (255)),Math.round(Math.random() * (255))])}
         style={{filter: `drop-shadow(0px 0px 4px rgb(${red === '' ? 0 : red},${green === '' ? 0 : green},${blue === '' ? 0 : blue}))`,
           borderColor: `rgb(${red === '' ? 0 : red},${green === '' ? 0 : green},${blue === '' ? 0 : blue})`}}>Random<br/>Color</button>
     </div>

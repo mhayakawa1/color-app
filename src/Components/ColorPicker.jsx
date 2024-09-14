@@ -21,6 +21,27 @@ export default function ColorPicker(props){
   ])
   const [rgbCode, setRGBCode] = useState(`0,0,0`);
 
+  const getInputItems = () => {
+    let inputItems = [];
+    for(let i = 0; i < rgb.length; i++){
+      const color = rgb[i].color;
+      const value = rgb[i].value;
+      inputItems.push(
+        <div key={i} className='input-item'>
+          <input type='range' min='0' max='255' value={value} className='slider' 
+            onChange={event => handleChangeRGB(event, i)}/>
+          <input className='input-number' type='number' value={value}
+            onChange={event => handleChangeRGB(event, i)}/>
+          <label>{color.charAt(0).toUpperCase() + color.slice(1)}</label>
+        </div>
+      )
+    }
+
+    return(
+      inputItems
+    )
+  }
+
   const changeColor = (array) => {
     setHexCode('');
     setDisplayHexCode('');
@@ -33,9 +54,9 @@ export default function ColorPicker(props){
     }
     setRGB(newRGB);
 
-    //const rgbValues = 
-    setRGBArray([rgb[0].value, rgb[1].value, rgb[2].value])
-    setRGBCode(`${rgb[0].value},${rgb[1].value},${rgb[2].value}`);
+    const rgbValues = [rgb[0].value, rgb[1].value, rgb[2].value];
+    setRGBArray(rgbValues);
+    setRGBCode(rgbValues.join(','));
   }
 
   const handleChangeRGB = (event, index) =>{
@@ -72,11 +93,11 @@ export default function ColorPicker(props){
 
       let rgbOutput = []
       for(let i = 0; i < hexInput.length; i = i + 2){
-        rgbOutput.push(hexInput[i]*16 + hexInput[i+1])
+        rgbOutput.push(hexInput[i]*16 + hexInput[i+1]);
       }
 
       for(let i = 0; i < rgb.length; i++){
-        rgb[i].value = rgbOutput[i]
+        rgb[i].value = rgbOutput[i];
       }
     }
   }
@@ -84,8 +105,7 @@ export default function ColorPicker(props){
   const rgbToHex = () =>{
     let hexOutput = [];
     for(let i = 0; i < rgbArray.length; i++){
-      rgbArray[i] = rgbArray[i]/16;
-      rgbArray[i] = rgbArray[i].toString().split('.');
+      rgbArray[i] = (rgbArray[i]/16).toString().split('.');
       rgbArray[i][1] = '.' + rgbArray[i][1];
       if(rgbArray[i][1] === '.undefined'){
         hexOutput.push(hexVals[rgbArray[i][0]], '0');
@@ -107,27 +127,7 @@ export default function ColorPicker(props){
   <div className='component-container-2'>
     <div className='controls-container color-picker-controls'>
       <div className='input-container'>
-        <div className='input-item'>
-          <input type='range' min='0' max='255' value={rgb[0].value} className='slider'
-            onChange={event => handleChangeRGB(event, 0)}/>
-          <input className='input-number' type='number' value={rgb[0].value}
-            onChange={event => handleChangeRGB(event, 0)}/>
-          <label>Red</label>
-        </div>
-        <div className='input-item'>
-          <input type='range' min='0' max='255' value={rgb[1].value} className='slider'
-            onChange={event => handleChangeRGB(event, 1)}/>
-          <input className='input-number' type='number' value={rgb[1].value}
-            onChange={event => handleChangeRGB(event, 1)}/>
-          <label>Green</label>
-        </div>
-        <div className='input-item'>
-          <input type='range' min='0' max='255' value={rgb[2].value} className='slider'
-            onChange={event => handleChangeRGB(event, 2)}/>
-          <input className='input-number' type='number' value={rgb[2].value}
-            onChange={event => handleChangeRGB(event, 2)}/>
-          <label>Blue</label>
-        </div>
+        {getInputItems()}
       </div>
       <div className='hex-container'>
         <button className='btn-standard btn-small' onClick={rgbToHex}>RGB → HEX</button>

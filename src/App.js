@@ -2,7 +2,7 @@ import './App.css';
 import React, { useState, useEffect } from 'react';
 import ColorPicker from './Components/ColorPicker';
 import ColorWheel from './Components/ColorWheel';
-import RandomScheme from './Components/RandomScheme';
+//import RandomScheme from './Components/RandomScheme';
 import SavedColors from './Components/SavedColors';
 import {AiOutlineMenu} from 'react-icons/ai';
 import {AiOutlineClose} from 'react-icons/ai';
@@ -25,7 +25,7 @@ function App() {
     
     if(localStorage.getItem('saveColorData') !== null){
       if(localStorage.getItem('saveColorData').length > 0){
-        setSavedColors(localStorage.getItem('saveColorData').split('*').map(i => i.split(',')))
+        setSavedColors(localStorage.getItem('saveColorData').split(' ').map(i => i.split(',')))
       }
     }
     window.addEventListener('storage', onStorageUpdate);
@@ -41,25 +41,26 @@ function App() {
     setMenuVisible(!menuVisible)
   }
 
+  const save = (colors) => {
+    const joined = colors.join(' ');
+    setSavedColors(colors);
+    setSaveColorData(joined);
+    localStorage.setItem('saveColorData', joined);
+  }
+
   const handleClick = (colorInput, multipleColors, deleteColor) =>{
     let add = []
     if(deleteColor === false){
       if(multipleColors === false){
-        add.push(colorInput)
+        add.push(colorInput);
       }else{
-        add = [...add, ...colorInput]
+        add = [...add, ...colorInput];
       }
-      setSavedColors(savedColors.concat(add))
-      setSaveColorData(savedColors.concat(add).join('*'))
-      localStorage.setItem('saveColorData', savedColors.concat(add).join('*'));
+      save(savedColors.concat(add));
     }else if(multipleColors === false){
-      setSavedColors(savedColors.filter(i => i !== colorInput));
-      setSaveColorData(savedColors.filter(i => i !== colorInput).join('*'))
-      localStorage.setItem('saveColorData', savedColors.filter(i => i !== colorInput).join('*'));
+      save(savedColors.filter(i => i !== colorInput));
     }else{
-      setSavedColors([]);
-      setSaveColorData('');
-      localStorage.setItem('saveColorData', '');
+      save([]);
     }
   }
 

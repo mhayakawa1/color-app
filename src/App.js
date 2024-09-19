@@ -10,7 +10,7 @@ import {AiOutlineClose} from 'react-icons/ai';
 function App() {
   const [savedColors, setSavedColors] = useState([]);
   const [display, setDisplay] = useState('Saved Colors');
-  const [menuVisible, setMenuVisible] = useState(false);
+  const [isMenuVisible, setIsMenuVisible] = useState(false);
   const [saveColorData, setSaveColorData] = useState('');
 
   const onStorageUpdate = (e) => {
@@ -38,7 +38,7 @@ function App() {
   }
 
   function toggleMenu(){
-    setMenuVisible(!menuVisible)
+    setIsMenuVisible(!isMenuVisible)
   }
 
   const save = (colors) => {
@@ -64,7 +64,7 @@ function App() {
     }
   }
 
-  const menuButtons = () => {
+  const renderMenuButtons = () => {
     let buttons = [];
     const components = ['Saved Colors', 'Color Picker', 'Color Wheel'];
     for(let i = 0; i < components.length; i++){
@@ -80,8 +80,8 @@ function App() {
     <main className='app'>
       <div className='menu-container'>
         <div className='menu'>
-          <div className={`menu-btns-container ${menuVisible ? 'menu-btns-height fade-in' : 'fade-out'}`}>
-          {menuButtons()}
+          <div className={`menu-btns-container ${isMenuVisible ? 'menu-btns-height fade-in' : 'fade-out'}`}>
+          {renderMenuButtons()}
           </div>          
           <span className='active-bar' style={
             display === 'Saved Colors' ? {margin: '0'}
@@ -93,10 +93,10 @@ function App() {
       </div>
       <div className='menu-mobile'>
         <button className='dropdown-menu-btn' onClickCapture={toggleMenu}>
-          {!menuVisible ? <AiOutlineMenu className='icon'></AiOutlineMenu> : 
+          {!isMenuVisible ? <AiOutlineMenu className='icon'></AiOutlineMenu> : 
             <AiOutlineClose className='icon'></AiOutlineClose>}          
         </button>
-        {menuButtons()}
+        {renderMenuButtons()}
       </div>
 
       <div className='component-container'>

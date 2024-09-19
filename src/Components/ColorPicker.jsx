@@ -2,10 +2,9 @@ import React, { useState } from 'react';
 
 export default function ColorPicker(props){
   const [hexCode, setHexCode] = useState('');
-  const [displayHexCode, setDisplayHexCode] = useState('');
-  const hexVals = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'a', 'b', 'c', 'd', 'e', 'f'];
+  const hexCharacters = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'a', 'b', 'c', 'd', 'e', 'f'];
   const [rgbArray, setRGBArray ] = useState([0,0,0]);
-  const [rgb, setRGB] = useState([
+  const [rgbValues, setRgbValues] = useState([
     {
       color: 'red',
       value: 0
@@ -21,11 +20,11 @@ export default function ColorPicker(props){
   ])
   const [rgbCode, setRGBCode] = useState(`0,0,0`);
 
-  const getInputItems = () => {
+  const renderInputItems = () => {
     let inputItems = [];
-    for(let i = 0; i < rgb.length; i++){
-      const color = rgb[i].color;
-      const value = rgb[i].value;
+    for(let i = 0; i < rgbValues.length; i++){
+      const color = rgbValues[i].color;
+      const value = rgbValues[i].value;
       inputItems.push(
         <div key={i} className='input-item'>
           <input type='range' min='0' max='255' value={value} className='slider' 
@@ -44,37 +43,29 @@ export default function ColorPicker(props){
 
   const changeColor = (array) => {
     setHexCode('');
-    setDisplayHexCode('');
 
-    let newRGB = [...rgb];
+    let newRGB = [...rgbValues];
     for(let i = 0; i < newRGB.length; i++){
       if(array[i] !== undefined){
-        newRGB[i].value = array[i]
+        newRGB[i].value = array[i];
       }
     }
-    setRGB(newRGB);
+    setRgbValues(newRGB);
 
-    const rgbValues = [rgb[0].value, rgb[1].value, rgb[2].value];
-    setRGBArray(rgbValues);
-    setRGBCode(rgbValues.join(','));
+    const newRgbValues = [rgbValues[0].value, rgbValues[1].value, rgbValues[2].value];
+    setRGBArray(newRgbValues);
+    setRGBCode(newRgbValues.join(','));
   }
 
   const handleChangeRGB = (event, index) =>{
     const value = event.target.value;
-    let numValue;
     let values = [undefined, undefined, undefined];
     values[index] = value;
     changeColor(values);
-
-    if(value[0] === 0 && value.length > 1){
-      numValue = 0;
-    }else if(value >= 0 && value <= 255){
-      numValue = value
-    }
   }
 
   const handleChangeHEX = (event) => {
-    setHexCode(event.target.value.slice(1))
+    setHexCode(event.target.value.slice(1));
   }
 
   const handleKeyDown = (event) => {
@@ -82,10 +73,9 @@ export default function ColorPicker(props){
     if(event.keyCode === 13 && keyValue.length === 7
         && /^[A-Fa-f0-9]*$/.test(keyValue.slice(1)) === true){
       let hexInput = keyValue.toLowerCase().slice(1).split('')
-      setDisplayHexCode(keyValue.toUpperCase().slice(1))
       for(let i = 0; i < hexInput.length; i++){
         if(/[0-9]/.test(hexInput[i]) === false){
-          hexInput.splice(i, 1, hexVals.indexOf(hexInput[i]));
+          hexInput.splice(i, 1, hexCharacters.indexOf(hexInput[i]));
         }else{
           hexInput.splice(i, 1, Number(hexInput[i]));
         }
@@ -96,25 +86,24 @@ export default function ColorPicker(props){
         rgbOutput.push(hexInput[i]*16 + hexInput[i+1]);
       }
 
-      for(let i = 0; i < rgb.length; i++){
-        rgb[i].value = rgbOutput[i];
+      for(let i = 0; i < rgbValues.length; i++){
+        rgbValues[i].value = rgbOutput[i];
       }
     }
   }
 
-  const rgbToHex = () =>{
+  const convertRgbToHex = () =>{
     let hexOutput = [];
     for(let i = 0; i < rgbArray.length; i++){
       rgbArray[i] = (rgbArray[i]/16).toString().split('.');
       rgbArray[i][1] = '.' + rgbArray[i][1];
       if(rgbArray[i][1] === '.undefined'){
-        hexOutput.push(hexVals[rgbArray[i][0]], '0');
+        hexOutput.push(hexCharacters[rgbArray[i][0]], '0');
       }else{
-        hexOutput.push(hexVals[rgbArray[i][0]], hexVals[rgbArray[i][1]*16]);
+        hexOutput.push(hexCharacters[rgbArray[i][0]], hexCharacters[rgbArray[i][1]*16]);
       }
     }
     setHexCode(hexOutput.join(''));
-    setDisplayHexCode(hexOutput.join(''));
   }
   
   const saveColor = () => {
@@ -127,10 +116,10 @@ export default function ColorPicker(props){
   <div className='component-container-2'>
     <div className='controls-container color-picker-controls'>
       <div className='input-container'>
-        {getInputItems()}
+        {renderInputItems()}
       </div>
       <div className='hex-container'>
-        <button className='btn-standard btn-small' onClick={rgbToHex}>RGB → HEX</button>
+        <button className='btn-standard btn-small' onClick={convertRgbToHex}>RGB → HEX</button>
         <input onChange={(event) => handleChangeHEX(event)}
           onKeyDown={(event) => handleKeyDown(event)}
           value={`#${hexCode.toUpperCase()}`}/>
@@ -150,7 +139,7 @@ export default function ColorPicker(props){
           style={{backgroundColor: `rgb(${rgbCode})`}}>
           <div className='custom-color-info'>
             <p>{`RGB: (${rgbCode})`}</p>
-            <p>HEX: {displayHexCode === '' ? '-' : `#${displayHexCode.toUpperCase()}`}</p>
+            <p>HEX: {hexCode === '' ? '-' : `#${hexCode.toUpperCase()}`}</p>
           </div>
         </div>
     </div>

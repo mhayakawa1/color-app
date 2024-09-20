@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 
 export default function ColorWheel() {
   const [colorIndexes, setColorIndexes] = useState([0]);
-
   const [colorsInfo, setColorsInfo] = useState(
     [
       { color: 'red', active: false },
@@ -20,7 +19,7 @@ export default function ColorWheel() {
     ]
   )
 
-  const colorSchemeOptions = () => {
+  const renderSchemeOptions = () => {
     let options = [];
 
     const optionsInfo = {
@@ -56,34 +55,34 @@ export default function ColorWheel() {
     setColorsInfo(newInfo);   
   }
 
-  const colorNamesLoop = () => {
-    let renderColorNames = []
+  const renderColorNames = () => {
+    let colorNames = [];
 
     for (let i = 0; i < colorsInfo.length; i++) {
       if (colorsInfo[i].active) {
-        renderColorNames.push(
+        colorNames.push(
           <li key={i}>{colorsInfo[i].color.split('-').map((i) => i[0].toUpperCase() + i.substring(1, i.length)).join(' ')}</li>
         )
       }
     }
 
     return (
-      renderColorNames
+      colorNames
     )
   }
 
-  const colorWheelButtons = () => {
-    let buttonsArr = [];
+  const renderWheelButtons = () => {
+    let buttons = [];
 
     for (let i = 0; i < colorsInfo.length; i++) {
-      buttonsArr.push(
+      buttons.push(
         <button key={i} onClick={() => changeColorInfo(false, colorsInfo[i].color)}
           className={`color-wheel-circle ${colorsInfo[i].color} ${colorsInfo[i].active ? 'dropshadow' : ''}`}></button>
       )
     }
 
     return (
-      buttonsArr
+      buttons
     )
   }
 
@@ -93,21 +92,21 @@ export default function ColorWheel() {
         <div className='dropdown-container'>
           <select className='color-scheme-dropdown'
             onChange={handleDropdown}>
-              {colorSchemeOptions()}
+              {renderSchemeOptions()}
           </select>
         </div>
         <button className='btn-standard color-wheel-reset' onClick={() => changeColorInfo(true, 'red')}>Reset</button>
         <ul className='color-names-1'>
-          {colorNamesLoop()}
+          {renderColorNames()}
         </ul>
       </div>
 
       <div className='component-display color-wheel-display'>
         <div className='wheel-container'>
-          {colorWheelButtons()}
+          {renderWheelButtons()}
         </div>
         <ul className='color-names-2'>
-          {colorNamesLoop()}
+          {renderColorNames()}
         </ul>
       </div>
     </div>

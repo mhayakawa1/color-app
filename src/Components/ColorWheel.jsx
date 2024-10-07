@@ -24,7 +24,7 @@ export default function ColorWheel() {
 
     const optionsInfo = {
       'monochrome': '0',
-      'complementary': '0, 6',
+      'complementary': '0 6',
       'analogous': '0 1 11',
       'split-complementary': '0 5 7',
       'triadic': '0 4 8',
@@ -52,7 +52,7 @@ export default function ColorWheel() {
   const changeColorInfo = (reset, selectedColor) => {
     let newInfo = [...colorsInfo.splice(colorsInfo.indexOf(colorsInfo.find((i) => i.color === selectedColor))), ...colorsInfo.splice(0)];
     newInfo.map((i) => !reset && colorIndexes.includes(newInfo.indexOf(i)) ? i.active = true : i.active = false);
-    setColorsInfo(newInfo);   
+    setColorsInfo(newInfo);
   }
 
   const renderColorNames = () => {

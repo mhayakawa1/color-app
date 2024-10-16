@@ -25,7 +25,7 @@ function App() {
     
     if(localStorage.getItem('saveColorData') !== null){
       if(localStorage.getItem('saveColorData').length > 0){
-        setSavedColors(localStorage.getItem('saveColorData').split(' ').map(i => i.split(',')))
+        setSavedColors(JSON.parse(localStorage.getItem('saveColorData')));
       }
     }
     window.addEventListener('storage', onStorageUpdate);
@@ -42,10 +42,9 @@ function App() {
   }
 
   const save = (colors) => {
-    const joined = colors.join(' ');
     setSavedColors(colors);
-    setSaveColorData(joined);
-    localStorage.setItem('saveColorData', joined);
+    setSaveColorData(colors.join(' '));
+    localStorage.setItem('saveColorData', JSON.stringify(colors));
   }
 
   const handleClick = (colorInput, multipleColors, deleteColor) =>{

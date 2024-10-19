@@ -72,7 +72,7 @@ export default function ColorPicker(props){
     const keyValue = event.target.value;
     if(event.keyCode === 13 && keyValue.length === 7
         && /^[A-Fa-f0-9]*$/.test(keyValue.slice(1)) === true){
-      let hexInput = keyValue.toLowerCase().slice(1).split('')
+      let hexInput = keyValue.toLowerCase().slice(1).split('');
       for(let i = 0; i < hexInput.length; i++){
         if(/[0-9]/.test(hexInput[i]) === false){
           hexInput.splice(i, 1, hexCharacters.indexOf(hexInput[i]));

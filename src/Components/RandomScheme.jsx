@@ -1,5 +1,10 @@
 import React, { useState } from 'react';
 
+{/*
+  There is currently no working compatible API for this component, 
+  so this feature is indefinitely removed from the app
+*/}
+
 export default function RandomScheme(props){
   const [schemeArr, setSchemeArr] = useState([]);
   const hexVals = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'a', 'b', 'c', 'd', 'e', 'f'];

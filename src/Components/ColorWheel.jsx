@@ -46,10 +46,11 @@ export default function ColorWheel() {
   const handleDropdown = (event) => {
     setColorIndexes([...event.target[event.target.selectedIndex]
       .getAttribute('data-numbers')
-      .split(' ')].map((i) => Number(i)));
+      .split(' ')].map((value) => Number(value)));
   }
 
   const changeColorInfo = (reset, selectedColor) => {
+    // console.log(colorsInfo)
     let newInfo = [...colorsInfo.splice(colorsInfo.indexOf(colorsInfo.find((i) => i.color === selectedColor))), ...colorsInfo.splice(0)];
     newInfo.map((i) => !reset && colorIndexes.includes(newInfo.indexOf(i)) ? i.active = true : i.active = false);
     setColorsInfo(newInfo);

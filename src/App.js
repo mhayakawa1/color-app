@@ -57,7 +57,7 @@ function App() {
       }
       save(savedColors.concat(add));
     }else if(multipleColors === false){
-      save(savedColors.filter(i => i !== colorInput));
+      save(savedColors.filter(colorValues => colorValues !== colorInput));
     }else{
       save([]);
     }

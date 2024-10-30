@@ -80,7 +80,6 @@ export default function ColorPicker(props){
           hexInput.splice(i, 1, Number(hexInput[i]));
         }
       }
-
       let rgbOutput = []
       for(let i = 0; i < hexInput.length; i = i + 2){
         rgbOutput.push(hexInput[i]*16 + hexInput[i+1]);
@@ -90,6 +89,7 @@ export default function ColorPicker(props){
         rgbValues[i].value = rgbOutput[i];
       }
     }
+    setRGBCode(rgbValues.map((i) => i.value).join(','));
   }
 
   const convertRgbToHex = () =>{

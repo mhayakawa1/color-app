@@ -94,13 +94,14 @@ export default function ColorPicker(props){
 
   const convertRgbToHex = () =>{
     let hexOutput = [];
-    for(let i = 0; i < rgbArray.length; i++){
-      rgbArray[i] = (rgbArray[i]/16).toString().split('.');
-      rgbArray[i][1] = '.' + rgbArray[i][1];
-      if(rgbArray[i][1] === '.undefined'){
-        hexOutput.push(hexCharacters[rgbArray[i][0]], '0');
+    const newRGBArray = [...rgbArray];
+    for(let i = 0; i < newRGBArray.length; i++){
+      newRGBArray[i] = (newRGBArray[i]/16).toString().split('.');
+      newRGBArray[i][1] = '.' + newRGBArray[i][1];
+      if(newRGBArray[i][1] === '.undefined'){
+        hexOutput.push(hexCharacters[newRGBArray[i][0]], '0');
       }else{
-        hexOutput.push(hexCharacters[rgbArray[i][0]], hexCharacters[rgbArray[i][1]*16]);
+        hexOutput.push(hexCharacters[newRGBArray[i][0]], hexCharacters[newRGBArray[i][1]*16]);
       }
     }
     setHexCode(hexOutput.join(''));
@@ -119,15 +120,15 @@ export default function ColorPicker(props){
         {renderInputItems()}
       </div>
       <div className='hex-container'>
-        <button className='btn-standard btn-small' onClick={convertRgbToHex}>RGB → HEX</button>
+        <button className='standard btn-small' onClick={convertRgbToHex}>RGB → HEX</button>
         <input onChange={(event) => handleChangeHEX(event)}
           onKeyDown={(event) => handleKeyDown(event)}
           value={`#${hexCode.toUpperCase()}`}/>
       </div>
       
       <div className='reset-save'>
-        <button className='btn-standard reset' onClick={() => changeColor([0,0,0])}>Reset</button>
-        <button className='btn-standard save'onClick={saveColor}>Save Color</button>
+        <button className='standard reset' onClick={() => changeColor([0,0,0])}>Reset</button>
+        <button className='standard save'onClick={saveColor}>Save Color</button>
       </div>
       <button className='random-color' onClick={() => changeColor([Math.round(Math.random() * (255)),Math.round(Math.random() * (255)),Math.round(Math.random() * (255))])}
         style={{filter: `drop-shadow(0px 0px 4px rgb(${rgbCode}))`,

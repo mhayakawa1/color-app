@@ -50,7 +50,6 @@ export default function ColorWheel() {
   }
 
   const changeColorInfo = (reset, selectedColor) => {
-    // console.log(colorsInfo)
     let newInfo = [...colorsInfo.splice(colorsInfo.indexOf(colorsInfo.find((i) => i.color === selectedColor))), ...colorsInfo.splice(0)];
     newInfo.map((i) => !reset && colorIndexes.includes(newInfo.indexOf(i)) ? i.active = true : i.active = false);
     setColorsInfo(newInfo);
@@ -78,7 +77,7 @@ export default function ColorWheel() {
     for (let i = 0; i < colorsInfo.length; i++) {
       buttons.push(
         <button key={i} onClick={() => changeColorInfo(false, colorsInfo[i].color)}
-          className={`color-wheel-circle ${colorsInfo[i].color} ${colorsInfo[i].active ? 'dropshadow' : ''}`}></button>
+          className={`color-wheel-circle ${colorsInfo[i].color} ${colorsInfo[i].active && 'dropshadow'}`}></button>
       )
     }
 
@@ -96,7 +95,7 @@ export default function ColorWheel() {
               {renderSchemeOptions()}
           </select>
         </div>
-        <button className='btn-standard color-wheel-reset' onClick={() => changeColorInfo(true, 'red')}>Reset</button>
+        <button className='standard color-wheel-reset' onClick={() => changeColorInfo(true, 'red')}>Reset</button>
         <ul className='color-names-1'>
           {renderColorNames()}
         </ul>

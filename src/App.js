@@ -2,7 +2,6 @@ import './App.css';
 import React, { useState, useEffect } from 'react';
 import ColorPicker from './Components/ColorPicker';
 import ColorWheel from './Components/ColorWheel';
-//import RandomScheme from './Components/RandomScheme';
 import SavedColors from './Components/SavedColors';
 import {AiOutlineMenu} from 'react-icons/ai';
 import {AiOutlineClose} from 'react-icons/ai';
@@ -38,7 +37,7 @@ function App() {
   }
 
   function toggleMenu(){
-    setIsMenuVisible(!isMenuVisible)
+  setIsMenuVisible(!isMenuVisible)
   }
 
   const save = (colors) => {
@@ -91,7 +90,7 @@ function App() {
         </div>
       </div>
       <div className='menu-mobile'>
-        <button className='dropdown-menu-btn' onClickCapture={toggleMenu}>
+        <button className='dropdown-button' onClickCapture={toggleMenu}>
           {!isMenuVisible ? <AiOutlineMenu className='icon'></AiOutlineMenu> : 
             <AiOutlineClose className='icon'></AiOutlineClose>}          
         </button>

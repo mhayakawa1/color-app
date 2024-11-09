@@ -71,7 +71,7 @@ button, p, input, select, label, li{
   font-size: .75rem;
 }
 
-.btn-standard{
+.standard{
   filter: drop-shadow(0px 0px 4px rgb(255,255,255,.25));
   height: 44px;
   width: 11rem;
@@ -83,35 +83,35 @@ button, p, input, select, label, li{
 }
 
 @media screen and (max-width: 769px){
-  .btn-standard{
+  .standard{
     margin: 0;
   }
 }
 
-.btn-standard:hover{
+.standard:hover{
   border: 2px solid white;
   background-color: rgb(69,69,69,.5);
   color:white;
 }
 
-.btn-standard:active{
+.standard:active{
   border: 2px solid white;
   background-color: rgb(0,0,0,0) !important;
   color: white;
 }
 
-.btn-secondary{
+.secondary{
   padding: 0 16px 0 16px;
   border: 2px solid white;
   background-color: rgb(0,0,0,0);
   color: white;
 }
 
-.btn-secondary:hover{
+.secondary:hover{
   background-color: rgb(80,80,80);
 }
 
-.btn-secondary:active{
+.secondary:active{
   background-color: rgb(0,0,0,.5);
 }
 
@@ -127,7 +127,7 @@ button, p, input, select, label, li{
     font-size: 1.125rem;
   }
 
-  .btn-standard{
+  .standard{
     height: 66px;
     width: 16.5rem;
     padding: 0 24px 0 24px !important;
@@ -135,15 +135,15 @@ button, p, input, select, label, li{
     border: 3px solid black;
   }
 
-  .btn-standard:hover{
+  .standard:hover{
     border: 3px solid white;
   }
   
-  .btn-standard:active{
+  .standard:active{
     border: 3px solid white;
   }
   
-  .btn-secondary{
+  .secondary{
     padding: 0 24px 0 24px;
     border: 3px solid white;
   }
@@ -160,7 +160,7 @@ button, p, input, select, label, li{
     font-size: 1.5rem;
   }
 
-  .btn-standard{
+  .standard{
     height: 88px;
     width: 22rem;
     padding: 0 32px 0 32px !important;
@@ -168,15 +168,15 @@ button, p, input, select, label, li{
     border: 4px solid black;
   }
     
-  .btn-standard:hover{
+  .standard:hover{
     border: 4px solid white;
   }
 
-  .btn-standard:active{
+  .standard:active{
     border: 4px solid white;
   }
 
-  .btn-secondary{
+  .secondary{
     padding: 0 32px 0 32px;
     border: 4px solid white;
   }
@@ -307,7 +307,7 @@ button, p, input, select, label, li{
     border-bottom: 1px solid rgb(220,220,220);
   }
   
-  .dropdown-menu-btn{
+  .dropdown-button{
     align-self: flex-end;
     width: 1rem;
     height: 1rem;

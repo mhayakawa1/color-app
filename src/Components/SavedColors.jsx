@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-// import Button from './Button';
+import Button from './Button';
 
 export default function SavedColors(props) {
   const [isConfirmVisible, setIsConfirmVisible] = useState(false);
@@ -51,7 +51,7 @@ export default function SavedColors(props) {
         <div className='color-info'>
           <p className='color-value'>RGB: <span onClick={() => copyText(`(${props.data[i].join(',')})`)}>{`(${props.data[i].join(',')})`}</span></p>
           <p className='color-value'>HEX: <span onClick={() => copyText(`#${hexValues.join('').toUpperCase()}`)}>#{hexValues.join('').toUpperCase()}</span></p>
-          <button className='standard btn-small'
+          <button className='standard button-small'
             onClick={() => props.clickHandler(props.data[i], false, true)}
           >Delete</button>
         </div>
@@ -69,13 +69,12 @@ export default function SavedColors(props) {
   return (
     <div className='component-container-2 saved-colors'>
       <div className='controls-container'>
-        <button className='standard'
-          onClick={dataLength !== 0 && clearAll('clear all')}>Clear All</button>
+        <Button text='Clear All' handleClick={dataLength !== 0 ? () => clearAll('clear all') : undefined} className={`standard ${dataLength === 0 && 'disabled'}`} />
         <div className={isConfirmVisible ? 'confirm-clear-all' : 'hide-confirm'}>
           <p>Are you sure you want to clear all colors?</p>
           <div className='confirm-btns'>
-            <button className='standard secondary btn-small' onClick={() => clearAll(true)}>Yes</button>
-            <button className='standard secondary btn-small' onClick={() => clearAll(false)}>No</button>
+            <Button text='Yes' handleClick={() => clearAll(true)} className='standard secondary button-small' />
+            <Button text='No' handleClick={() => clearAll(false)} className='standard secondary button-small' />
           </div>
         </div>
         {isCopiedVisible && <p className={`copied fade-copied`}>Copied to clickboard!</p>}
@@ -85,7 +84,7 @@ export default function SavedColors(props) {
         <div className='colors-container'>
           {dataLength === 0 ? <p className='no-colors'>You have no saved colors.</p> : renderSavedColors()}
           {dataLength % 3 === 1 && dataLength % 3 === 2 && filler}
-          {dataLength % 3 === 1 && filler }
+          {dataLength % 3 === 1 && filler}
         </div>
       </div>
     </div>

@@ -66,7 +66,7 @@ const getAPI = () =>{
             <div className='color-info'>
               <p className='color-value'>RGB: {`${color[0]},${color[1]},${color[2]}`}</p>
               <p className='color-value'>HEX: #{hexOutput.join('').toUpperCase()}</p>
-              <button className='standard btn-small' onClick={() => saveSchemeColor(schemeArr[i])}>Save</button>
+              <button className='standard button-small' onClick={() => saveSchemeColor(schemeArr[i])}>Save</button>
             </div>
           </div>
         )

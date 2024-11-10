@@ -96,8 +96,24 @@ button, p, input, select, label, li{
 
 .standard:active{
   border: 2px solid white;
-  background-color: rgb(0,0,0,0) !important;
+  background-color: rgb(0,0,0,0);
   color: white;
+}
+
+.disabled{
+  opacity: 50%;
+}
+
+.disabled:hover{
+  border: 2px solid black;
+  background-color: white;
+  color: black;
+}
+
+.disabled:active{
+  border: 2px solid black;
+  background-color: white;
+  color: black;
 }
 
 .secondary{
@@ -115,7 +131,7 @@ button, p, input, select, label, li{
   background-color: rgb(0,0,0,.5);
 }
 
-.btn-small{
+.button-small{
   height: 32px !important;
   width: 5rem;
   padding: 0 16px 0 16px;
@@ -148,7 +164,7 @@ button, p, input, select, label, li{
     border: 3px solid white;
   }
 
-  .btn-small{
+  .button-small{
     width: 7.5rem;
     height: 48px !important;
     padding: 0 24px 0 24px;
@@ -181,7 +197,7 @@ button, p, input, select, label, li{
     border: 4px solid white;
   }
 
-  .btn-small{
+  .button-small{
     height: 64px !important;
     width: 10rem;
     padding: 0 32px 0 32px;
@@ -1024,7 +1040,7 @@ h3{
   gap: 1rem;
 }
 
-.hex-container .btn-small{
+.hex-container .button-small{
   min-width: 7rem !important;
   max-width: 7rem !important;
 }
@@ -1061,7 +1077,7 @@ h3{
     gap: 1.5rem;
   }
 
-  .hex-container .btn-small{
+  .hex-container .button-small{
     min-width: 10.5rem !important;
     max-width: 10.5rem !important;
   }
@@ -1090,7 +1106,7 @@ h3{
     gap: 2rem;
   }
   
-  .hex-container .btn-small{
+  .hex-container .button-small{
     min-width: 14rem !important;
     max-width: 14rem !important;
   }

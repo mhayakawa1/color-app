@@ -120,7 +120,7 @@ export default function ColorPicker(props){
         {renderInputItems()}
       </div>
       <div className='hex-container'>
-        <button className='standard btn-small' onClick={convertRgbToHex}>RGB → HEX</button>
+        <button className='standard button-small' onClick={convertRgbToHex}>RGB → HEX</button>
         <input onChange={(event) => handleChangeHEX(event)}
           onKeyDown={(event) => handleKeyDown(event)}
           value={`#${hexCode.toUpperCase()}`}/>

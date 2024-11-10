@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+// import Button from './Button';
 
 export default function SavedColors(props) {
   const [isConfirmVisible, setIsConfirmVisible] = useState(false);
@@ -69,7 +70,7 @@ export default function SavedColors(props) {
     <div className='component-container-2 saved-colors'>
       <div className='controls-container'>
         <button className='standard'
-          onClick={dataLength === 0 ? null : () => clearAll('clear all')}>Clear All</button>
+          onClick={dataLength !== 0 && clearAll('clear all')}>Clear All</button>
         <div className={isConfirmVisible ? 'confirm-clear-all' : 'hide-confirm'}>
           <p>Are you sure you want to clear all colors?</p>
           <div className='confirm-btns'>

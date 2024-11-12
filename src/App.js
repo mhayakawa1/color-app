@@ -3,8 +3,7 @@ import React, { useState, useEffect } from 'react';
 import ColorPicker from './Components/ColorPicker';
 import ColorWheel from './Components/ColorWheel';
 import SavedColors from './Components/SavedColors';
-import {AiOutlineMenu} from 'react-icons/ai';
-import {AiOutlineClose} from 'react-icons/ai';
+import {AiOutlineMenu, AiOutlineClose} from 'react-icons/ai';
 
 function App() {
   const [savedColors, setSavedColors] = useState([]);

@@ -87,8 +87,8 @@ export default function ColorWheel() {
   }
 
   return (
-    <div className='component-container-2 color-wheel-component'>
-      <div className='controls-container color-wheel-controls'>
+    <div className='feature color-wheel-component'>
+      <div className='controls color-wheel-controls'>
         <div className='dropdown-container'>
           <select className='color-scheme-dropdown'
             onChange={handleDropdown}>
@@ -96,16 +96,16 @@ export default function ColorWheel() {
           </select>
         </div>
         <button className='standard color-wheel-reset' onClick={() => changeColorInfo(true, 'red')}>Reset</button>
-        <ul className='color-names-1'>
+        <ul className='color-names'>
           {renderColorNames()}
         </ul>
       </div>
 
-      <div className='component-display color-wheel-display'>
+      <div className='display color-wheel-display'>
         <div className='wheel-container'>
           {renderWheelButtons()}
         </div>
-        <ul className='color-names-2'>
+        <ul className='color-names-mobile'>
           {renderColorNames()}
         </ul>
       </div>

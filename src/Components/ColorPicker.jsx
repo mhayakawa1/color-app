@@ -1,4 +1,8 @@
 import React, { useState } from 'react';
+import Button from './Button';
+import Feature from './Feature';
+import Controls from './Controls';
+import Display from './Display';
 
 export default function ColorPicker(props){
   const [hexCode, setHexCode] = useState('');
@@ -114,8 +118,8 @@ export default function ColorPicker(props){
   }
 
   return(    
-  <div className='component-container-2'>
-    <div className='controls-container color-picker-controls'>
+  <Feature>
+    <Controls className='color-picker-controls'>
       <div className='input-container'>
         {renderInputItems()}
       </div>
@@ -127,15 +131,15 @@ export default function ColorPicker(props){
       </div>
       
       <div className='reset-save'>
-        <button className='standard reset' onClick={() => changeColor([0,0,0])}>Reset</button>
-        <button className='standard save'onClick={saveColor}>Save Color</button>
+        <Button className='standard reset' handleClick={() => changeColor([0,0,0])} text='Reset' />
+        <Button className='standard save' handleClick={saveColor} text='Save Color' />
       </div>
       <button className='random-color' onClick={() => changeColor([Math.round(Math.random() * (255)),Math.round(Math.random() * (255)),Math.round(Math.random() * (255))])}
         style={{filter: `drop-shadow(0px 0px 4px rgb(${rgbCode}))`,
           borderColor: `rgb(${rgbCode})`}}>Random<br/>Color</button>
-    </div>
+    </Controls>
     
-    <div className='component-display custom-color-display'>
+    <Display className='custom-color-display'>
         <div className='custom-color-block'
           style={{backgroundColor: `rgb(${rgbCode})`}}>
           <div className='custom-color-info'>
@@ -143,7 +147,7 @@ export default function ColorPicker(props){
             <p>HEX: {hexCode === '' ? '-' : `#${hexCode.toUpperCase()}`}</p>
           </div>
         </div>
-    </div>
-  </div>
+    </Display>
+  </Feature>
   )
 }

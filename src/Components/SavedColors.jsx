@@ -67,8 +67,8 @@ export default function SavedColors(props) {
   const filler = <div aria-hidden='true' className='container-filler'></div>;
 
   return (
-    <div className='component-container-2 saved-colors'>
-      <div className='controls-container'>
+    <div className='feature saved-colors'>
+      <div className='controls'>
         <Button text='Clear All' handleClick={dataLength !== 0 ? () => clearAll('clear all') : undefined} className={`standard ${dataLength === 0 && 'disabled'}`} />
         <div className={isConfirmVisible ? 'confirm-clear-all' : 'hide-confirm'}>
           <p>Are you sure you want to clear all colors?</p>
@@ -80,7 +80,7 @@ export default function SavedColors(props) {
         {isCopiedVisible && <p className={`copied fade-copied`}>Copied to clickboard!</p>}
       </div>
 
-      <div className='component-display'>
+      <div className='display'>
         <div className='colors-container'>
           {dataLength === 0 ? <p className='no-colors'>You have no saved colors.</p> : renderSavedColors()}
           {dataLength % 3 === 1 && dataLength % 3 === 2 && filler}

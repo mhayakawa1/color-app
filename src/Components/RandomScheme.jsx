@@ -79,13 +79,13 @@ const getAPI = () =>{
   }
 
   return(
-  <div className='component-container-2'>
-    <div className='controls-container scheme-controls-container'>
+  <div className='feature'>
+    <div className='controls scheme-controls'>
       <button className='standard' onClick={() => saveAllColors()}>Save All</button>
       <button className='standard' onClick={getAPI}>New Color Scheme</button>
     </div>
     
-    <div className='component-display'>
+    <div className='display'>
       <div className='colors-container'>
           {schemeArr.length === 0 ? <p className='no-colors'>Click "New Color Scheme" to view colors.</p> : colorSchemeLoop()}
           {schemeArr.length%3 === 1 || schemeArr.length%3 === 2 ? <div aria-hidden='true' className='container-filler'></div> : null}

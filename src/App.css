@@ -485,11 +485,11 @@ button, p, input, select, label, li{
   border-bottom-right-radius: 5px !important;
 }
 
-.component-container-2{
+.feature{
   display: flex;
 }
 
-.controls-container{
+.controls{
   padding: 1rem;
   border-right: 1px solid rgb(220,220,220);
   max-width: 35%;
@@ -499,7 +499,7 @@ button, p, input, select, label, li{
   box-sizing: border-box;
 }
 
-.component-display{
+.display{
   width: 100%;
   min-height: 15rem;
   padding: 1rem;
@@ -517,13 +517,13 @@ button, p, input, select, label, li{
     border-bottom-right-radius: 7.5px !important;
   }
 
-  .controls-container{
+  .controls{
     padding: 1.5rem;
     max-width: 52.5%;
     min-width: 22.5rem;
   }
 
-  .component-display{
+  .display{
     min-height: 22.5rem;
     padding: 1.5rem;
     border-bottom-right-radius: 7.5px !important;
@@ -536,12 +536,12 @@ button, p, input, select, label, li{
     border-bottom-right-radius: 10px !important;
   }
 
-  .controls-container{
+  .controls{
     padding: 2rem;
     min-width: 30rem;
   }
 
-  .component-display{
+  .display{
     min-height: 30rem;
     padding: 2rem;
     border-bottom-right-radius: 10px !important;
@@ -549,11 +549,11 @@ button, p, input, select, label, li{
 }
 
 @media screen and (max-width: 769px){
-  .component-container-2{
+  .feature{
     flex-direction: column;
   }
 
-  .controls-container{
+  .controls{
     border: none;
     border-bottom: 1px solid rgb(220,220,220);
     max-width: 100%;
@@ -562,7 +562,7 @@ button, p, input, select, label, li{
     flex-direction: row;
   }
 
-  .component-display{
+  .display{
     width: 100%;
     padding: 1rem;
   }
@@ -573,18 +573,18 @@ button, p, input, select, label, li{
     min-height: 100vh;
   }
 
-  .component-container-2{
+  .feature{
     min-height: 100vh;
   }
 
-  .controls-container{
+  .controls{
     display: flex;
     justify-content: center;
     gap: 1rem;
     height: auto;
   }
 
-  .component-display{
+  .display{
     min-height: 100vh;
     display: flex;
     align-items: start;
@@ -818,7 +818,7 @@ h3{
 }
 
 @media screen and (max-width: 769px){
-  .saved-colors .controls-container{
+  .saved-colors .controls{
     justify-content: space-between;
     align-items: center;
     height: auto;
@@ -850,7 +850,7 @@ h3{
 }
 
 @media screen and (max-width: 426px){
-  .saved-colors .controls-container{
+  .saved-colors .controls{
     flex-direction: column;
     align-items: center;
     height: auto;
@@ -1289,7 +1289,7 @@ h3{
 }
 
 /*RANDOM COLOR SCHEME STARTS HERE*/
-.scheme-controls-container{
+.scheme-controls{
   gap: 1rem;
 }
 
@@ -1356,7 +1356,7 @@ h3{
   border-right: 8px solid transparent;
 }
 
-.color-names-2{
+.color-names-mobile{
   display: none;
 }
 
@@ -1410,11 +1410,11 @@ h3{
     height: 40px;
   }
 
-  .color-names-1{
+  .color-names{
     display: none;
   }
 
-  .color-names-2{
+  .color-names-mobile{
     display: block;
     height: 10rem;
     width: 80%;

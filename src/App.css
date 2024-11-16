@@ -1455,7 +1455,7 @@ h3{
   }
 }
 
-.color-wheel-circle{
+.circle{
   position: absolute;
   width: 4rem;
   aspect-ratio: 1 / 1;
@@ -1464,21 +1464,21 @@ h3{
 }
 
 @media screen and (min-width: 1440px){
-  .color-wheel-circle{
+  .circle{
     width: 6rem;
     height: 6rem;
   }
 }
 
 @media screen and (min-width: 2560px){
-  .color-wheel-circle{
+  .circle{
     width: 8rem;
     height: 8rem;
   }
 }
 
 @media screen and (max-width: 496px){
-  .color-wheel-circle{
+  .circle{
     width: 3rem;
     height: 3rem;
   }

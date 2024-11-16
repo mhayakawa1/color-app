@@ -1,4 +1,15 @@
 import React, { useState } from 'react';
+import Feature from './Feature';
+import Controls from './Controls';
+import Display from './Display';
+
+const Circle = ({ changeColorInfo, colorInfo }) => {
+  const {color, active} = colorInfo;
+  return (
+    <button onClick={() => changeColorInfo(false, color)}
+     className={`circle ${color} ${active && 'dropshadow'}`}></button>
+  )
+}
 
 export default function ColorWheel() {
   const [colorIndexes, setColorIndexes] = useState([0]);
@@ -38,7 +49,7 @@ export default function ColorWheel() {
       )
     })
 
-    return(
+    return (
       options
     )
   }
@@ -71,13 +82,12 @@ export default function ColorWheel() {
     )
   }
 
-  const renderWheelButtons = () => {
+  const renderCircles = () => {
     let buttons = [];
 
     for (let i = 0; i < colorsInfo.length; i++) {
       buttons.push(
-        <button key={i} onClick={() => changeColorInfo(false, colorsInfo[i].color)}
-          className={`color-wheel-circle ${colorsInfo[i].color} ${colorsInfo[i].active && 'dropshadow'}`}></button>
+        <Circle key={i} changeColorInfo={changeColorInfo} colorInfo={colorsInfo[i]} />
       )
     }
 
@@ -87,28 +97,28 @@ export default function ColorWheel() {
   }
 
   return (
-    <div className='feature color-wheel-component'>
-      <div className='controls color-wheel-controls'>
+    <Feature className='color-wheel-component'>
+      <Controls className='color-wheel-controls'>
         <div className='dropdown-container'>
           <select className='color-scheme-dropdown'
             onChange={handleDropdown}>
-              {renderSchemeOptions()}
+            {renderSchemeOptions()}
           </select>
         </div>
         <button className='standard color-wheel-reset' onClick={() => changeColorInfo(true, 'red')}>Reset</button>
         <ul className='color-names'>
           {renderColorNames()}
         </ul>
-      </div>
+      </Controls>
 
-      <div className='display color-wheel-display'>
+      <Display className='color-wheel-display'>
         <div className='wheel-container'>
-          {renderWheelButtons()}
+          {renderCircles()}
         </div>
         <ul className='color-names-mobile'>
           {renderColorNames()}
         </ul>
-      </div>
-    </div>
+      </Display>
+    </Feature>
   )
 }

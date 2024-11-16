@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import Button from './Button';
+import Feature from './Feature';
+import Controls from './Controls';
+import Display from './Display';
 
 export default function SavedColors(props) {
   const [isConfirmVisible, setIsConfirmVisible] = useState(false);
@@ -67,8 +70,8 @@ export default function SavedColors(props) {
   const filler = <div aria-hidden='true' className='container-filler'></div>;
 
   return (
-    <div className='feature saved-colors'>
-      <div className='controls'>
+    <Feature className='saved-colors'>
+      <Controls>
         <Button text='Clear All' handleClick={dataLength !== 0 ? () => clearAll('clear all') : undefined} className={`standard ${dataLength === 0 && 'disabled'}`} />
         <div className={isConfirmVisible ? 'confirm-clear-all' : 'hide-confirm'}>
           <p>Are you sure you want to clear all colors?</p>
@@ -78,15 +81,15 @@ export default function SavedColors(props) {
           </div>
         </div>
         {isCopiedVisible && <p className={`copied fade-copied`}>Copied to clickboard!</p>}
-      </div>
+      </Controls>
 
-      <div className='display'>
+      <Display>
         <div className='colors-container'>
           {dataLength === 0 ? <p className='no-colors'>You have no saved colors.</p> : renderSavedColors()}
           {dataLength % 3 === 1 && dataLength % 3 === 2 && filler}
           {dataLength % 3 === 1 && filler}
         </div>
-      </div>
-    </div>
+      </Display>
+    </Feature>
   )
 }

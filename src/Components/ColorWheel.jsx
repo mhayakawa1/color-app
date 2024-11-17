@@ -3,6 +3,19 @@ import Feature from './Feature';
 import Controls from './Controls';
 import Display from './Display';
 
+const Option = ({item}) => {
+  const [value, numbers] = item;
+  return(
+    <option value={value} data-numbers={numbers}>{value}</option>
+  )
+}
+
+const ColorName = ({colorInfo}) => {
+  return(
+    <li>{colorInfo.color.split('-').map((i) => i[0].toUpperCase() + i.substring(1, i.length)).join(' ')}</li>
+  )
+}
+
 const Circle = ({ changeColorInfo, colorInfo }) => {
   const {color, active} = colorInfo;
   return (
@@ -34,18 +47,17 @@ export default function ColorWheel() {
     let options = [];
 
     const optionsInfo = {
-      'monochrome': '0',
-      'complementary': '0 6',
-      'analogous': '0 1 11',
-      'split-complementary': '0 5 7',
-      'triadic': '0 4 8',
-      'tetradic': '0 2 6 8'
+      'Monochrome': '0',
+      'Complementary': '0 6',
+      'Analogous': '0 1 11',
+      'Split-Complementary': '0 5 7',
+      'Triadic': '0 4 8',
+      'Tetradic': '0 2 6 8'
     }
 
-    Object.entries(optionsInfo).forEach(entry => {
-      const [key, value] = entry;
+    Object.entries(optionsInfo).forEach(item => {
       options.push(
-        <option key={key} value={key} data-numbers={value}>{key[0].toUpperCase() + key.substring(1, key.length)}</option>
+        <Option key={item[0]} item={item}></Option>
       )
     })
 
@@ -72,7 +84,7 @@ export default function ColorWheel() {
     for (let i = 0; i < colorsInfo.length; i++) {
       if (colorsInfo[i].active) {
         colorNames.push(
-          <li key={i}>{colorsInfo[i].color.split('-').map((i) => i[0].toUpperCase() + i.substring(1, i.length)).join(' ')}</li>
+          <ColorName key={i} colorInfo={colorsInfo[i]} />
         )
       }
     }

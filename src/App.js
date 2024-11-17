@@ -65,7 +65,7 @@ function App() {
     let buttons = [];
     const components = ['Saved Colors', 'Color Picker', 'Color Wheel'];
     for(let i = 0; i < components.length; i++){
-      buttons.push(<button key={i} onClick={() => switchComponent(components[i])}>{components[i]}
+      buttons.push(<button key={i} className='menu-button' onClick={() => switchComponent(components[i])}>{components[i]}
       </button>)
     }
     return (
@@ -77,9 +77,9 @@ function App() {
     <main className='app'>
       <div className='menu-container'>
         <div className='menu'>
-          <div className={`menu-btns-container ${isMenuVisible ? 'menu-btns-height fade-in' : 'fade-out'}`}>
+          <div className={`menu-buttons`}>
           {renderMenuButtons()}
-          </div>          
+          </div>
           <span className='active-bar' style={
             display === 'Saved Colors' ? {margin: '0'}
             : display === 'Color Picker' ? {margin: '0 0 0 25%'}
@@ -88,12 +88,14 @@ function App() {
           </span>
         </div>
       </div>
-      <div className='menu-mobile'>
+      <div className='mobile-menu'>
         <button className='dropdown-button' onClickCapture={toggleMenu}>
           {!isMenuVisible ? <AiOutlineMenu className='icon'></AiOutlineMenu> : 
             <AiOutlineClose className='icon'></AiOutlineClose>}          
         </button>
-        {renderMenuButtons()}
+        <div className={`menu-buttons ${isMenuVisible ? 'menu-buttons-height fade-in' : 'fade-out'}`}>
+          {renderMenuButtons()}
+        </div>
       </div>
 
       <div className='component-container'>

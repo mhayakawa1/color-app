@@ -4,6 +4,29 @@ import Feature from './Feature';
 import Controls from './Controls';
 import Display from './Display';
 
+const ColorItem = ({ data, copyText, hexValues, clickHandler }) => {
+  const rgb = data.join(',');
+  const hex = hexValues.join('').toUpperCase();
+  return (
+    <div className='color-item' >
+      <div style={{ backgroundColor: `rgb(${rgb})` }}
+        className='color-block'>
+      </div>
+      <div className='color-info'>
+        <p className='color-value'>RGB: <span onClick={() => copyText(`(${rgb})`)}>{`(${rgb})`}</span></p>
+        <p className='color-value'>HEX: <span onClick={() => copyText(`#${hex}`)}>#{hex}</span></p>
+        <button className='standard button-small'
+          onClick={() => clickHandler(rgb, false, true)}
+        >Delete</button>
+      </div>
+    </div>
+  )
+}
+
+const Filler = () => {
+  return (<div aria-hidden='true' className='filler'></div>)
+}
+
 export default function SavedColors(props) {
   const [isConfirmVisible, setIsConfirmVisible] = useState(false);
   const hexCharacters = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'a', 'b', 'c', 'd', 'e', 'f'];
@@ -59,15 +82,14 @@ export default function SavedColors(props) {
           >Delete</button>
         </div>
       </div>
-      colorBlocks.push(item)
+
+      colorBlocks.push(<ColorItem key={props.data[i]} data={props.data[i]} copyText={copyText} hexValues={hexValues} clickHandler={props.clickHandler} />)
     }
 
     return (
       colorBlocks
     )
   }
-
-  const filler = <div aria-hidden='true' className='container-filler'></div>;
 
   return (
     <Feature className='saved-colors'>
@@ -86,8 +108,8 @@ export default function SavedColors(props) {
       <Display>
         <div className='colors-container'>
           {dataLength === 0 ? <p className='no-colors'>You have no saved colors.</p> : renderSavedColors()}
-          {dataLength % 3 === 1 && dataLength % 3 === 2 && filler}
-          {dataLength % 3 === 1 && filler}
+          {dataLength % 3 === 1 && dataLength % 3 === 2 && <Filler />}
+          {dataLength % 3 === 1 && <Filler />}
         </div>
       </Display>
     </Feature>

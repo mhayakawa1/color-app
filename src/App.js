@@ -3,7 +3,13 @@ import React, { useState, useEffect } from 'react';
 import ColorPicker from './Components/ColorPicker';
 import ColorWheel from './Components/ColorWheel';
 import SavedColors from './Components/SavedColors';
-import {AiOutlineMenu, AiOutlineClose} from 'react-icons/ai';
+import { AiOutlineMenu, AiOutlineClose } from 'react-icons/ai';
+
+const MenuButton = ({switchComponent, component}) => {
+  return (
+    <button className='menu-button' onClick={() => switchComponent(component)}>{component}</button>
+  )
+}
 
 function App() {
   const [savedColors, setSavedColors] = useState([]);
@@ -20,23 +26,24 @@ function App() {
 
   useEffect(() => {
     setSaveColorData(localStorage.getItem('saveColorData') || '');
-    
-    if(localStorage.getItem('saveColorData') !== null){
-      if(localStorage.getItem('saveColorData').length > 0){
+
+    if (localStorage.getItem('saveColorData') !== null) {
+      if (localStorage.getItem('saveColorData').length > 0) {
         setSavedColors(JSON.parse(localStorage.getItem('saveColorData')));
       }
     }
     window.addEventListener('storage', onStorageUpdate);
     return () => {
       window.removeEventListener('storage', onStorageUpdate);
-    };}, []);
+    };
+  }, []);
 
-  function switchComponent(comp){
+  function switchComponent(comp) {
     setDisplay(comp)
   }
 
-  function toggleMenu(){
-  setIsMenuVisible(!isMenuVisible)
+  function toggleMenu() {
+    setIsMenuVisible(!isMenuVisible)
   }
 
   const save = (colors) => {
@@ -45,18 +52,19 @@ function App() {
     localStorage.setItem('saveColorData', JSON.stringify(colors));
   }
 
-  const handleClick = (colorInput, multipleColors, deleteColor) =>{
-    let add = []
-    if(deleteColor === false){
-      if(multipleColors === false){
+  const handleClick = (colorInput, multipleColors, deleteColor) => {
+    let add = [];
+    console.log(colorInput);
+    if (deleteColor === false) {
+      if (multipleColors === false) {
         add.push(colorInput);
-      }else{
+      } else {
         add = [...add, ...colorInput];
       }
       save(savedColors.concat(add));
-    }else if(multipleColors === false){
+    } else if (multipleColors === false) {
       save(savedColors.filter(colorValues => colorValues !== colorInput));
-    }else{
+    } else {
       save([]);
     }
   }
@@ -64,9 +72,10 @@ function App() {
   const renderMenuButtons = () => {
     let buttons = [];
     const components = ['Saved Colors', 'Color Picker', 'Color Wheel'];
-    for(let i = 0; i < components.length; i++){
-      buttons.push(<button key={i} className='menu-button' onClick={() => switchComponent(components[i])}>{components[i]}
-      </button>)
+    for (let i = 0; i < components.length; i++) {
+      buttons.push(
+        <MenuButton key={i} switchComponent={switchComponent} component={components[i]} />
+      )
     }
     return (
       buttons
@@ -78,20 +87,20 @@ function App() {
       <div className='menu-container'>
         <div className='menu'>
           <div className={`menu-buttons`}>
-          {renderMenuButtons()}
+            {renderMenuButtons()}
           </div>
           <span className='active-bar' style={
-            display === 'Saved Colors' ? {margin: '0'}
-            : display === 'Color Picker' ? {margin: '0 0 0 25%'}
-            : {margin: '0 0 0 50%'}
-            }>
+            display === 'Saved Colors' ? { margin: '0' }
+              : display === 'Color Picker' ? { margin: '0 0 0 25%' }
+                : { margin: '0 0 0 50%' }
+          }>
           </span>
         </div>
       </div>
       <div className='mobile-menu'>
         <button className='dropdown-button' onClickCapture={toggleMenu}>
-          {!isMenuVisible ? <AiOutlineMenu className='icon'></AiOutlineMenu> : 
-            <AiOutlineClose className='icon'></AiOutlineClose>}          
+          {!isMenuVisible ? <AiOutlineMenu className='icon'></AiOutlineMenu> :
+            <AiOutlineClose className='icon'></AiOutlineClose>}
         </button>
         <div className={`menu-buttons ${isMenuVisible ? 'menu-buttons-height fade-in' : 'fade-out'}`}>
           {renderMenuButtons()}
@@ -101,7 +110,7 @@ function App() {
       <div className='component-container'>
         {display === 'Saved Colors' ? <SavedColors clickHandler={handleClick} data={savedColors} />
           : display === 'Color Picker' ? <ColorPicker clickHandler={handleClick} data={savedColors} />
-          : <ColorWheel/>}
+            : <ColorWheel />}
       </div>
     </main>
   );

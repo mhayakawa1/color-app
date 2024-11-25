@@ -16,7 +16,7 @@ const ColorItem = ({ data, copyText, hexValues, clickHandler }) => {
         <p className='color-value'>RGB: <span onClick={() => copyText(`(${rgb})`)}>{`(${rgb})`}</span></p>
         <p className='color-value'>HEX: <span onClick={() => copyText(`#${hex}`)}>#{hex}</span></p>
         <button className='standard button-small'
-          onClick={() => clickHandler(rgb, false, true)}
+          onClick={() => clickHandler(data, false, true)}
         >Delete</button>
       </div>
     </div>
@@ -70,19 +70,6 @@ export default function SavedColors(props) {
           hexValues.push(hexCharacters[rgbValues[j][0]], hexCharacters[rgbValues[j][1] * 16]);
         }
       }
-      const item = <div key={props.data[i]} className='color-item' >
-        <div style={{ backgroundColor: `rgb(${props.data[i].join(',')})` }}
-          className='color-block'>
-        </div>
-        <div className='color-info'>
-          <p className='color-value'>RGB: <span onClick={() => copyText(`(${props.data[i].join(',')})`)}>{`(${props.data[i].join(',')})`}</span></p>
-          <p className='color-value'>HEX: <span onClick={() => copyText(`#${hexValues.join('').toUpperCase()}`)}>#{hexValues.join('').toUpperCase()}</span></p>
-          <button className='standard button-small'
-            onClick={() => props.clickHandler(props.data[i], false, true)}
-          >Delete</button>
-        </div>
-      </div>
-
       colorBlocks.push(<ColorItem key={props.data[i]} data={props.data[i]} copyText={copyText} hexValues={hexValues} clickHandler={props.clickHandler} />)
     }
 

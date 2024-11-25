@@ -54,17 +54,15 @@ function App() {
 
   const handleClick = (colorInput, multipleColors, deleteColor) => {
     let add = [];
-    console.log(colorInput);
-    if (deleteColor === false) {
-      if (multipleColors === false) {
+    const includesNewColor = savedColors.filter((i) => i !== colorInput).length === 0;
+    if (!deleteColor && includesNewColor) {
+      if (!multipleColors) {
         add.push(colorInput);
       } else {
         add = [...add, ...colorInput];
       }
       save(savedColors.concat(add));
-    } else if (multipleColors === false) {
-      save(savedColors.filter(colorValues => colorValues !== colorInput));
-    } else {
+    } else if(deleteColor){
       save([]);
     }
   }

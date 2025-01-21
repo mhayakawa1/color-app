@@ -22,7 +22,8 @@ export default function ColorPicker(props){
       color: 'blue',
       value: 0
     }
-  ])
+  ]);
+  const [isCopiedVisible, setIsCopiedVisible] = useState(false);
 
   const renderInputItems = () => {
     let inputItems = [];
@@ -117,7 +118,15 @@ export default function ColorPicker(props){
     }
   }
 
-  return(    
+  const copyText = (colorCode) => {
+    navigator.clipboard.writeText(colorCode);
+    setIsCopiedVisible(true);
+    setTimeout(() => {
+      setIsCopiedVisible(false);
+    }, 8000);
+  }
+
+  return(
   <Feature>
     <Controls className='color-picker-controls'>
       <div className='input-container'>
@@ -142,10 +151,11 @@ export default function ColorPicker(props){
     <Display className='custom-color-display'>
         <div className='custom-color-block'
           style={{backgroundColor: `rgb(${rgbCode})`}}>
-          <div className='custom-color-info'>
-            <p>{`RGB: (${rgbCode})`}</p>
-            <p>HEX: {hexCode === '' ? '-' : `#${hexCode.toUpperCase()}`}</p>
-          </div>
+          <ul className='custom-color-info'>
+            <li>RGB: <span className='color-code' onClick={() => copyText(`(${rgbCode})`)}>{rgbCode}</span></li>
+            <li>HEX: {hexCode === '' ? '-' : <span className='color-code' onClick={() => copyText(`#${hexCode.toUpperCase()}`)}>#{hexCode.toUpperCase()}</span>}</li>
+            {isCopiedVisible && <li className={`copied fade-copied`}>Copied to clickboard!</li>}
+          </ul>
         </div>
     </Display>
   </Feature>

@@ -3,7 +3,6 @@ import MenuButtons from "./MenuButtons";
 
 const Menu = () => {
   const { switchComponent, displayData } = useColors();
-  //const [display, setDisplay] = useState("Saved Colors");
 
   return (
     <div className="menu-container">

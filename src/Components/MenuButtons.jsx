@@ -1,8 +1,10 @@
+import { useColors } from "../Contexts/ColorsContext";
 import ColorPicker from "./ColorPicker";
 import ColorWheel from "./ColorWheel";
 import SavedColors from "./SavedColors";
 
-const MenuButtons = ({ switchComponent }) => {
+const MenuButtons = () => {
+  const { switchComponent } = useColors();
   let buttons = [];
   
   const components = [

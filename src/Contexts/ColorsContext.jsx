@@ -46,7 +46,12 @@ export const ColorsProvider = ({ children }) => {
     } else if (deleteColor) {
       save(savedColors.filter((color) => color !== colorInput));
     } else {
-      const newSavedColors = [...savedColors, colorInput];
+      const newSavedColors = [...savedColors];
+      if (typeof colorInput[0] === "number") {
+        newSavedColors.push(colorInput);
+      } else {
+        newSavedColors.push(...colorInput);
+      }
       save(newSavedColors);
     }
   };

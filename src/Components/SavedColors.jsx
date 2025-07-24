@@ -1,41 +1,11 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useColors } from "../Contexts/ColorsContext";
 import Button from "./Button";
 import Feature from "./Feature";
 import Controls from "./Controls";
 import Display from "./Display";
-
-const ColorItem = ({ color, copyText, hexValues }) => {
-  const { updateColors } = useColors();
-  const rgb = color.join(",");
-  const hex = hexValues.join("").toUpperCase();
-  return (
-    <div className="color-item">
-      <div
-        style={{ backgroundColor: `rgb(${rgb})` }}
-        className="color-block"
-      ></div>
-      <div className="color-info">
-        <p className="color-value">
-          RGB: <span onClick={() => copyText(`(${rgb})`)}>{`(${rgb})`}</span>
-        </p>
-        <p className="color-value">
-          HEX: <span onClick={() => copyText(`#${hex}`)}>#{hex}</span>
-        </p>
-        <button
-          className="standard button-small"
-          onClick={() => updateColors(color, true)}
-        >
-          Delete
-        </button>
-      </div>
-    </div>
-  );
-};
-
-const Filler = () => {
-  return <div aria-hidden="true" className="filler"></div>;
-};
+import ColorItem from "./ColorItem";
+import Filler from "./Filler";
 
 export default function SavedColors() {
   const { savedColors, updateColors } = useColors();

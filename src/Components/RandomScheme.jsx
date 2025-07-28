@@ -4,36 +4,57 @@ import Feature from "./Feature";
 import Controls from "./Controls";
 import Display from "./Display";
 import Filler from "./Filler";
+import ColorItem from "./ColorItem";
 
-export default function RandomPalette(props) {
-  const [schemeArr, setSchemeArr] = useState([]);
-  const { savedColors, updateColors } = useColors();
-  const hexVals = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "a", "b", "c", "d", "e", "f"];
+export default function RandomScheme() {
+  const {
+    savedColors,
+    updateColors,
+    isCopiedVisible,
+    copiedFromSaved,
+    hexCharacters,
+    convertHexToRGB
+  } = useColors();
+  const [schemeColors, setSchemeColors] = useState([]);
 
   const getAPI = () => {
-    fetch("http://colormind.io/api/", {
-      method: "POST",
-      body: JSON.stringify({
-        model: "default",
-      }),
+    let colorCode = "";
+    for (let i = 0; i < 6; i++) {
+      const index = Math.floor(Math.random() * 16);
+      colorCode += hexCharacters[index];
+    }
+    fetch(`https://api.apiverve.com/v1/colorpalette?color=${colorCode}`, {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        "x-api-key": "10bad6e5-5a5f-4f9c-abb1-62222730ffac",
+      },
+      method: "GET",
     })
-      .then((res) => res.json())
-      .then((res) => {
-        setSchemeArr(res.result);
+      .then((response) => response.json())
+      .then((result) => {
+        const {
+          data: { colorPaletteRaw },
+        } = result;
+        const newSchemeArr = [];
+        for (let i = 0; i < colorPaletteRaw.length; i++) {
+          newSchemeArr.push(convertHexToRGB(colorPaletteRaw[i]));
+        }
+        setSchemeColors(newSchemeArr);
       });
   };
 
-  const saveSchemeColor = (colors) => {
-    if (props.data.includes(colors) === false) {
-      props.clickHandler(colors, false, false);
+  const saveSchemeColor = (color) => {
+    if (savedColors.includes(color) === false) {
+      updateColors(color, false, false);
     }
   };
 
   const saveAllColors = () => {
     let toAdd = [];
-    for (let i = 0; i < schemeArr.length; i++) {
-      if (savedColors.includes(schemeArr[i]) === false) {
-        toAdd.push(schemeArr[i]);
+    for (let i = 0; i < schemeColors.length; i++) {
+      if (savedColors.includes(schemeColors[i]) === false) {
+        toAdd.push(schemeColors[i]);
       }
     }
     updateColors(toAdd, false, false);
@@ -42,48 +63,35 @@ export default function RandomPalette(props) {
   const colorSchemeLoop = () => {
     let renderScheme = [];
     for (let i = 0; i < 5; i++) {
-      let color = schemeArr[i];
-      let rgbInput = [...schemeArr[i]];
-      let hexOutput = [];
+      let color = schemeColors[i];
+      let rgbInput = [...schemeColors[i]];
+      let hexValues = [];
       for (let j = 0; j < 3; j++) {
         rgbInput[j] = rgbInput[j] / 16;
         rgbInput[j] = rgbInput[j].toString().split(".");
         rgbInput[j][1] = "." + rgbInput[j][1];
         if (rgbInput[j][1] === ".undefined") {
-          hexOutput.push(hexVals[rgbInput[j][0]], "0");
+          hexValues.push(hexCharacters[rgbInput[j][0]], "0");
         } else {
-          hexOutput.push(hexVals[rgbInput[j][0]], hexVals[rgbInput[j][1] * 16]);
+          hexValues.push(
+            hexCharacters[rgbInput[j][0]],
+            hexCharacters[rgbInput[j][1] * 16]
+          );
         }
       }
-
-      if (schemeArr.length > 1) {
+      if (schemeColors.length > 1) {
         renderScheme.push(
-          <div key={i} className="color-item">
-            <div
-              style={{
-                backgroundColor: `rgb(${color[0]},${color[1]},${color[2]})`,
-              }}
-              className="color-block"
-            ></div>
-            <div className="color-info">
-              <p className="color-value">
-                RGB: {`${color[0]},${color[1]},${color[2]}`}
-              </p>
-              <p className="color-value">
-                HEX: #{hexOutput.join("").toUpperCase()}
-              </p>
-              <button
-                className="standard button-small"
-                onClick={() => saveSchemeColor(schemeArr[i])}
-              >
-                Save
-              </button>
-            </div>
-          </div>
+          <ColorItem
+            key={i}
+            color={color}
+            hex={hexValues.join("").toUpperCase()}
+            clickHandler={saveSchemeColor}
+            argumentList={[color]}
+            buttonText="Save"
+          />
         );
       }
     }
-
     return renderScheme;
   };
 
@@ -96,21 +104,24 @@ export default function RandomPalette(props) {
         <button className="standard" onClick={getAPI}>
           New Color Scheme
         </button>
+        {isCopiedVisible && !copiedFromSaved && (
+          <p className={`copied fade-copied`}>Copied to clickboard!</p>
+        )}
       </Controls>
 
       <Display>
         <div className="colors-container">
-          {schemeArr.length === 0 ? (
+          {schemeColors.length === 0 ? (
             <p className="no-colors">
               Click "New Color Scheme" to view colors.
             </p>
           ) : (
             colorSchemeLoop()
           )}
-          {schemeArr.length % 3 === 1 || schemeArr.length % 3 === 2 ? (
+          {schemeColors.length % 3 === 1 || schemeColors.length % 3 === 2 ? (
             <Filler />
           ) : null}
-          {schemeArr.length % 3 === 1 ? <Filler /> : null}
+          {schemeColors.length % 3 === 1 ? <Filler /> : null}
         </div>
       </Display>
     </Feature>

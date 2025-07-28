@@ -8,31 +8,21 @@ import ColorItem from "./ColorItem";
 import Filler from "./Filler";
 
 export default function SavedColors() {
-  const { savedColors, updateColors } = useColors();
+  const {
+    savedColors,
+    updateColors,
+    isCopiedVisible,
+    copiedFromSaved,
+    hexCharacters,
+  } = useColors();
   const [isConfirmVisible, setIsConfirmVisible] = useState(false);
-  const hexCharacters = [
-    0,
-    1,
-    2,
-    3,
-    4,
-    5,
-    6,
-    7,
-    8,
-    9,
-    "a",
-    "b",
-    "c",
-    "d",
-    "e",
-    "f",
-  ];
   const savedColorsLength = savedColors.length;
-  const [isCopiedVisible, setIsCopiedVisible] = useState(false);
 
   const clearAll = (input) => {
     switch (input) {
+      default:
+        alert("Invalid input.");
+        break;
       case "clear all":
         setIsConfirmVisible(true);
         break;
@@ -43,14 +33,6 @@ export default function SavedColors() {
       case false:
         setIsConfirmVisible(false);
     }
-  };
-
-  const copyText = (colorCode) => {
-    navigator.clipboard.writeText(colorCode);
-    setIsCopiedVisible(true);
-    setTimeout(() => {
-      setIsCopiedVisible(false);
-    }, 8000);
   };
 
   const colorBoxes = () => {
@@ -75,15 +57,15 @@ export default function SavedColors() {
         <ColorItem
           key={i}
           color={savedColors[i]}
-          copyText={copyText}
-          hexValues={hexValues}
+          hex={hexValues.join("").toUpperCase()}
+          clickHandler={updateColors}
+          argumentList={[savedColors[i], true]}
+          buttonText="Delete"
         />
       );
     }
-
     return boxes;
   };
-
   return (
     <Feature className="saved-colors">
       <Controls>
@@ -111,11 +93,10 @@ export default function SavedColors() {
             />
           </div>
         </div>
-        {isCopiedVisible && (
+        {isCopiedVisible && copiedFromSaved && (
           <p className={`copied fade-copied`}>Copied to clickboard!</p>
         )}
       </Controls>
-
       <Display>
         <div className="colors-container">
           {savedColorsLength === 0 ? (
@@ -123,9 +104,8 @@ export default function SavedColors() {
           ) : (
             colorBoxes()
           )}
-          {savedColorsLength % 3 === 1 && savedColorsLength % 3 === 2 && (
-            <Filler />
-          )}
+          {savedColorsLength % 3 === 1 ||
+            (savedColorsLength % 3 === 2 && <Filler />)}
           {savedColorsLength % 3 === 1 && <Filler />}
         </div>
       </Display>

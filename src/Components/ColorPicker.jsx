@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useColors } from "../Contexts/ColorsContext";
 import Button from "./Button";
 import Feature from "./Feature";
@@ -6,26 +6,8 @@ import Controls from "./Controls";
 import Display from "./Display";
 
 export default function ColorPicker() {
-  const { savedColors, updateColors } = useColors();
+  const { savedColors, updateColors, hexCharacters, convertHexToRGB } = useColors();
   const [hexCode, setHexCode] = useState("");
-  const hexCharacters = [
-    0,
-    1,
-    2,
-    3,
-    4,
-    5,
-    6,
-    7,
-    8,
-    9,
-    "a",
-    "b",
-    "c",
-    "d",
-    "e",
-    "f",
-  ];
   const [rgbArray, setRGBArray] = useState([0, 0, 0]);
   const [rgbCode, setRGBCode] = useState(`0,0,0`);
   const [rgbValues, setRgbValues] = useState([
@@ -111,19 +93,8 @@ export default function ColorPicker() {
       keyValue.length === 7 &&
       /^[A-Fa-f0-9]*$/.test(keyValue.slice(1)) === true
     ) {
-      let hexInput = keyValue.toLowerCase().slice(1).split("");
-      for (let i = 0; i < hexInput.length; i++) {
-        if (/[0-9]/.test(hexInput[i]) === false) {
-          hexInput.splice(i, 1, hexCharacters.indexOf(hexInput[i]));
-        } else {
-          hexInput.splice(i, 1, Number(hexInput[i]));
-        }
-      }
-      let rgbOutput = [];
-      for (let i = 0; i < hexInput.length; i = i + 2) {
-        rgbOutput.push(hexInput[i] * 16 + hexInput[i + 1]);
-      }
-
+      let hexInput = keyValue.toLowerCase().slice(1);
+      const rgbOutput = convertHexToRGB(hexInput);
       for (let i = 0; i < rgbValues.length; i++) {
         rgbValues[i].value = rgbOutput[i];
       }
@@ -150,10 +121,7 @@ export default function ColorPicker() {
   };
 
   const saveColor = () => {
-    // console.log(JSON.stringify(savedColors), JSON.stringify(rgbArray))
-    // console.log('string', JSON.stringify(savedColors).includes(JSON.stringify(rgbArray)))
-    // console.log('not string', savedColors.includes(rgbArray))
-    if(!JSON.stringify(savedColors).includes(JSON.stringify(rgbArray))){
+    if (!JSON.stringify(savedColors).includes(JSON.stringify(rgbArray))) {
       updateColors(rgbArray, false);
     }
   };

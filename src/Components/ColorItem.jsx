@@ -1,9 +1,9 @@
 import { useColors } from "../Contexts/ColorsContext";
 
-const ColorItem = ({ color, copyText, hexValues }) => {
-  const { updateColors } = useColors();
+const ColorItem = ({ color, hex, clickHandler, argumentList, buttonText }) => {
+  const { copyText } = useColors();
   const rgb = color.join(",");
-  const hex = hexValues.join("").toUpperCase();
+  const copiedFromSaved = buttonText === "Delete";
   return (
     <div className="color-item">
       <div
@@ -12,16 +12,22 @@ const ColorItem = ({ color, copyText, hexValues }) => {
       ></div>
       <div className="color-info">
         <p className="color-value">
-          RGB: <span onClick={() => copyText(`(${rgb})`)}>{`(${rgb})`}</span>
+          RGB:{" "}
+          <span
+            onClick={() => copyText(`(${rgb})`, copiedFromSaved)}
+          >{`(${rgb})`}</span>
         </p>
         <p className="color-value">
-          HEX: <span onClick={() => copyText(`#${hex}`)}>#{hex}</span>
+          HEX:{" "}
+          <span onClick={() => copyText(`#${hex}`, copiedFromSaved)}>
+            #{hex}
+          </span>
         </p>
         <button
           className="standard button-small"
-          onClick={() => updateColors(color, true)}
+          onClick={() => clickHandler(...argumentList)}
         >
-          Delete
+          {buttonText}
         </button>
       </div>
     </div>

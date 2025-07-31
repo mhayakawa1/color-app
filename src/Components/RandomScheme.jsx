@@ -13,7 +13,7 @@ export default function RandomScheme() {
     isCopiedVisible,
     copiedFromSaved,
     hexCharacters,
-    convertHexToRGB
+    convertHexToRGB,
   } = useColors();
   const [schemeColors, setSchemeColors] = useState([]);
 
@@ -62,7 +62,7 @@ export default function RandomScheme() {
 
   const colorSchemeLoop = () => {
     let renderScheme = [];
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < schemeColors.length; i++) {
       let color = schemeColors[i];
       let rgbInput = [...schemeColors[i]];
       let hexValues = [];
@@ -118,9 +118,9 @@ export default function RandomScheme() {
           ) : (
             colorSchemeLoop()
           )}
-          {schemeColors.length % 3 === 1 || schemeColors.length % 3 === 2 ? (
+          {(schemeColors.length % 3 === 1 || schemeColors.length % 3 === 2) && (
             <Filler />
-          ) : null}
+          )}
           {schemeColors.length % 3 === 1 ? <Filler /> : null}
         </div>
       </Display>

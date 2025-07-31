@@ -628,11 +628,11 @@ h3 {
 .colors-container {
   align-self: start;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   flex-wrap: wrap;
-  width: fit-content;
+  width: 100%;
   min-height: 15rem;
-  gap: 1rem;
+  gap: 3.5%;
   row-gap: 1rem;
   padding: 0;
 }
@@ -700,10 +700,10 @@ h3 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
   opacity: 100%;
   box-sizing: border-box;
-  padding: 0.5rem 0;
+  gap: 5%;
 }
 
 .color-info:hover {
@@ -725,43 +725,27 @@ h3 {
 }
 
 @media screen and (min-width: 1440px) {
-  .filler {
-    width: 15rem;
-  }
-
-  .color-item {
-    width: 15rem;
-  }
-
   .color-item button {
     padding: 0 1.5rem 0 1.5rem;
     font-size: 1.125rem;
-    margin: 0.75rem 0 0 0;
   }
 
   .color-value {
-    margin: 0.75rem 0 0 0;
     font-size: 1.125rem;
     line-height: 1.25rem;
   }
 }
 
 @media screen and (min-width: 2560px) {
-  .filler {
-    width: 20rem;
-  }
-
   .color-item {
-    width: 20rem;
     border-radius: 10px;
   }
 
   .color-block {
-    border-radius: 10px;
+    border-radius: 10px 10px 0 0;
   }
 
   .color-value {
-    margin: 1rem 0 0 0;
     font-size: 1.5rem;
     line-height: 1.5rem;
   }
@@ -769,7 +753,6 @@ h3 {
   .color-item button {
     padding: 0 2rem 0 2rem;
     font-size: 1.5rem;
-    margin: 1rem 0 0 0;
   }
 }
 

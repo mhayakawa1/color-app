@@ -104,8 +104,9 @@ export default function SavedColors() {
           ) : (
             colorBoxes()
           )}
-          {savedColorsLength % 3 === 1 ||
-            (savedColorsLength % 3 === 2 && <Filler />)}
+          {(savedColorsLength % 3 === 1 || savedColorsLength % 3 === 2) && (
+            <Filler />
+          )}
           {savedColorsLength % 3 === 1 && <Filler />}
         </div>
       </Display>

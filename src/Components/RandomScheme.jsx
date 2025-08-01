@@ -16,6 +16,8 @@ export default function RandomScheme() {
     convertHexToRGB,
   } = useColors();
   const [schemeColors, setSchemeColors] = useState([]);
+  const [isError, setIsError] = useState(false);
+  const [errorMessage, setIsErrorMessage] = useState("");
 
   const getAPI = () => {
     let colorCode = "";
@@ -41,6 +43,13 @@ export default function RandomScheme() {
           newSchemeArr.push(convertHexToRGB(colorPaletteRaw[i]));
         }
         setSchemeColors(newSchemeArr);
+        if (isError) {
+          setIsError(false);
+        }
+      })
+      .catch((error) => {
+        setIsError(true);
+        setIsErrorMessage(error.toString());
       });
   };
 
@@ -110,19 +119,22 @@ export default function RandomScheme() {
       </Controls>
 
       <Display>
-        <div className="colors-container">
-          {schemeColors.length === 0 ? (
-            <p className="no-colors">
-              Click "New Color Scheme" to view colors.
-            </p>
-          ) : (
-            colorSchemeLoop()
-          )}
-          {(schemeColors.length % 3 === 1 || schemeColors.length % 3 === 2) && (
-            <Filler />
-          )}
-          {schemeColors.length % 3 === 1 ? <Filler /> : null}
-        </div>
+        {isError ? (
+          <p className="no-colors">{errorMessage}</p>
+        ) : (
+          <div className="colors-container">
+            {schemeColors.length === 0 ? (
+              <p className="no-colors">
+                Click "New Color Scheme" to view colors.
+              </p>
+            ) : (
+              colorSchemeLoop()
+            )}
+            {(schemeColors.length % 3 === 1 ||
+              schemeColors.length % 3 === 2) && <Filler />}
+            {schemeColors.length % 3 === 1 ? <Filler /> : null}
+          </div>
+        )}
       </Display>
     </Feature>
   );

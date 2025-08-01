@@ -98,23 +98,24 @@ export default function ColorWheel() {
   return (
     <Feature className="color-wheel-component">
       <Controls className="color-wheel-controls">
-        <div className="dropdown-container">
-          <select className="color-scheme-dropdown" onChange={handleDropdown}>
-            {renderSchemeOptions()}
-          </select>
+        <div className="controls-container">
+          <div className="dropdown-container">
+            <select className="color-scheme-dropdown" onChange={handleDropdown}>
+              {renderSchemeOptions()}
+            </select>
+          </div>
+          <button
+            className="standard color-wheel-reset"
+            onClick={() => changeColorInfo(true, "red")}
+          >
+            Reset
+          </button>
         </div>
-        <button
-          className="standard color-wheel-reset"
-          onClick={() => changeColorInfo(true, "red")}
-        >
-          Reset
-        </button>
         <ul className="color-names">{renderColorNames()}</ul>
       </Controls>
 
       <Display className="color-wheel-display">
         <div className="wheel-container">{renderCircles()}</div>
-        <ul className="color-names-mobile">{renderColorNames()}</ul>
       </Display>
     </Feature>
   );

@@ -12,11 +12,13 @@ export const ColorsProvider = ({ children }) => {
   const [savedColors, setSavedColors] = useState([]);
   const [isCopiedVisible, setIsCopiedVisible] = useState(false);
   const [copiedFromSaved, setCopiedFromSaved] = useState(true);
+  const [mobileView, setMobileView] = useState(false);
   const [displayData, setDisplay] = useState({
     component: <SavedColors />,
     name: "Saved Colors",
     margin: "0",
   });
+  const storageItem = "savedColors";
   const hexCharacters = [
     0,
     1,
@@ -44,7 +46,24 @@ export const ColorsProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    setSavedColors(JSON.parse(localStorage.getItem("savedColors")) || []);
+    try {
+      const val = JSON.parse(localStorage.getItem("savedColors"));
+      if (Array.isArray(val)) {
+        setSavedColors(val);
+      }
+    } catch (e) {
+      console.warn("Unparseable value in localStorage, ignoring", e);
+    }
+
+    const handleResize = () => {
+      if (window.innerWidth < 640) {
+        setMobileView(true);
+      } else if (window.innerWidth >= 640) {
+        setMobileView(false);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
     window.addEventListener("storage", onStorageUpdate);
     return () => {
       window.removeEventListener("storage", onStorageUpdate);
@@ -57,7 +76,7 @@ export const ColorsProvider = ({ children }) => {
 
   const save = (colors) => {
     setSavedColors(colors);
-    localStorage.setItem("savedColors", JSON.stringify(colors));
+    localStorage.setItem(storageItem, JSON.stringify(colors));
   };
 
   const updateColors = (colorInput, deleteColor, clearAll) => {
@@ -104,15 +123,16 @@ export const ColorsProvider = ({ children }) => {
   return (
     <ColorsContext.Provider
       value={{
-        savedColors,
-        isCopiedVisible,
-        updateColors,
-        switchComponent,
-        displayData,
-        copyText,
-        copiedFromSaved,
-        hexCharacters,
         convertHexToRGB,
+        copiedFromSaved,
+        copyText,
+        displayData,
+        hexCharacters,
+        isCopiedVisible,
+        mobileView,
+        savedColors,
+        switchComponent,
+        updateColors,
       }}
     >
       {children}

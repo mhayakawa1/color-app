@@ -1,16 +1,13 @@
 import "./App.css";
-import React, { useState } from "react";
 import { ColorsProvider } from "./Contexts/ColorsContext";
 import ComponentContainer from "./Components/ComponentContainer";
-import Menu from "./Components/Menu";
-import MobileMenu from "./Components/MobileMenu";
+import MenuContainer from "./Components/MenuContainer";
 
 function App() {
   return (
     <ColorsProvider>
       <main className="app">
-        <Menu />
-        <MobileMenu />
+        <MenuContainer />
         <ComponentContainer />
       </main>
     </ColorsProvider>

@@ -122,6 +122,7 @@ export default function ColorPicker() {
 
   const saveColor = () => {
     if (!JSON.stringify(savedColors).includes(JSON.stringify(rgbArray))) {
+      console.log(rgbArray)
       updateColors(rgbArray, false);
     }
   };

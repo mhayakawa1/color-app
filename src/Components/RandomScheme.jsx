@@ -8,7 +8,7 @@ import ColorItem from "./ColorItem";
 
 export default function RandomScheme() {
   const {
-    savedColors,
+    singleColors,
     updateColors,
     isCopiedVisible,
     copiedFromSaved,
@@ -54,7 +54,7 @@ export default function RandomScheme() {
   };
 
   const saveSchemeColor = (color) => {
-    if (savedColors.includes(color) === false) {
+    if (singleColors.includes(color) === false) {
       updateColors(color, false, false);
     }
   };
@@ -62,7 +62,7 @@ export default function RandomScheme() {
   const saveAllColors = () => {
     let toAdd = [];
     for (let i = 0; i < schemeColors.length; i++) {
-      if (savedColors.includes(schemeColors[i]) === false) {
+      if (singleColors.includes(schemeColors[i]) === false) {
         toAdd.push(schemeColors[i]);
       }
     }

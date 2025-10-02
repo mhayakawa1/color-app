@@ -9,7 +9,19 @@ export function useColors() {
 }
 
 export const ColorsProvider = ({ children }) => {
-  const [savedColors, setSavedColors] = useState([]);
+  const [singleColors, setSingleColors] = useState([]);
+  const [palettes, setPalettes] = useState([]);
+  /*[
+  {
+    name: 'Palette 1',
+    colors: [[235,121,88], [235,121,88]]
+  },
+  {
+    name: 'Palette 2',
+    colors: [[40,55,120], [99,189,122]]
+  },
+]
+  */
   const [isCopiedVisible, setIsCopiedVisible] = useState(false);
   const [copiedFromSaved, setCopiedFromSaved] = useState(true);
   const [mobileView, setMobileView] = useState(false);
@@ -18,7 +30,7 @@ export const ColorsProvider = ({ children }) => {
     name: "Saved Colors",
     margin: "0",
   });
-  const storageItem = "savedColors";
+  const storageItem = "singleColors";
   const hexCharacters = [
     0,
     1,
@@ -40,16 +52,16 @@ export const ColorsProvider = ({ children }) => {
 
   const onStorageUpdate = (e) => {
     const { key, newValue } = e;
-    if (key === "savedColors") {
-      setSavedColors(newValue);
+    if (key === "singleColors") {
+      setSingleColors(newValue);
     }
   };
 
   useEffect(() => {
     try {
-      const val = JSON.parse(localStorage.getItem("savedColors"));
+      const val = JSON.parse(localStorage.getItem("singleColors"));
       if (Array.isArray(val)) {
-        setSavedColors(val);
+        setSingleColors(val);
       }
     } catch (e) {
       console.warn("Unparseable value in localStorage, ignoring", e);
@@ -75,7 +87,7 @@ export const ColorsProvider = ({ children }) => {
   }
 
   const save = (colors) => {
-    setSavedColors(colors);
+    setSingleColors(colors);
     localStorage.setItem(storageItem, JSON.stringify(colors));
   };
 
@@ -83,9 +95,9 @@ export const ColorsProvider = ({ children }) => {
     if (clearAll) {
       save([]);
     } else if (deleteColor) {
-      save(savedColors.filter((color) => color !== colorInput));
+      save(singleColors.filter((color) => color !== colorInput));
     } else {
-      const newSavedColors = [...savedColors];
+      const newSavedColors = [...singleColors];
       if (typeof colorInput[0] === "number") {
         newSavedColors.push(colorInput);
       } else {
@@ -130,7 +142,7 @@ export const ColorsProvider = ({ children }) => {
         hexCharacters,
         isCopiedVisible,
         mobileView,
-        savedColors,
+        singleColors,
         switchComponent,
         updateColors,
       }}

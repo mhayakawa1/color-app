@@ -94,7 +94,7 @@ export default function ColorWheel() {
 
     return buttons;
   };
-
+  
   return (
     <Feature className="color-wheel-component">
       <Controls className="color-wheel-controls">
@@ -111,7 +111,7 @@ export default function ColorWheel() {
             Reset
           </button>
         </div>
-        <ul className="color-names">{renderColorNames()}</ul>
+        {colorsInfo.filter((color) => color.active).length ? <ul className="color-names">{renderColorNames()}</ul> : null}
       </Controls>
 
       <Display className="color-wheel-display">

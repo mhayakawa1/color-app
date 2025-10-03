@@ -11,7 +11,7 @@ const MenuButtons = () => {
   const components = [
     { component: <SavedColors />, name: "Saved Colors", margin: "0" },
     { component: <ColorPicker />, name: "Color Picker", margin: "0 0 0 25%" },
-    { component: <RandomScheme />, name: "Color Schemes", margin: "0 0 0 50%" },
+    { component: <RandomScheme />, name: "Get Palettes", margin: "0 0 0 50%" },
     { component: <ColorWheel />, name: "Color Wheel", margin: "0 0 0 75%" },
   ];
   

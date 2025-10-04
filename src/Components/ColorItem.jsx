@@ -5,11 +5,8 @@ const ColorItem = ({ color, hex, clickHandler, argumentList, buttonText }) => {
   const rgb = color.join(",");
   const copiedFromSaved = buttonText === "Delete";
   return (
-    <div className="color-item">
-      <div
-        style={{ backgroundColor: `rgb(${rgb})` }}
-        className="color-block"
-      ></div>
+    <div className="color-block"
+        style={{ backgroundColor: `rgb(${rgb})` }}>
       <div className="color-info">
         <p className="color-value">
           RGB:{" "}

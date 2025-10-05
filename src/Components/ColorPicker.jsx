@@ -6,7 +6,8 @@ import Controls from "./Controls";
 import Display from "./Display";
 
 export default function ColorPicker() {
-  const { savedColors, updateColors, hexCharacters, convertHexToRGB } = useColors();
+  const { singleColors, updateColors, hexCharacters, convertHexToRGB } =
+    useColors();
   const [hexCode, setHexCode] = useState("");
   const [rgbArray, setRGBArray] = useState([0, 0, 0]);
   const [rgbCode, setRGBCode] = useState(`0,0,0`);
@@ -26,6 +27,33 @@ export default function ColorPicker() {
   ]);
   const [isCopiedVisible, setIsCopiedVisible] = useState(false);
 
+  const changeColor = (array) => {
+    setHexCode("");
+
+    let newRGB = [...rgbValues];
+    for (let i = 0; i < newRGB.length; i++) {
+      if (array[i] !== undefined) {
+        newRGB[i].value = array[i];
+      }
+    }
+    setRgbValues(newRGB);
+
+    const newRgbValues = [
+      rgbValues[0].value,
+      rgbValues[1].value,
+      rgbValues[2].value,
+    ];
+    setRGBArray(newRgbValues);
+    setRGBCode(newRgbValues.join(","));
+  };
+
+  const handleChangeRGB = (event, index) => {
+    const value = Number(event.target.value);
+    let values = [];
+    values[index] = value;
+    changeColor(values);
+  };
+  
   const renderInputItems = () => {
     let inputItems = [];
     for (let i = 0; i < rgbValues.length; i++) {
@@ -53,33 +81,6 @@ export default function ColorPicker() {
     }
 
     return inputItems;
-  };
-
-  const changeColor = (array) => {
-    setHexCode("");
-
-    let newRGB = [...rgbValues];
-    for (let i = 0; i < newRGB.length; i++) {
-      if (array[i] !== undefined) {
-        newRGB[i].value = array[i];
-      }
-    }
-    setRgbValues(newRGB);
-
-    const newRgbValues = [
-      rgbValues[0].value,
-      rgbValues[1].value,
-      rgbValues[2].value,
-    ];
-    setRGBArray(newRgbValues);
-    setRGBCode(newRgbValues.join(","));
-  };
-
-  const handleChangeRGB = (event, index) => {
-    const value = event.target.value;
-    let values = [undefined, undefined, undefined];
-    values[index] = value;
-    changeColor(values);
   };
 
   const handleChangeHEX = (event) => {
@@ -121,8 +122,7 @@ export default function ColorPicker() {
   };
 
   const saveColor = () => {
-    if (!JSON.stringify(savedColors).includes(JSON.stringify(rgbArray))) {
-      console.log(rgbArray)
+    if (!JSON.stringify(singleColors).includes(JSON.stringify(rgbArray))) {
       updateColors(rgbArray, false);
     }
   };
@@ -138,29 +138,18 @@ export default function ColorPicker() {
   return (
     <Feature>
       <Controls className="color-picker-controls">
-        <div className="input-container">{renderInputItems()}</div>
-        <div className="hex-container">
-          <button className="standard button-small" onClick={convertRgbToHex}>
-            RGB → HEX
-          </button>
-          <input
-            onChange={(event) => handleChangeHEX(event)}
-            onKeyDown={(event) => handleKeyDown(event)}
-            value={`#${hexCode.toUpperCase()}`}
-          />
-        </div>
-
-        <div className="reset-save">
-          <Button
-            className="standard reset"
-            handleClick={() => changeColor([0, 0, 0])}
-            text="Reset"
-          />
-          <Button
-            className="standard save"
-            handleClick={saveColor}
-            text="Save Color"
-          />
+        <div className="left-panel">
+          <div className="input-container">{renderInputItems()}</div>
+          <div className="hex-container">
+            <button className="standard button-small" onClick={convertRgbToHex}>
+              RGB → HEX
+            </button>
+            <input
+              onChange={(event) => handleChangeHEX(event)}
+              onKeyDown={(event) => handleKeyDown(event)}
+              value={`#${hexCode.toUpperCase()}`}
+            />
+          </div>
         </div>
         <button
           className="random-color"
@@ -180,6 +169,18 @@ export default function ColorPicker() {
           <br />
           Color
         </button>
+        <div className="reset-save">
+          <Button
+            className="standard reset"
+            handleClick={() => changeColor([0, 0, 0])}
+            text="Reset"
+          />
+          <Button
+            className="standard save"
+            handleClick={saveColor}
+            text="Save Color"
+          />
+        </div>
       </Controls>
 
       <Display className="custom-color-display">
@@ -189,12 +190,11 @@ export default function ColorPicker() {
         >
           <ul className="custom-color-info">
             <li>
-              RGB:{" "}
+              RGB:
               <span
                 className="color-code"
                 onClick={() => copyText(`(${rgbCode})`)}
-              >
-                {rgbCode}
+              > {rgbCode}
               </span>
             </li>
             <li>

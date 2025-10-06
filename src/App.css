@@ -1,19 +1,14 @@
 /*APP.JS STARTS HERE*/
 body {
   overflow-y: scroll;
+  background: rgb(0, 0, 0, 0.9);
 }
 
 .app {
   display: flex;
   flex-direction: column;
-  margin: auto;
-  /* min-width: 768px; */
-  /* max-width: 90%; */
   height: 100vh;
-  /* border: 1px solid rgb(220, 220, 220); */
-  /* border: 1px solid red; */
-  /* border-radius: 5px; */
-  background: black;
+  width: 100%;
   backdrop-filter: blur(5px);
 }
 
@@ -33,7 +28,6 @@ body {
 
 @media screen and (max-width: 769px) {
   .app {
-    max-width: 90%;
     min-width: 600px;
   }
 }
@@ -77,7 +71,7 @@ li {
   font-size: 0.75rem;
 }
 
-button{
+button {
   cursor: pointer;
 }
 
@@ -226,14 +220,14 @@ button{
 .menu-container {
   display: flex;
   justify-content: space-between;
-  height: 50px;
-  padding: 0 0 0 1%;
-  border-bottom: 1px solid rgb(220, 220, 220);
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
+  width: 100%;
+  height: 60px;
+  padding: 10px 0 0 1%;
+  border-bottom: 1px solid rgb(255, 255, 255, 0.25);
+  box-sizing: border-box;
 }
 
-.logo-container{
+.logo-container {
   display: flex;
   align-items: center;
   gap: 5px;
@@ -242,17 +236,15 @@ button{
   font-size: 1.25rem;
 }
 
-.logo-container img{
+.logo-container img {
   width: 36px;
   height: auto;
   object-fit: contain;
 }
 
 .menu {
-  position: relative;
   display: flex;
   flex-direction: column;
-  /* swidth: 32rem; */
 }
 
 .menu div button {
@@ -272,12 +264,10 @@ button{
 }
 
 .active-bar {
-  position: absolute;
   transition: all 0.75s ease-out;
   width: 8rem;
-  height: 100%;;
+  height: 5px;
   background-color: white;
-  opacity: 20%;
 }
 
 @media screen and (min-width: 1440px) {
@@ -531,35 +521,29 @@ button{
 
 .component-container {
   margin: 0;
-  width: auto;
+  width: 100%;
   height: 100%;
-  /* height: auto;
-  border-bottom-left-radius: 5px !important;
-  border-bottom-right-radius: 5px !important; */
 }
 
 .feature {
   display: flex;
+  flex-direction: column;
   height: 100%;
 }
 
 .controls {
   padding: 1rem;
-  border-right: 1px solid rgb(220, 220, 220);
-  max-width: 35%;
-  min-width: 15rem;
+  width: 100%;
   height: auto;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   box-sizing: border-box;
 }
 
 .display {
   width: 100%;
   height: 100%;
-  /* min-height: 15rem; */
   padding: 1rem;
-  background-color: rgb(69, 69, 69, 0.5);
   border-bottom-right-radius: 5px !important;
   margin: 0;
   display: flex;
@@ -654,14 +638,26 @@ h3 {
 /*APP.JS ENDS HERE*/
 
 /*SAVED COLORS STARTS HERE*/
-.colors-container {
-  align-self: start;
+.saved-colors {
+  height: 100%;
+}
+
+.no-data {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+.single-colors {
   display: flex;
   justify-content: space-between;
+  align-items: start;
   flex-wrap: wrap;
   width: 100%;
-  min-height: 15rem;
-  gap: 3.5%;
+  height: fit-content;
+  gap: 1rem;
   row-gap: 1rem;
   padding: 0;
 }
@@ -680,12 +676,14 @@ h3 {
   }
 }
 
+@media screen and (max-width: 768px) {
+}
+
 @media screen and (max-width: 496px) {
   .colors-container {
     max-width: 100%;
     height: auto;
     margin: 0;
-    gap: 4%;
     row-gap: 1rem;
   }
 }
@@ -696,47 +694,38 @@ h3 {
 }
 
 .filler {
-  width: 31%;
-  aspect-ratio: 3 / 4;
-}
-
-@media screen and (max-width: 496px) {
-  .filler {
-    width: 48%;
-    aspect-ratio: 3 / 5;
-  }
-}
-
-.color-item {
-  width: 31%;
-  aspect-ratio: 3 / 4;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  background-color: white;
-  border-radius: 4px;
+  width: 25%;
+  flex-grow: 1;
+  aspect-ratio: 1 / 1;
 }
 
 .color-block {
-  height: 60%;
-  width: 100%;
-  border-radius: 4px 4px 0 0;
+  position: relative;
+  width: 25%;
+  flex-grow: 1;
+  display: block;
+  aspect-ratio: 1 / 1;
+  border-radius: 4px;
+  border: 1px solid;
 }
 
 .color-info {
-  height: 40%;
+  position: absolute;
+  height: 100%;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  opacity: 100%;
+  opacity: 0%;
   box-sizing: border-box;
   gap: 5%;
+  border-radius: 4px;
 }
 
 .color-info:hover {
   opacity: 100%;
+  background-color: rgb(255, 255, 255, 0.5);
 }
 
 .color-info span {
@@ -804,10 +793,13 @@ h3 {
 }
 
 .confirm-clear-all {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
   margin: 1rem auto 0 auto;
   padding: 0;
-  width: 11rem;
-  height: auto;
+  height: fit-content;
+  border: 1px solid red;
 }
 
 .hide-confirm {
@@ -815,13 +807,13 @@ h3 {
 }
 
 .confirm-clear-all p {
-  margin: 0 0 1rem 0;
   color: white;
 }
 
-.confirm-btns {
+.confirm-buttons {
   display: flex;
   justify-content: space-between;
+  gap: 1rem;
 }
 
 .confirm-btns button {
@@ -864,12 +856,16 @@ h3 {
   margin: 10% 0 0 0;
 }
 
+.saved-colors .controls {
+  padding: 1rem;
+}
+
 @media screen and (max-width: 769px) {
-  .saved-colors .controls {
+  /* .saved-colors .controls {
     justify-content: space-between;
     align-items: center;
     height: auto;
-  }
+  } */
 
   .copied {
     margin: auto;
@@ -922,6 +918,39 @@ h3 {
   }
 }
 
+.toggle-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  height: 44px;
+  width: auto;
+  padding: 0 6px;
+  background-color: rgb(255, 255, 255, 0.1);
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.toggle-buttons button {
+  width: 8rem;
+  margin: auto;
+}
+
+.active {
+  background: unset;
+  background-color: white;
+  color: black;
+}
+
+.inactive {
+  background: none;
+  border: none;
+  color: white;
+}
+
+.inactive:hover {
+  background-color: rgb(255, 255, 255, 0.1);
+}
+
 .fade-copied {
   animation: fade 3s;
 }
@@ -939,19 +968,33 @@ h3 {
     opacity: 0%;
   }
 }
-
 /*SAVED COLORS ENDS HERE*/
+
+/*PALETTES STARTS HERE*/
+.palettes {
+  height: 100%;
+  width: 100%;
+}
+/*PALETTES ENDS HERE*/
 
 /*COLOR PICKER STARTS HERE*/
 .color-picker-controls {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 5%;
+}
+
+.left-panel {
+  height: 80%;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  justify-content: space-between;
+  margin: auto 0;
 }
 
 .input-container {
-  display: flex;
-  flex-direction: column;
+  align-self: center;
 }
 
 .input-item {
@@ -1054,22 +1097,6 @@ h3 {
   }
 }
 
-@media screen and (max-width: 769px) {
-  .color-picker-controls {
-    width: 100%;
-    display: grid;
-    grid-template-columns: auto 7rem auto;
-    padding: 1rem 5% 1rem 5%;
-  }
-
-  .input-container {
-    grid-column: 1/2;
-    grid-row: 1;
-    justify-self: start;
-    align-self: center;
-  }
-}
-
 @media screen and (max-width: 496px) {
   .color-picker-controls {
     grid-template-columns: 60% 40%;
@@ -1097,20 +1124,20 @@ h3 {
 }
 
 .hex-container {
-  width: auto;
+  width: 100%;
   display: flex;
-  justify-content: center;
-  gap: 1rem;
+  justify-content: space-between;
+  align-self: center;
+  justify-self: start;
 }
 
 .hex-container .button-small {
-  min-width: 7rem !important;
-  max-width: 7rem !important;
+  width: 7rem;
+  margin: 0;
 }
 
 .hex-container input {
-  min-width: 4rem !important;
-  max-width: 4rem !important;
+  width: 4rem;
   height: 32px;
   border: none;
   outline: none;
@@ -1119,9 +1146,11 @@ h3 {
 }
 
 .reset-save {
+  height: 80%;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  justify-content: space-between;
+  margin: auto 0;
 }
 
 .random-color {
@@ -1129,10 +1158,10 @@ h3 {
   height: 9rem;
   border: 3px solid;
   border-radius: 50%;
-  margin: auto;
   background-color: rgb(69, 69, 69, 0.5);
   color: white;
   font-size: 1rem;
+  align-self: center;
 }
 
 @media screen and (min-width: 1440px) {
@@ -1195,27 +1224,12 @@ h3 {
 
 @media screen and (max-width: 769px) {
   .hex-container {
-    grid-column: 1/2;
-    grid-row: 2;
-    align-self: center;
-    justify-self: start;
   }
 
   .color-picker-controls .reset-save {
-    grid-column: 3/4;
-    grid-row-start: 1;
-    grid-row-end: span 2;
-    justify-self: end;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
   }
 
   .random-color {
-    grid-column: 2/3;
-    grid-row-start: 1;
-    grid-row-end: span 2;
-    align-self: center;
     width: 7rem;
     height: 7rem;
   }
@@ -1301,7 +1315,6 @@ h3 {
 
 @media screen and (max-width: 496px) {
   .custom-color-display {
-    
     height: 100%;
     flex-grow: 1;
     flex-direction: column;
@@ -1440,12 +1453,21 @@ h3 {
   }
 }
 
-.controls-container {
+.color-wheel-controls {
   display: flex;
   flex-direction: column;
-  justify-content: start;
+  align-items: center;
   gap: 1rem;
-  width: fit-content;
+  height: fit-content;
+  width: 100%;
+}
+
+.controls-container {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  width: 100%;
+  margin: auto;
   height: fit-content;
 }
 
@@ -1503,7 +1525,7 @@ h3 {
 }
 
 @media screen and (max-width: 769px) {
-  .controls-container{
+  .controls-container {
     flex-direction: row;
   }
 
@@ -1572,7 +1594,7 @@ h3 {
   filter: drop-shadow(0px 0px 4px rgb(0, 0, 0, 0.5));
   width: auto;
   height: 20rem;
-  margin: auto;
+  margin: 1vh 0 0 0;
   padding: 1rem;
   border-radius: 50%;
 }
@@ -1628,14 +1650,19 @@ h3 {
   }
 }
 
-ul {
-  width: 10rem;
-  margin: 1rem auto 0 auto;
-  padding: 0 0 0 1rem;
+.color-names {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  height: auto;
+  width: 90%;
+  margin: 0;
+  padding: 0;
   color: white;
 }
 
 li {
+  width: fit-content;
   font-size: 1rem;
 }
 

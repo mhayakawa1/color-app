@@ -17,40 +17,67 @@ export default function RandomScheme() {
   } = useColors();
   const [schemeColors, setSchemeColors] = useState([]);
   const [isError, setIsError] = useState(false);
-  const [errorMessage, setIsErrorMessage] = useState("");
+  const [message, setMessage] = useState(
+    'Click "New Color Scheme" to view colors.',
+  );
+  const [isLoading, setIsLoading] = useState(false);
 
-  const getAPI = () => {
+  const getAPI = async () => {
+    setMessage("Loading...");
+    setIsLoading(true);
     let colorCode = "";
+    function randomParam(...values) {
+      return values[Math.floor(Math.random() * values.length)];
+    }
+    const scheme = randomParam(
+      "mono",
+      "contrast",
+      "triade",
+      "tetrade",
+      "analogic",
+    );
+    const variation = randomParam(
+      "default",
+      "soft",
+      "pastel",
+      "light",
+      "hard",
+      "pale",
+    );
+
     for (let i = 0; i < 6; i++) {
       const index = Math.floor(Math.random() * 16);
       colorCode += hexCharacters[index];
     }
-    fetch(`https://api.apiverve.com/v1/colorpalette?color=${colorCode}`, {
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        "x-api-key": "10bad6e5-5a5f-4f9c-abb1-62222730ffac",
-      },
-      method: "GET",
-    })
-      .then((response) => response.json())
-      .then((result) => {
-        const {
-          data: { colorPaletteRaw },
-        } = result;
-        const newSchemeArr = [];
-        for (let i = 0; i < colorPaletteRaw.length; i++) {
-          newSchemeArr.push(convertHexToRGB(colorPaletteRaw[i]));
-        }
-        setSchemeColors(newSchemeArr);
-        if (isError) {
-          setIsError(false);
-        }
-      })
-      .catch((error) => {
-        setIsError(true);
-        setIsErrorMessage(error.toString());
-      });
+
+    try {
+      const response = await fetch(
+        `https://api.apiverve.com/v1/colorpalette?color=${colorCode}&scheme=${scheme}&variation=${variation}`,
+        {
+          method: "GET",
+          headers: {
+            "x-api-key": "10bad6e5-5a5f-4f9c-abb1-62222730ffac",
+          },
+        },
+      );
+
+      const data = await response.json();
+      const {
+        data: { colorPaletteRaw },
+      } = data;
+      const newSchemeArr = [];
+      for (let i = 0; i < colorPaletteRaw.length; i++) {
+        newSchemeArr.push(convertHexToRGB(colorPaletteRaw[i]));
+      }
+      setSchemeColors(newSchemeArr);
+      if (isError) {
+        setIsError(false);
+      }
+    } catch (error) {
+      setMessage("Error: " + error.message);
+      setIsError(true);
+    }
+    setIsLoading(false);
   };
 
   const saveSchemeColor = (color) => {
@@ -60,13 +87,11 @@ export default function RandomScheme() {
   };
 
   const saveAllColors = () => {
-    let toAdd = [];
-    for (let i = 0; i < schemeColors.length; i++) {
-      if (singleColors.includes(schemeColors[i]) === false) {
-        toAdd.push(schemeColors[i]);
-      }
-    }
-    updateColors(toAdd, false, false);
+    const newPalette = {
+      key: crypto.randomUUID(),
+      colors: schemeColors,
+    };
+    updateColors(newPalette, false, false);
   };
 
   const colorSchemeLoop = () => {
@@ -84,7 +109,7 @@ export default function RandomScheme() {
         } else {
           hexValues.push(
             hexCharacters[rgbInput[j][0]],
-            hexCharacters[rgbInput[j][1] * 16]
+            hexCharacters[rgbInput[j][1] * 16],
           );
         }
       }
@@ -97,7 +122,7 @@ export default function RandomScheme() {
             clickHandler={saveSchemeColor}
             argumentList={[color]}
             buttonText="Save"
-          />
+          />,
         );
       }
     }
@@ -108,7 +133,7 @@ export default function RandomScheme() {
     <Feature>
       <Controls className="scheme-controls">
         <button className="standard" onClick={() => saveAllColors()}>
-          Save All
+          Save Color Scheme
         </button>
         <button className="standard" onClick={getAPI}>
           New Color Scheme
@@ -119,17 +144,14 @@ export default function RandomScheme() {
       </Controls>
 
       <Display>
-        {isError ? (
-          <p className="no-colors">{errorMessage}</p>
+        {" "}
+        {isError || !schemeColors.length || isLoading ? (
+          <div className="colors-container empty">
+            <p className="no-colors">{message}</p>
+          </div>
         ) : (
           <div className="colors-container">
-            {schemeColors.length === 0 ? (
-              <p className="no-colors">
-                Click "New Color Scheme" to view colors.
-              </p>
-            ) : (
-              colorSchemeLoop()
-            )}
+            {colorSchemeLoop()}
             {(schemeColors.length % 3 === 1 ||
               schemeColors.length % 3 === 2) && <Filler />}
             {schemeColors.length % 3 === 1 ? <Filler /> : null}

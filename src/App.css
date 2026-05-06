@@ -7,7 +7,7 @@ body {
 .app {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  min-height: 100vh;
   width: 100%;
   backdrop-filter: blur(5px);
 }
@@ -522,13 +522,17 @@ button {
 .component-container {
   margin: 0;
   width: 100%;
-  height: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
 }
 
 .feature {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  flex-grow: 1;
+  min-height: 80vh;
 }
 
 .controls {
@@ -542,10 +546,12 @@ button {
 
 .display {
   width: 100%;
-  height: 100%;
+  min-height: 100%;
+  height: fit-content;
   padding: 1rem;
   border-bottom-right-radius: 5px !important;
   margin: 0;
+  flex-grow: 1;
   display: flex;
   justify-content: center;
   box-sizing: border-box;
@@ -639,7 +645,7 @@ h3 {
 
 /*SAVED COLORS STARTS HERE*/
 .saved-colors {
-  height: 100%;
+  min-height: 100%;
 }
 
 .no-data {
@@ -648,6 +654,7 @@ h3 {
   justify-content: center;
   height: 100%;
   width: 100%;
+  margin: auto;
 }
 
 .single-colors {
@@ -656,10 +663,25 @@ h3 {
   align-items: start;
   flex-wrap: wrap;
   width: 100%;
-  height: fit-content;
+  min-height: 100%;
   gap: 1rem;
   row-gap: 1rem;
   padding: 0;
+}
+
+.colors-container {
+  width: 100%;
+  height: fit-content;
+  flex-grow: 1;
+  flex: 1;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  align-content: stretch;
+}
+
+.empty {
+  height: 80vh;
 }
 
 @media screen and (min-width: 1440px) {
@@ -676,9 +698,6 @@ h3 {
   }
 }
 
-@media screen and (max-width: 768px) {
-}
-
 @media screen and (max-width: 496px) {
   .colors-container {
     max-width: 100%;
@@ -691,6 +710,7 @@ h3 {
 .no-colors {
   margin: auto;
   color: white;
+  font-size: 1rem;
 }
 
 .filler {
@@ -702,6 +722,7 @@ h3 {
 .color-block {
   position: relative;
   width: 25%;
+  height: auto;
   flex-grow: 1;
   display: block;
   aspect-ratio: 1 / 1;
@@ -799,7 +820,6 @@ h3 {
   margin: 1rem auto 0 auto;
   padding: 0;
   height: fit-content;
-  border: 1px solid red;
 }
 
 .hide-confirm {
@@ -972,8 +992,16 @@ h3 {
 
 /*PALETTES STARTS HERE*/
 .palettes {
-  height: 100%;
+  height: fit-content;
+  min-height: 100%;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.palettes .row {
+  display: flex;
 }
 /*PALETTES ENDS HERE*/
 
@@ -1280,6 +1308,8 @@ h3 {
 
 .custom-color-display {
   padding: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .custom-color-block {
@@ -1288,7 +1318,7 @@ h3 {
   flex-grow: 1;
   display: flex;
   justify-content: center;
-  align-items: end;
+  align-items: start;
   box-sizing: border-box;
   border-radius: 0 0 5px 0;
 }
@@ -1340,7 +1370,7 @@ h3 {
   width: 100%;
   height: 15%;
   padding: 1rem;
-  border-radius: 0 0 5px 0;
+  margin: 0;
   background-color: white;
 }
 
@@ -1401,6 +1431,10 @@ h3 {
   gap: 1rem;
 }
 
+.loading {
+  color: red;
+}
+
 .color-scheme-container {
   display: flex;
   flex-wrap: wrap;
@@ -1432,7 +1466,7 @@ h3 {
   text-align: center;
 }
 
-/*RANDOM COLOR SCHEME STARTS HERE*/
+/*RANDOM COLOR SCHEME ENDS HERE*/
 
 /*COLOR WHEEL STARTS HERE*/
 @media screen and (max-width: 496px) {

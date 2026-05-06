@@ -11,17 +11,6 @@ export function useColors() {
 export const ColorsProvider = ({ children }) => {
   const [singleColors, setSingleColors] = useState([]);
   const [palettes, setPalettes] = useState([]);
-  /*[
-  {
-    name: 'Palette 1',
-    colors: [[235,121,88], [235,121,88]]
-  },
-  {
-    name: 'Palette 2',
-    colors: [[40,55,120], [99,189,122]]
-  },
-]
-  */
   const [isCopiedVisible, setIsCopiedVisible] = useState(false);
   const [copiedFromSaved, setCopiedFromSaved] = useState(true);
   const [mobileView, setMobileView] = useState(false);
@@ -55,13 +44,22 @@ export const ColorsProvider = ({ children }) => {
     if (key === "singleColors") {
       setSingleColors(newValue);
     }
+    if (key === "palettes") {
+      setPalettes(newValue);
+    }
   };
 
   useEffect(() => {
     try {
-      const val = JSON.parse(localStorage.getItem("singleColors"));
-      if (Array.isArray(val)) {
-        setSingleColors(val);
+      const singleColorsValue = JSON.parse(
+        localStorage.getItem("singleColors"),
+      );
+      const palettesValue = JSON.parse(localStorage.getItem("palettes"));
+      if (singleColorsValue) {
+        setSingleColors(singleColorsValue);
+      }
+      if (palettesValue) {
+        setPalettes(palettesValue);
       }
     } catch (e) {
       console.warn("Unparseable value in localStorage, ignoring", e);
@@ -74,7 +72,6 @@ export const ColorsProvider = ({ children }) => {
         setMobileView(false);
       }
     };
-
     window.addEventListener("resize", handleResize);
     window.addEventListener("storage", onStorageUpdate);
     return () => {
@@ -86,9 +83,9 @@ export const ColorsProvider = ({ children }) => {
     setDisplay(component);
   }
 
-  const save = (colors) => {
-    setSingleColors(colors);
-    localStorage.setItem(storageItem, JSON.stringify(colors));
+  const save = (callback, data, storageItem) => {
+    callback(data);
+    localStorage.setItem(storageItem, JSON.stringify(data));
   };
 
   const updateColors = (colorInput, deleteColor, clearAll) => {
@@ -97,13 +94,14 @@ export const ColorsProvider = ({ children }) => {
     } else if (deleteColor) {
       save(singleColors.filter((color) => color !== colorInput));
     } else {
-      const newSavedColors = [...singleColors];
-      if (typeof colorInput[0] === "number") {
-        newSavedColors.push(colorInput);
+      const newSavedColors = [];
+      if (colorInput.key) {
+        newSavedColors.push(...palettes, colorInput);
+        save(setPalettes, newSavedColors, "palettes");
       } else {
-        newSavedColors.push(...colorInput);
+        newSavedColors.push(...singleColors, colorInput);
+        save(setSingleColors, newSavedColors, storageItem);
       }
-      save(newSavedColors);
     }
   };
 
@@ -142,6 +140,7 @@ export const ColorsProvider = ({ children }) => {
         hexCharacters,
         isCopiedVisible,
         mobileView,
+        palettes,
         singleColors,
         switchComponent,
         updateColors,

@@ -5,8 +5,7 @@ const ColorItem = ({ color, hex, clickHandler, argumentList, buttonText }) => {
   const rgb = color.join(",");
   const copiedFromSaved = buttonText === "Delete";
   return (
-    <div className="color-block"
-        style={{ backgroundColor: `rgb(${rgb})` }}>
+    <div className="color-block" style={{ backgroundColor: `rgb(${rgb})` }}>
       <div className="color-info">
         <p className="color-value">
           RGB:{" "}
@@ -20,12 +19,15 @@ const ColorItem = ({ color, hex, clickHandler, argumentList, buttonText }) => {
             #{hex}
           </span>
         </p>
-        <button
-          className="standard button-small"
-          onClick={() => clickHandler(...argumentList)}
-        >
-          {buttonText}
-        </button>
+        {clickHandler ? (
+          <button
+            className="standard button-small"
+            onClick={() => clickHandler(color, false)}
+            // onClick={() => clickHandler(...argumentList)}
+          >
+            {buttonText}
+          </button>
+        ) : null}
       </div>
     </div>
   );

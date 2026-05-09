@@ -53,7 +53,7 @@ export default function ColorPicker() {
     values[index] = value;
     changeColor(values);
   };
-  
+
   const renderInputItems = () => {
     let inputItems = [];
     for (let i = 0; i < rgbValues.length; i++) {
@@ -76,7 +76,7 @@ export default function ColorPicker() {
             onChange={(event) => handleChangeRGB(event, i)}
           />
           <label>{color.charAt(0).toUpperCase() + color.slice(1)}</label>
-        </div>
+        </div>,
       );
     }
 
@@ -114,7 +114,7 @@ export default function ColorPicker() {
       } else {
         hexOutput.push(
           hexCharacters[newRGBArray[i][0]],
-          hexCharacters[newRGBArray[i][1] * 16]
+          hexCharacters[newRGBArray[i][1] * 16],
         );
       }
     }
@@ -145,6 +145,7 @@ export default function ColorPicker() {
               RGB → HEX
             </button>
             <input
+              id="hex-input"
               onChange={(event) => handleChangeHEX(event)}
               onKeyDown={(event) => handleKeyDown(event)}
               value={`#${hexCode.toUpperCase()}`}
@@ -194,7 +195,9 @@ export default function ColorPicker() {
               <span
                 className="color-code"
                 onClick={() => copyText(`(${rgbCode})`)}
-              > {rgbCode}
+              >
+                {" "}
+                {rgbCode}
               </span>
             </li>
             <li>

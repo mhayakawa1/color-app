@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import SavedColors from "../Components/SavedColors";
+import ColorItem from "../Components/ColorItem";
 
 export const ColorsContext = React.createContext();
 
@@ -19,7 +20,6 @@ export const ColorsProvider = ({ children }) => {
     name: "Saved Colors",
     margin: "0",
   });
-  const storageItem = "singleColors";
   const hexCharacters = [
     0,
     1,
@@ -83,26 +83,36 @@ export const ColorsProvider = ({ children }) => {
     setDisplay(component);
   }
 
-  const save = (callback, data, storageItem) => {
-    callback(data);
+  const save = (data, storageItem) => {
     localStorage.setItem(storageItem, JSON.stringify(data));
+    if (storageItem === "singleColors") {
+      setSingleColors(data);
+    } else {
+      setPalettes(data);
+    }
   };
 
   const updateColors = (colorInput, deleteColor, clearAll) => {
-    if (clearAll) {
-      save([]);
-    } else if (deleteColor) {
-      save(singleColors.filter((color) => color !== colorInput));
-    } else {
-      const newSavedColors = [];
-      if (colorInput.key) {
-        newSavedColors.push(...palettes, colorInput);
-        save(setPalettes, newSavedColors, "palettes");
-      } else {
-        newSavedColors.push(...singleColors, colorInput);
-        save(setSingleColors, newSavedColors, storageItem);
-      }
+    let storageItem = "singleColors";
+    let newData = [...singleColors];
+    const isPalette = Boolean(colorInput.key);
+    if (isPalette) {
+      storageItem = "palettes";
+      newData = palettes;
     }
+    if (clearAll) {
+      save([], storageItem);
+    } else if (deleteColor) {
+      newData = newData.filter((element) => {
+        if (isPalette) {
+          return element.key !== colorInput.key;
+        }
+        return element !== colorInput;
+      });
+    } else {
+      newData.push(colorInput);
+    }
+    save(newData, storageItem);
   };
 
   const convertHexToRGB = (inputValue) => {
@@ -130,9 +140,43 @@ export const ColorsProvider = ({ children }) => {
     }, 3000);
   };
 
+  const colorBlocks = (colors, toggleModal) => {
+    const { length } = colors;
+    let boxes = [];
+    for (let i = 0; i < length; i++) {
+      let rgbValues = [...colors[i]];
+      let hexValues = [];
+      for (let j = 0; j < 3; j++) {
+        rgbValues[j] = rgbValues[j] / 16;
+        rgbValues[j] = rgbValues[j].toString().split(".");
+        rgbValues[j][1] = "." + rgbValues[j][1];
+        if (rgbValues[j][1] === ".undefined") {
+          hexValues.push(hexCharacters[rgbValues[j][0]], "0");
+        } else {
+          hexValues.push(
+            hexCharacters[rgbValues[j][0]],
+            hexCharacters[rgbValues[j][1] * 16],
+          );
+        }
+      }
+      boxes.push(
+        <ColorItem
+          key={i}
+          color={colors[i]}
+          hex={hexValues.join("").toUpperCase()}
+          clickHandler={toggleModal}
+          argumentList={[colors[i], true]}
+          buttonText="Delete"
+        />,
+      );
+    }
+    return boxes;
+  };
+
   return (
     <ColorsContext.Provider
       value={{
+        colorBlocks,
         convertHexToRGB,
         copiedFromSaved,
         copyText,

@@ -4,20 +4,17 @@ import Button from "./Button";
 import Feature from "./Feature";
 import Controls from "./Controls";
 import Display from "./Display";
-import ColorItem from "./ColorItem";
 import SingleColors from "./SingleColors";
 import Palettes from "./Palettes";
+import DeleteModal from "./DeleteModal";
 
 export default function SavedColors() {
-  const {
-    singleColors,
-    updateColors,
-    isCopiedVisible,
-    copiedFromSaved,
-    hexCharacters,
-  } = useColors();
+  const { singleColors, updateColors, isCopiedVisible, copiedFromSaved } =
+    useColors();
   const [singleColorsActive, setSingleColorsActive] = useState(true);
   const [isConfirmVisible, setIsConfirmVisible] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [deleteData, setDeleteData] = useState(null);
   const savedColorsLength = singleColors.length;
 
   const toggleDisplay = (boolean) => {
@@ -40,11 +37,20 @@ export default function SavedColors() {
         setIsConfirmVisible(false);
     }
   };
-  
+
+  const toggleModal = (colorInput, confirmDelete) => {
+    setDeleteData(colorInput);
+    setModalVisible((current) => !current);
+    if (confirmDelete) {
+      updateColors(deleteData, true, false);
+    }
+  };
+
   return (
     <Feature className="saved-colors">
+      {modalVisible ? <DeleteModal toggleModal={toggleModal} /> : null}
       <Controls>
-        <div>
+        <div className="saved-left-panel">
           <Button
             text="Clear All"
             handleClick={
@@ -75,13 +81,13 @@ export default function SavedColors() {
         </div>
         <div className="toggle-buttons">
           <button
-            className={`standard button-small ${singleColorsActive ? "active" : 'inactive'}`}
+            className={`standard button-small ${singleColorsActive ? "active" : "inactive"}`}
             onClick={() => toggleDisplay(true)}
           >
             Single Colors
           </button>
           <button
-            className={`standard button-small ${!singleColorsActive ? "active" : 'inactive'}`}
+            className={`standard button-small ${!singleColorsActive ? "active" : "inactive"}`}
             onClick={() => toggleDisplay(false)}
           >
             Palettes
@@ -89,7 +95,11 @@ export default function SavedColors() {
         </div>
       </Controls>
       <Display>
-        {singleColorsActive ? <SingleColors /> : <Palettes />}
+        {singleColorsActive ? (
+          <SingleColors toggleModal={toggleModal} />
+        ) : (
+          <Palettes toggleModal={toggleModal} />
+        )}
       </Display>
     </Feature>
   );

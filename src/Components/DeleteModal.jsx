@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-
 export default function DeleteModal({ toggleModal }) {
   return (
     <div className="delete-modal">

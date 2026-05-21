@@ -21,6 +21,7 @@ export default function RandomScheme() {
     'Click "New Color Scheme" to view colors.',
   );
   const [isLoading, setIsLoading] = useState(false);
+  const apiKey = process.env.REACT_APP_API_KEY;
 
   const getAPI = async () => {
     setMessage("Loading...");
@@ -56,7 +57,7 @@ export default function RandomScheme() {
         {
           method: "GET",
           headers: {
-            "x-api-key": "10bad6e5-5a5f-4f9c-abb1-62222730ffac",
+            "x-api-key": apiKey,
           },
         },
       );
@@ -91,7 +92,9 @@ export default function RandomScheme() {
       key: crypto.randomUUID(),
       colors: schemeColors,
     };
-    updateColors(newPalette, false, false);
+    if (schemeColors.length) {
+      updateColors(newPalette, false, false);
+    }
   };
 
   const colorSchemeLoop = () => {
@@ -144,7 +147,6 @@ export default function RandomScheme() {
       </Controls>
 
       <Display>
-        {" "}
         {isError || !schemeColors.length || isLoading ? (
           <div className="colors-container empty">
             <p className="no-colors">{message}</p>

@@ -9,72 +9,75 @@ import Palettes from "./Palettes";
 import DeleteModal from "./DeleteModal";
 
 export default function SavedColors() {
-  const { singleColors, updateColors, isCopiedVisible, copiedFromSaved } =
-    useColors();
+  const {
+    singleColors,
+    palettes,
+    updateColors,
+    isCopiedVisible,
+    copiedFromSaved,
+  } = useColors();
   const [singleColorsActive, setSingleColorsActive] = useState(true);
   const [isConfirmVisible, setIsConfirmVisible] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
-  const [deleteData, setDeleteData] = useState(null);
+  const [deleteData, setDeleteData] = useState([]);
+  const [singleItem, setSingleItem] = useState(true);
   const savedColorsLength = singleColors.length;
+  const palettesLength = palettes.length;
 
   const toggleDisplay = (boolean) => {
     setSingleColorsActive(boolean);
   };
 
-  const clearAll = (input) => {
-    switch (input) {
-      default:
-        alert("Invalid input.");
-        break;
-      case "clear all":
-        setIsConfirmVisible(true);
-        break;
-      case true:
-        updateColors(null, null, true);
-        setIsConfirmVisible(false);
-        break;
-      case false:
-        setIsConfirmVisible(false);
-    }
-  };
-
-  const toggleModal = (colorInput, confirmDelete) => {
+  const toggleModal = (colorInput, confirmDelete, clearAll) => {
     setDeleteData(colorInput);
     setModalVisible((current) => !current);
-    if (confirmDelete) {
-      updateColors(deleteData, true, false);
+    if (clearAll)
+      if (confirmDelete) {
+        updateColors(deleteData, true, clearAll);
+      }
+    if (!confirmDelete && clearAll) {
+      setSingleItem(false);
+    } else {
+      setSingleItem(true);
     }
   };
 
   return (
     <Feature className="saved-colors">
-      {modalVisible ? <DeleteModal toggleModal={toggleModal} /> : null}
+      {modalVisible ? (
+        <DeleteModal singleItem={singleItem} toggleModal={toggleModal} />
+      ) : null}
       <Controls>
         <div className="saved-left-panel">
           <Button
             text="Clear All"
-            handleClick={
-              savedColorsLength !== 0 ? () => clearAll("clear all") : undefined
-            }
-            className={`standard ${savedColorsLength === 0 && "disabled"}`}
+            handleClick={() => {
+              toggleModal(
+                singleColorsActive ? [] : { key: "key" },
+                false,
+                true,
+              );
+            }}
+            // handleClick={savedColorsLength !== 0 ? () => clearAll() : undefined}
+            className={`standard ${(savedColorsLength && singleColorsActive) || (palettesLength && !singleColorsActive) ? "" : "disabled"}`}
           />
-          <div
+          {/* <div
             className={isConfirmVisible ? "confirm-clear-all" : "hide-confirm"}
           >
-            <p>Are you sure you want to clear all colors?</p>
+            <p>Are you sure you want to clear all items?</p>
             <div className="confirm-buttons">
               <Button
                 text="Yes"
-                handleClick={() => clearAll(true)}
+                handleClick={() => toggleModal([], true, true)}
                 className="standard secondary button-small"
               />
               <Button
                 text="No"
-                handleClick={() => clearAll(false)}
+                handleClick={() => toggleModal([], false, false)}
                 className="standard secondary button-small"
               />
             </div>
-          </div>
+          </div> */}
           {isCopiedVisible && copiedFromSaved && (
             <p className={`copied fade-copied`}>Copied to clickboard!</p>
           )}

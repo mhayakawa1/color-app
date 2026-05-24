@@ -109,10 +109,11 @@ export const ColorsProvider = ({ children }) => {
         }
         return element !== colorInput;
       });
+      save(newData, storageItem);
     } else {
       newData.push(colorInput);
+      save(newData, storageItem);
     }
-    save(newData, storageItem);
   };
 
   const convertHexToRGB = (inputValue) => {

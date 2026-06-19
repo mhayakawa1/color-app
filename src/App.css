@@ -372,7 +372,7 @@ button {
   .menu-buttons {
     transition: all 0.75s ease-out;
     display: flex;
-    align-items: end;
+    align-items: flex-end;
     flex-direction: column;
     height: 0rem;
     box-sizing: border-box;
@@ -633,7 +633,7 @@ button {
   .display {
     min-height: 100%;
     display: flex;
-    align-items: start;
+    align-items: flex-start;
   }
 }
 
@@ -930,7 +930,7 @@ h3 {
     margin: auto 0;
     width: auto;
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
   }
 
   .confirm-clear-all p {
@@ -1391,7 +1391,7 @@ h3 {
   flex-grow: 1;
   display: flex;
   justify-content: center;
-  align-items: start;
+  align-items: flex-start;
   box-sizing: border-box;
   border-radius: 0 0 5px 0;
 }

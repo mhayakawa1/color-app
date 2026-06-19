@@ -17,7 +17,6 @@ export default function SavedColors() {
     copiedFromSaved,
   } = useColors();
   const [singleColorsActive, setSingleColorsActive] = useState(true);
-  const [isConfirmVisible, setIsConfirmVisible] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
   const [deleteData, setDeleteData] = useState([]);
   const [singleItem, setSingleItem] = useState(true);

@@ -693,7 +693,7 @@ h3 {
 .single-colors {
   display: flex;
   justify-content: space-between;
-  align-items: start;
+  align-items: flex-start;
   flex-wrap: wrap;
   width: 100%;
   min-height: 100%;

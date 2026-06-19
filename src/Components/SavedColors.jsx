@@ -57,26 +57,8 @@ export default function SavedColors() {
                 true,
               );
             }}
-            // handleClick={savedColorsLength !== 0 ? () => clearAll() : undefined}
             className={`standard ${(savedColorsLength && singleColorsActive) || (palettesLength && !singleColorsActive) ? "" : "disabled"}`}
           />
-          {/* <div
-            className={isConfirmVisible ? "confirm-clear-all" : "hide-confirm"}
-          >
-            <p>Are you sure you want to clear all items?</p>
-            <div className="confirm-buttons">
-              <Button
-                text="Yes"
-                handleClick={() => toggleModal([], true, true)}
-                className="standard secondary button-small"
-              />
-              <Button
-                text="No"
-                handleClick={() => toggleModal([], false, false)}
-                className="standard secondary button-small"
-              />
-            </div>
-          </div> */}
           {isCopiedVisible && copiedFromSaved && (
             <p className={`copied fade-copied`}>Copied to clickboard!</p>
           )}

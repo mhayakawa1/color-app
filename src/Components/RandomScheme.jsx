@@ -21,7 +21,7 @@ export default function RandomScheme() {
     'Click "New Color Scheme" to view colors.',
   );
   const [isLoading, setIsLoading] = useState(false);
-  const apiKey = REACT_APP_API_KEY;
+  const apiKey = process.env.REACT_APP_API_KEY;
   console.log(process.env)
   const getAPI = async () => {
     setMessage("Loading...");

@@ -23,6 +23,7 @@ export default function RandomScheme() {
   const [isLoading, setIsLoading] = useState(false);
   const {NODE_ENV, REACT_APP_API_KEY, API_KEY } = process.env;
   const apiKey = NODE_ENV === 'development' ? REACT_APP_API_KEY : API_KEY;
+  console.log(apiKey)
   const getAPI = async () => {
     setMessage("Loading...");
     setIsLoading(true);

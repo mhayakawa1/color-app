@@ -21,8 +21,6 @@ export default function RandomScheme() {
     'Click "New Color Scheme" to view colors.',
   );
   const [isLoading, setIsLoading] = useState(false);
-  const apiKey = process.env.REACT_APP_API_KEY;
-  console.log(process.env)
   const getAPI = async () => {
     setMessage("Loading...");
     setIsLoading(true);
@@ -52,16 +50,8 @@ export default function RandomScheme() {
     }
 
     try {
-      const response = await fetch(
-        `https://api.apiverve.com/v1/colorpalette?color=${colorCode}&scheme=${scheme}&variation=${variation}`,
-        {
-          method: "GET",
-          headers: {
-            "x-api-key": apiKey,
-          },
-        },
-      );
-
+      //eslint-disable-next-line
+      const response = await fetch(`api/fetch-data?color=${colorCode}&scheme=${scheme}&variation=${variation}`);
       const data = await response.json();
       const {
         data: { colorPaletteRaw },

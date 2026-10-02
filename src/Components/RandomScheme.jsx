@@ -113,7 +113,6 @@ export default function RandomScheme() {
             color={color}
             hex={hexValues.join("").toUpperCase()}
             clickHandler={saveSchemeColor}
-            argumentList={[color]}
             buttonText="Save"
           />,
         );

@@ -10,7 +10,7 @@ export default function ColorPicker() {
     useColors();
   const [hexCode, setHexCode] = useState("");
   const [rgbArray, setRGBArray] = useState([0, 0, 0]);
-  const [rgbCode, setRGBCode] = useState(`0,0,0`);
+  const [rgbCode, setRGBCode] = useState("0,0,0");
   const [rgbValues, setRgbValues] = useState([
     {
       color: "red",
@@ -38,11 +38,7 @@ export default function ColorPicker() {
     }
     setRgbValues(newRGB);
 
-    const newRgbValues = [
-      rgbValues[0].value,
-      rgbValues[1].value,
-      rgbValues[2].value,
-    ];
+    const newRgbValues = rgbValues.map((element) => element.value);
     setRGBArray(newRgbValues);
     setRGBCode(newRgbValues.join(","));
   };
@@ -155,11 +151,7 @@ export default function ColorPicker() {
         <button
           className="random-color"
           onClick={() =>
-            changeColor([
-              Math.round(Math.random() * 255),
-              Math.round(Math.random() * 255),
-              Math.round(Math.random() * 255),
-            ])
+            changeColor(Array(3).fill(0).map(() => Math.round(Math.random() * 255)))
           }
           style={{
             filter: `drop-shadow(0px 0px 4px rgb(${rgbCode}))`,

@@ -11,11 +11,11 @@ export default async function fetchData(request, response) {
           },
         },
       );
-      if (!apiResponse.ok) {
-        return res.status(apiResponse.status).json({ error: "Failed to fetch third party API" });
-      }
-      const data = await apiResponse.json();
-      return response.status(200).json(data);
+    if (!apiResponse.ok) {
+      return res.status(apiResponse.status).json({ error: "Failed to fetch third party API" });
+    }
+    const data = await apiResponse.json();
+    return response.status(200).json(data);
     } catch(error) {
       return response.status(401).json({ error: error.message });
     }

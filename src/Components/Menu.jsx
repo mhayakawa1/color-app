@@ -12,7 +12,7 @@ const Menu = () => {
         <span>MyColors</span>
       </div>
       <div className="menu">
-        <div className={`menu-buttons`}>
+        <div className="menu-buttons">
           <MenuButtons switchComponent={switchComponent} />
         </div>
         <span

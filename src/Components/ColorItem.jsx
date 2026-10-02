@@ -1,6 +1,6 @@
 import { useColors } from "../Contexts/ColorsContext";
 
-const ColorItem = ({ color, hex, clickHandler, argumentList, buttonText }) => {
+const ColorItem = ({ color, hex, clickHandler, buttonText }) => {
   const { copyText } = useColors();
   const rgb = color.join(",");
   const copiedFromSaved = buttonText === "Delete";
@@ -23,7 +23,6 @@ const ColorItem = ({ color, hex, clickHandler, argumentList, buttonText }) => {
           <button
             className="standard button-small"
             onClick={() => clickHandler(color, false)}
-            // onClick={() => clickHandler(...argumentList)}
           >
             {buttonText}
           </button>

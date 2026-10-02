@@ -18,7 +18,7 @@ const MenuButtons = () => {
   for (let i = 0; i < components.length; i++) {
     buttons.push(
       <button
-        key={i}
+        key={components[i].name}
         className="menu-button"
         onClick={() => switchComponent(components[i])}
       >

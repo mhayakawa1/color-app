@@ -1,3 +1,3 @@
 export default function Feature(props) {
-  return <div className={`feature ${props.className}`}>{props.children}</div>;
+  return <div className={`feature ${props.className || ""}`}>{props.children}</div>;
 }

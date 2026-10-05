@@ -47,7 +47,7 @@ export default function SavedColors() {
         <DeleteModal singleItem={singleItem} toggleModal={toggleModal} />
       ) : null}
       <Controls>
-        <div className="saved-left-panel">
+        <div className="buttons-panel">
           <Button
             text="Clear All"
             handleClick={() => {

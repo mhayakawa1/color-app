@@ -1,5 +1,4 @@
 import React, { useState, useContext, useEffect } from "react";
-import SavedColors from "../Components/SavedColors";
 import ColorItem from "../Components/ColorItem";
 
 export const ColorsContext = React.createContext();
@@ -15,11 +14,6 @@ export const ColorsProvider = ({ children }) => {
   const [isCopiedVisible, setIsCopiedVisible] = useState(false);
   const [copiedFromSaved, setCopiedFromSaved] = useState(true);
   const [mobileView, setMobileView] = useState(false);
-  const [displayData, setDisplay] = useState({
-    component: <SavedColors />,
-    name: "Saved Colors",
-    margin: "0",
-  });
   const hexCharacters = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "a", "b", "c", "d", "e", "f"];
 
   const onStorageUpdate = (e) => {
@@ -49,9 +43,9 @@ export const ColorsProvider = ({ children }) => {
     }
 
     const handleResize = () => {
-      if (window.innerWidth < 640) {
+      if (window.innerWidth <= 496) {
         setMobileView(true);
-      } else if (window.innerWidth >= 640) {
+      } else if (window.innerWidth > 496) {
         setMobileView(false);
       }
     };
@@ -61,10 +55,6 @@ export const ColorsProvider = ({ children }) => {
       window.removeEventListener("storage", onStorageUpdate);
     };
   }, []);
-
-  function switchComponent(component) {
-    setDisplay(component);
-  }
 
   const save = (data, storageItem) => {
     localStorage.setItem(storageItem, JSON.stringify(data));
@@ -164,13 +154,11 @@ export const ColorsProvider = ({ children }) => {
         convertHexToRGB,
         copiedFromSaved,
         copyText,
-        displayData,
         hexCharacters,
         isCopiedVisible,
         mobileView,
         palettes,
         singleColors,
-        switchComponent,
         updateColors,
       }}
     >

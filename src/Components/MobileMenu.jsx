@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
-import MenuButtons from "./MenuButtons";
+import Links from "./Links";
 
 const MobileMenu = () => {
   const [isMenuVisible, setIsMenuVisible] = useState(false);
@@ -22,13 +22,7 @@ const MobileMenu = () => {
           <AiOutlineClose className="icon"></AiOutlineClose>
         )}
       </button>
-      <div
-        className={`menu-buttons ${
-          isMenuVisible ? "menu-buttons-height fade-in" : "fade-out"
-        }`}
-      >
-        {renderMenu && <MenuButtons />}
-      </div>
+      <Links className={isMenuVisible ? "links-height fade-in" : "fade-out"} />
     </div>
   );
 };
